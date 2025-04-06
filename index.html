@@ -12,12 +12,70 @@
             background-color: #f0f8ff;
         }
 
+        /* Navbar */
+        nav {
+            background-color: #333;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-size: 1.2em;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* Sezione Home */
+        .home {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #ffebcd;
+            text-align: center;
+        }
+
+        .home h1 {
+            font-size: 3em;
+            color: #333;
+        }
+
+        /* Sezione Calendario */
+        .calendario {
+            padding: 50px;
+            background-color: #f0f8ff;
+            text-align: center;
+        }
+
+        .calendario h2 {
+            font-size: 2.5em;
+            color: #333;
+        }
+
+        /* Sezione Promozioni */
+        .promozioni {
+            padding: 50px;
+            background-color: #e0f7fa;
+            text-align: center;
+        }
+
+        .promozioni h2 {
+            font-size: 2.5em;
+            color: #333;
+        }
+
         /* Sezione Conteggio */
         .conteggio {
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh; /* Impostato su 100% della finestra */
+            height: 100vh;
             background-color: #fff;
             text-align: center;
         }
@@ -31,10 +89,10 @@
             color: #ff6347;
             font-size: 3em;
             font-weight: bold;
-            transition: all 1s ease-in-out; /* Animazione */
+            transition: all 1s ease-in-out;
         }
 
-        /* Sezione footer o altre sezioni che potrebbero esserci */
+        /* Sezione footer */
         footer {
             text-align: center;
             padding: 20px;
@@ -45,22 +103,53 @@
 </head>
 <body>
 
+    <!-- Navbar (barra di navigazione) -->
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#calendario">Calendario</a>
+        <a href="#promozioni">Promozioni</a>
+        <a href="#conteggio">Conteggio</a>
+    </nav>
+
+    <!-- Sezione Home -->
+    <section id="home" class="home">
+        <div>
+            <h1>Benvenuto nella nostra pagina di felicità!</h1>
+        </div>
+    </section>
+
+    <!-- Sezione Calendario -->
+    <section id="calendario" class="calendario">
+        <h2>Calendario delle Attività</h2>
+        <p>In questa sezione puoi vedere tutte le attività programmate.</p>
+        <p>Inserisci qui i tuoi eventi e date speciali!</p>
+    </section>
+
+    <!-- Sezione Promozioni -->
+    <section id="promozioni" class="promozioni">
+        <h2>Le Nostre Promozioni</h2>
+        <p>Approfitta delle nostre fantastiche offerte e promozioni!</p>
+        <ul>
+            <li>Offerta speciale per il mese di aprile: 20% di sconto su tutti i prodotti.</li>
+            <li>Felicità garantita con il nostro pacchetto di benessere: risparmia il 15%!</li>
+        </ul>
+    </section>
+
     <!-- Sezione Conteggio -->
-    <section class="conteggio">
+    <section id="conteggio" class="conteggio">
         <div>
             <h1>Totale giorni di felicità: <span id="counter">0</span></h1>
         </div>
     </section>
 
-    <!-- Altre sezioni della pagina, come il footer -->
+    <!-- Footer -->
     <footer>
         <p>© 2025 Felicità Inc.</p>
     </footer>
 
     <script>
-        // JavaScript
-        // Imposta la data di inizio
-        const startDate = new Date('2024-10-11'); // Sostituisci con la tua data
+        // JavaScript per il conteggio dei giorni
+        const startDate = new Date('2020-01-01'); // Sostituisci con la tua data
         const counterElement = document.getElementById('counter');
 
         // Funzione per calcolare i giorni trascorsi
