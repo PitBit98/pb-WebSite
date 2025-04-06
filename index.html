@@ -54,6 +54,38 @@
     </nav>
     <section id="home">
         <h2>Home</h2>
+<script>
+        // JavaScript
+        // Imposta la data di inizio
+        const startDate = new Date('2020-01-01'); // Sostituisci con la tua data
+        const counterElement = document.getElementById('counter');
+
+        // Funzione per calcolare i giorni trascorsi
+        function calculateDaysPassed() {
+            const currentDate = new Date();
+            const timeDifference = currentDate - startDate; // Differenza in millisecondi
+            const daysPassed = Math.floor(timeDifference / (1000 * 60 * 60 * 24)); // Converte in giorni
+            return daysPassed;
+        }
+
+        // Funzione per animare l'incremento del numero
+        function animateCounter(targetValue) {
+            let currentValue = 0;
+            const interval = setInterval(() => {
+                if (currentValue < targetValue) {
+                    currentValue++;
+                    counterElement.textContent = currentValue;
+                } else {
+                    clearInterval(interval);
+                }
+            }, 1); // 1 ms per ottenere un effetto veloce
+        }
+
+        // Inizializza il conteggio
+        const daysPassed = calculateDaysPassed();
+        animateCounter(daysPassed);
+    </script>
+        
   
     </section>
     <section id="calendar">
