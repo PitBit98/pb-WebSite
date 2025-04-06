@@ -1,60 +1,48 @@
-
 <!DOCTYPE html>
 <html lang="it">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happiness with you</title>
+    <title>Totale Giorni di Felicità</title>
     <style>
+        /* CSS */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
+            background-color: #f0f8ff;
         }
-        header {
-            background: #35424a;
-            color: #ffffff;
-            padding: 10px 0;
+
+        .home {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* La sezione Home occupa tutta la finestra */
+            background-color: #fff;
             text-align: center;
         }
-        nav {
-            margin: 20px 0;
+
+        h1 {
+            font-size: 2.5em;
+            color: #333;
         }
-        nav a {
-            margin: 0 15px;
-            color: #35424a;
-            text-decoration: none;
-        }
-        section {
-            padding: 20px;
-            background: white;
-            margin: 20px;
-            border-radius: 5px;
-        }
-        footer {
-            text-align: center;
-            padding: 10px 0;
-            background: #35424a;
-            color: white;
-            position: relative;
-            bottom: 0;
-            width: 100%;
+
+        #counter {
+            color: #ff6347;
+            font-size: 3em;
+            font-weight: bold;
+            transition: all 1s ease-in-out; /* Animazione */
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Happiness with you</h1>
-    </header>
-    <nav>
-        <a href="#home">Home</a>
-        <a href="#calendar">Calendario</a>
-        <a href="#contact">Promozioni</a>
-    </nav>
-    <section id="home">
-        <h2>Home</h2>
-<script>
+    <!-- Sezione Home -->
+    <div class="home">
+        <div>
+            <h1>Totale giorni di felicità: <span id="counter">0</span></h1>
+        </div>
+    </div>
+
+    <script>
         // JavaScript
         // Imposta la data di inizio
         const startDate = new Date('2020-01-01'); // Sostituisci con la tua data
@@ -85,25 +73,5 @@
         const daysPassed = calculateDaysPassed();
         animateCounter(daysPassed);
     </script>
-        
-  
-    </section>
-    <section id="calendar">
-        <h2>Calendario</h2>
-      <iframe src="https://calendar.google.com/calendar/embed?src=ciscocampanellino%40gmail.com&ctz=Europe%2FRome" 
-                 style="border: 0"
-       		 width="100%"
-       		 height="600"
-       		 frameborder="0"
-       		 scrolling="no"
-       		 allowfullscreen
-       		 loading="lazy"></iframe>
-    </section>
-    
-
-    
-    <footer>
-        <p>&copy; 2025</p>
-    </footer>
 </body>
 </html>
