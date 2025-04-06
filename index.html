@@ -12,16 +12,17 @@
             background-color: #f0f8ff;
         }
 
-        .home {
+        /* Sezione Conteggio */
+        .conteggio {
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh; /* La sezione Home occupa tutta la finestra */
+            height: 100vh; /* Impostato su 100% della finestra */
             background-color: #fff;
             text-align: center;
         }
 
-        h1 {
+        .conteggio h1 {
             font-size: 2.5em;
             color: #333;
         }
@@ -32,15 +33,29 @@
             font-weight: bold;
             transition: all 1s ease-in-out; /* Animazione */
         }
+
+        /* Sezione footer o altre sezioni che potrebbero esserci */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #333;
+            color: white;
+        }
     </style>
 </head>
 <body>
-    <!-- Sezione Home -->
-    <div class="home">
+
+    <!-- Sezione Conteggio -->
+    <section class="conteggio">
         <div>
             <h1>Totale giorni di felicità: <span id="counter">0</span></h1>
         </div>
-    </div>
+    </section>
+
+    <!-- Altre sezioni della pagina, come il footer -->
+    <footer>
+        <p>© 2025 Felicità Inc.</p>
+    </footer>
 
     <script>
         // JavaScript
