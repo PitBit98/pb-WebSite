@@ -59,27 +59,47 @@
         </div>
     </div>
 
-    <script>
-        // Definisci la data di inizio
-        var startDate = new Date("2024-10-10"); // Sostituisci con la tua data di inizio (formato: "YYYY-MM-DD")
+   <script>
+    // Funzione per calcolare il numero di giorni trascorsi
+    function calculateDays() {
+      const startDate = new Date('2024-10-10'); // Modifica con la tua data di inizio
+      const today = new Date();
+      const timeDiff = today - startDate;
+      return Math.floor(timeDiff / (1000 * 3600 * 24)); // Converte la differenza in giorni
+    }
 
-        // Funzione per calcolare i giorni trascorsi
-        function updateDaysCounter() {
-            var today = new Date();
-            var timeDiff = today - startDate; // differenza in millisecondi
-            var daysDiff = Math.floor(timeDiff / (1000 * 3600 * 24)); // converte i millisecondi in giorni
+    // Funzione per animare il conteggio dei giorni
+    function animateCountUp(target) {
+      const countdownElement = document.getElementById('countdown');
+      const startValue = 0;
+      const endValue = target;
+      const duration = 2000; // Durata dell'animazione in millisecondi
+      const increment = endValue / (duration / 50); // Incremento per ogni intervallo di tempo (50ms)
+      let currentValue = startValue;
 
-            // Mostra il risultato nella pagina
-            document.getElementById("days-counter").innerText = "Totale giorni insieme: " + daysDiff;
+      function updateValue() {
+        currentValue += increment;
+        if (currentValue >= endValue) {
+          countdownElement.innerText = endValue;
+        } else {
+          countdownElement.innerText = Math.floor(currentValue);
+          requestAnimationFrame(updateValue);
         }
+      }
 
-        // Aggiorna il conteggio ogni volta che la pagina viene caricata
-        updateDaysCounter();
-    </script>
+      countdownElement.style.opacity = 1; // Rende visibile il testo
+      updateValue(); // Avvia l'animazione
+    }
+
+    // Quando la pagina è completamente caricata, avvia l'animazione
+    window.onload = function() {
+      const days = calculateDays();
+      animateCountUp(days);
+    };
         <p></p>
     </section>
     <section id="calendar">
-        <h2>Calendario personale</h2>
+        <h2>Calendario</h2>
       <iframe src="https://calendar.google.com/calendar/embed?src=ciscocampanellino%40gmail.com&ctz=Europe%2FRome" 
                  style="border: 0"
        		 width="100%"
