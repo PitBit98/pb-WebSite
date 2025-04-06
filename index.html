@@ -30,7 +30,8 @@
         nav a:hover {
             text-decoration: underline;
         }
-/* Sezione combinata Home + Conteggio */
+
+        /* Sezione combinata Home + Conteggio */
         .home-conteggio {
             display: flex;
             justify-content: center;
@@ -59,16 +60,11 @@
             font-weight: bold;
             transition: all 1s ease-in-out;
             border: none; /* Rimuove il bordo */
-            padding: 0; /* Rimuove il padding che potrebbe causare spazi bianchi */
+            padding: 0; /* Rimuove il padding */
             background-color: transparent; /* Imposta lo sfondo come trasparente */
             box-shadow: none; /* Rimuove eventuali ombre */
         }
 
-        .conteggio {
-    padding: 0; /* Rimuove padding che potrebbe generare spazi bianchi */
-    background-color: transparent; /* Assicurati che non ci sia un colore di sfondo qui */
-    border: none; /* Rimuove bordi se ce ne sono */
-}
         /* Sezione Calendario */
         .calendario {
             padding: 50px;
@@ -93,28 +89,6 @@
             color: #333;
         }
 
-        /* Sezione Conteggio */
-        .conteggio {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #fff;
-            text-align: center;
-        }
-
-        .conteggio h1 {
-            font-size: 2.5em;
-            color: #333;
-        }
-
-        #counter {
-            color: #ff6347;
-            font-size: 3em;
-            font-weight: bold;
-            transition: all 1s ease-in-out;
-        }
-
         /* Sezione footer */
         footer {
             text-align: center;
@@ -125,7 +99,7 @@
 
         /* Media Query per dispositivi mobili */
         @media (max-width: 768px) {
-            .home h1 {
+            .home-conteggio h1 {
                 font-size: 6vw; /* Aumenta la dimensione del testo su schermi più piccoli */
             }
 
@@ -145,7 +119,7 @@
 
         /* Media Query per schermi molto piccoli (smartphone) */
         @media (max-width: 480px) {
-            .home h1 {
+            .home-conteggio h1 {
                 font-size: 8vw; /* Ancora più grande per schermi piccoli */
             }
 
@@ -171,9 +145,10 @@
         <a href="#home">Home</a>
         <a href="#calendario">Calendario</a>
         <a href="#promozioni">Promozioni</a>
+        <a href="#conteggio">Conteggio</a>
     </nav>
 
-      <!-- Sezione Combinata Home + Conteggio -->
+    <!-- Sezione Combinata Home + Conteggio -->
     <section id="home-conteggio" class="home-conteggio">
         <h1>Benvenuto nella nostra pagina di felicità!</h1>
         <div class="conteggio">
@@ -183,17 +158,18 @@
 
     <!-- Sezione Calendario -->
     <section id="calendario" class="calendario">
-        <h2>Calendario</h2>
+        <h2>Calendario delle Attività</h2>
         <p>In questa sezione puoi vedere tutte le attività programmate.</p>
         <div>
             <!-- Incolla il codice iframe del tuo Google Calendar qui -->
-            <iframe src="https://calendar.google.com/calendar/embed?src=ciscocampanellino%40gmail.com&ctz=Europe%2FRome" 
+            <iframe src="https://calendar.google.com/calendar/embed?src=your_calendar_link&ctz=Europe%2FRome" 
                 style="border: 0" 
                 width="800" 
                 height="600" 
                 frameborder="0" 
                 scrolling="no"></iframe>
         </div>
+    </section>
 
     <!-- Sezione Promozioni -->
     <section id="promozioni" class="promozioni">
@@ -205,7 +181,6 @@
         </ul>
     </section>
 
-
     <!-- Footer -->
     <footer>
         <p>© 2025 Felicità Inc.</p>
@@ -213,7 +188,7 @@
 
     <script>
         // JavaScript per il conteggio dei giorni
-        const startDate = new Date('2024-10-11'); // Sostituisci con la tua data
+        const startDate = new Date('2020-01-01'); // Sostituisci con la tua data
         const counterElement = document.getElementById('counter');
 
         // Funzione per calcolare i giorni trascorsi
