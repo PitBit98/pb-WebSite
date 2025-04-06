@@ -54,49 +54,7 @@
     </nav>
     <section id="home">
         <h2>Home</h2>
-        <div class="counter">
-            <p id="days-counter">Giorni di felicità: </p>
-        </div>
-    </div>
-
-   <script>
-    // Funzione per calcolare il numero di giorni trascorsi
-    function calculateDays() {
-      const startDate = new Date('2024-10-10'); // Modifica con la tua data di inizio
-      const today = new Date();
-      const timeDiff = today - startDate;
-      return Math.floor(timeDiff / (1000 * 3600 * 24)); // Converte la differenza in giorni
-    }
-
-    // Funzione per animare il conteggio dei giorni
-    function animateCountUp(target) {
-      const countdownElement = document.getElementById('countdown');
-      const startValue = 0;
-      const endValue = target;
-      const duration = 2000; // Durata dell'animazione in millisecondi
-      const increment = endValue / (duration / 50); // Incremento per ogni intervallo di tempo (50ms)
-      let currentValue = startValue;
-
-      function updateValue() {
-        currentValue += increment;
-        if (currentValue >= endValue) {
-          countdownElement.innerText = endValue;
-        } else {
-          countdownElement.innerText = Math.floor(currentValue);
-          requestAnimationFrame(updateValue);
-        }
-      }
-
-      countdownElement.style.opacity = 1; // Rende visibile il testo
-      updateValue(); // Avvia l'animazione
-    }
-
-    // Quando la pagina è completamente caricata, avvia l'animazione
-    window.onload = function() {
-      const days = calculateDays();
-      animateCountUp(days);
-    };
-        <p></p>
+  
     </section>
     <section id="calendar">
         <h2>Calendario</h2>
