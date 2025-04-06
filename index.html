@@ -115,6 +115,15 @@
                 font-size: 1em; /* Modifica la dimensione dei link della navigazione */
                 margin: 0 10px;
             }
+
+                        /* Modifica la dimensione dell'iframe del calendario */
+            .calendario iframe {
+                width: 100%;
+                max-width: 100%;
+                height: 300px; /* Imposta un'altezza fissa per dispositivi mobili */
+            }
+
+            
         }
 
         /* Media Query per schermi molto piccoli (smartphone) */
@@ -134,6 +143,10 @@
             nav a {
                 font-size: 0.9em;
                 margin: 0 8px;
+            }
+             /* Modifica la dimensione dell'iframe del calendario */
+            .calendario iframe {
+                height: 250px; /* Riduci l'altezza per schermi molto piccoli */
             }
         }
     </style>
