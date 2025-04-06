@@ -31,21 +31,33 @@
             text-decoration: underline;
         }
 
-        /* Sezione Home */
-        .home {
+              /* Sezione combinata Home + Conteggio */
+        .home-conteggio {
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            flex-direction: column;
+            height: 100vh; /* La sezione occupa tutta l'altezza della finestra */
             background-color: #ffebcd;
             text-align: center;
-            flex-direction: column;
         }
 
-        .home h1 {
+        .home-conteggio h1 {
             font-size: 5vw; /* Utilizza vw per rendere il testo più fluido in base alla larghezza dello schermo */
             color: #333;
             margin: 0;
+        }
+
+             .conteggio h1 {
+            font-size: 2.5em;
+            color: #333;
+        }
+
+        #counter {
+            color: #ff6347;
+            font-size: 3em;
+            font-weight: bold;
+            transition: all 1s ease-in-out;
         }
 
         /* Sezione Calendario */
@@ -164,8 +176,15 @@
     <section id="calendario" class="calendario">
         <h2>Calendario delle Attività</h2>
         <p>In questa sezione puoi vedere tutte le attività programmate.</p>
-        <p>Inserisci qui i tuoi eventi e date speciali!</p>
-    </section>
+        <div>
+            <!-- Incolla il codice iframe del tuo Google Calendar qui -->
+            <iframe src="https://calendar.google.com/calendar/embed?src=ciscocampanellino%40gmail.com&ctz=Europe%2FRome" 
+                style="border: 0" 
+                width="800" 
+                height="600" 
+                frameborder="0" 
+                scrolling="no"></iframe>
+        </div>
 
     <!-- Sezione Promozioni -->
     <section id="promozioni" class="promozioni">
