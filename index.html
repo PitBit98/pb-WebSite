@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cisco & Campanello</title>
+    <title>Totale Giorni di Felicità</title>
     <style>
         /* CSS */
         body {
@@ -39,11 +39,13 @@
             height: 100vh;
             background-color: #ffebcd;
             text-align: center;
+            flex-direction: column;
         }
 
         .home h1 {
-            font-size: 3em;
+            font-size: 5vw; /* Utilizza vw per rendere il testo più fluido in base alla larghezza dello schermo */
             color: #333;
+            margin: 0;
         }
 
         /* Sezione Calendario */
@@ -98,6 +100,46 @@
             padding: 20px;
             background-color: #333;
             color: white;
+        }
+
+        /* Media Query per dispositivi mobili */
+        @media (max-width: 768px) {
+            .home h1 {
+                font-size: 6vw; /* Aumenta la dimensione del testo su schermi più piccoli */
+            }
+
+            .conteggio h1 {
+                font-size: 4vw; /* Riduci leggermente la dimensione del testo nella sezione conteggio */
+            }
+
+            #counter {
+                font-size: 8vw; /* Adatta la dimensione del contatore ai dispositivi mobili */
+            }
+
+            nav a {
+                font-size: 1em; /* Modifica la dimensione dei link della navigazione */
+                margin: 0 10px;
+            }
+        }
+
+        /* Media Query per schermi molto piccoli (smartphone) */
+        @media (max-width: 480px) {
+            .home h1 {
+                font-size: 8vw; /* Ancora più grande per schermi piccoli */
+            }
+
+            .conteggio h1 {
+                font-size: 5vw; /* Grande ma leggibile */
+            }
+
+            #counter {
+                font-size: 10vw; /* Molto grande per i piccoli schermi */
+            }
+
+            nav a {
+                font-size: 0.9em;
+                margin: 0 8px;
+            }
         }
     </style>
 </head>
@@ -170,7 +212,7 @@
                 } else {
                     clearInterval(interval);
                 }
-            }, 50); // 1 ms per ottenere un effetto veloce
+            }, 50); // Animazione più lenta
         }
 
         // Inizializza il conteggio
