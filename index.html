@@ -12,370 +12,139 @@
             background-color: #f0f8ff;
         }
 
-        /* Navbar */
-        nav {
-            background-color: #333;
-            color: white;
-            padding: 10px 0;
-            text-align: center;
-        }
-
-        nav a {
-            color: white;
-            margin: 0 15px;
-            text-decoration: none;
-            font-size: 1.2em;
-            position: relative;
-            display: inline-block;
-        }
-
-        nav a::after {
-            content: "";
-            position: absolute;
-            width: 100%;
-            height: 2px;
-            background-color: #ff6347;
-            bottom: 0;
+        /* CSS per la schermata di protezione con password */
+        #password-screen {
+            position: fixed;
+            top: 0;
             left: 0;
-            transform: scaleX(0);
-            transform-origin: bottom right;
-            transition: transform 0.3s ease-out;
-        }
-
-        nav a:hover::after {
-            transform: scaleX(1);
-            transform-origin: bottom left;
-        }
-
-        /* Sezione combinata Home + Conteggio */
-        .home-conteggio {
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
             display: flex;
             justify-content: center;
             align-items: center;
-            flex-direction: column;
-            height: 100vh; /* La sezione occupa tutta l'altezza della finestra */
-            background-color: #ffebcd;
-            text-align: center;
-            background-image: url('your-image.jpg'); /* Aggiungi un'immagine di sfondo */
-            background-attachment: fixed;
-            background-size: cover;
-            background-position: center;
+            z-index: 1000;
         }
 
-        .home-conteggio h1 {
-            font-size: 5vw;
-            color: #333;
-            margin: 0;
-            opacity: 0;
-            transform: translateY(-20px);
-            animation: fadeInUp 1.5s forwards;
-        }
-
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .conteggio h1 {
-            font-size: 2.5em;
-            color: #333;
-        }
-
-        /* Rimuovi la cornice bianca intorno al contatore */
-        #counter {
-            color: #ff6347;
-            font-size: 3em;
-            font-weight: bold;
-            transition: color 0.5s ease;
-        }
-
-        #counter.animating {
-            animation: countUp 3s ease-in-out;
-        }
-
-        @keyframes countUp {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-            100% { transform: scale(1); }
-        }
-
-        /* Sezione Calendario */
-        .calendario {
-            padding: 50px;
-            background-color: #f0f8ff;
-            text-align: center;
-            opacity: 0;
-            transform: translateY(50px);
-            transition: opacity 1s ease, transform 1s ease;
-        }
-
-        .calendario.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .calendario h2 {
-            font-size: 2.5em;
-            color: #333;
-        }
-
-        /* Sezione Promozioni */
-        .promozioni {
-            padding: 50px;
-            background-color: #e0f7fa;
-            text-align: center;
-            opacity: 0;
-            transform: translateY(50px);
-            transition: opacity 1s ease, transform 1s ease;
-        }
-
-        .promozioni.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .promozioni h2 {
-            font-size: 2.5em;
-            color: #333;
-        }
-
-        .promozioni ul li {
-            background-color: white;
-            padding: 20px;
-            margin: 10px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .promozioni ul li:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
-        }
-
-        /* Sezione Musica */
-        .musica {
-            padding: 50px;
-            background-color: #e8f5e9; /* Un colore verde chiaro */
-            text-align: center;
-            opacity: 0;
-            transform: translateY(50px);
-            transition: opacity 1s ease, transform 1s ease;
-        }
-
-        .musica.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .musica h2 {
-            font-size: 2.5em;
-            color: #333;
-        }
-
-        .musica p {
-            font-style: italic;
-            color: #555;
-            padding-bottom: 20px;
-        }
-
-        .musica ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        .musica li {
-            margin-bottom: 30px;
+        #password-screen input {
+            padding: 10px;
             font-size: 1.2em;
-            color: #333;
-            padding-bottom: 20px;
-            border-bottom: 2px solid #00796b;
+            margin-right: 10px;
         }
 
-        .musica h3 {
-            font-size: 1.5em;
-            color: #00796b;
-        }
-
-        .musica a {
-            color: #00796b;
-            text-decoration: none;
-        }
-
-        .musica a:hover {
-            text-decoration: underline;
-        }
-
-        /* Sezione footer */
-        footer {
-            text-align: center;
-            padding: 20px;
-            background-color: #333;
+        #password-screen button {
+            padding: 10px;
+            font-size: 1.2em;
+            background-color: #ff6347;
             color: white;
+            border: none;
+            cursor: pointer;
         }
 
-        /* Media Query per dispositivi mobili */
-        @media (max-width: 768px) {
-            .home-conteggio h1 {
-                font-size: 6vw;
-            }
-
-            .conteggio h1 {
-                font-size: 4vw;
-            }
-
-            #counter {
-                font-size: 8vw;
-            }
-
-            nav a {
-                font-size: 1em;
-                margin: 0 10px;
-            }
-
-            .calendario iframe {
-                width: 100%;
-                max-width: 100%;
-                height: 300px;
-            }
+        #password-screen button:hover {
+            background-color: #e5533e;
         }
 
-        /* Media Query per schermi molto piccoli (smartphone) */
-        @media (max-width: 480px) {
-            .home-conteggio h1 {
-                font-size: 8vw;
-            }
-
-            .conteggio h1 {
-                font-size: 5vw;
-            }
-
-            #counter {
-                font-size: 10vw;
-            }
-
-            nav a {
-                font-size: 0.9em;
-                margin: 0 8px;
-            }
-
-            .calendario iframe {
-                height: 250px;
-            }
+        /* Lo stile del contenuto, nascosto inizialmente */
+        #content {
+            display: none;
         }
     </style>
 </head>
 <body>
 
-    <!-- Navbar (barra di navigazione) -->
-    <nav>
-        <a href="#home">Home</a>
-        <a href="#calendario">Calendario</a>
-        <a href="#promozioni">Promozioni</a>
-        <a href="#musica">Musica</a>
-    </nav>
+    <!-- Schermata di protezione con password -->
+    <div id="password-screen">
+        <input type="password" id="password" placeholder="Inserisci la password">
+        <button onclick="checkPassword()">Accedi</button>
+    </div>
 
-    <!-- Sezione Combinata Home + Conteggio -->
-    <section id="home-conteggio" class="home-conteggio">
-        <h1>Benvenuto nella nostra pagina di felicità!</h1>
-        <div class="conteggio">
-            <h1>Totale giorni di felicità: <span id="counter">0</span></h1>
-        </div>
-    </section>
+    <!-- Il contenuto della pagina è nascosto inizialmente -->
+    <div id="content">
+        <!-- Navbar (barra di navigazione) -->
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#calendario">Calendario</a>
+            <a href="#promozioni">Promozioni</a>
+            <a href="#musica">Musica</a>
+        </nav>
 
-    <!-- Sezione Calendario -->
-    <section id="calendario" class="calendario">
-        <h2>Calendario</h2>
-        <p>In questa sezione puoi vedere tutte le attività programmate.</p>
-        <div>
-            <!-- Incolla il codice iframe del tuo Google Calendar qui -->
-            <iframe src="https://calendar.google.com/calendar/embed?src=ciscocampanellino%40gmail.com&ctz=Europe%2FRome" 
-                style="border: 0" 
-                width="800" 
-                height="600" 
-                frameborder="0" 
-                scrolling="no"></iframe>
-        </div>
-    </section>
+        <!-- Sezione Combinata Home + Conteggio -->
+        <section id="home-conteggio" class="home-conteggio">
+            <h1>Benvenuto nella nostra pagina di felicità!</h1>
+            <div class="conteggio">
+                <h1>Totale giorni di felicità: <span id="counter">0</span></h1>
+            </div>
+        </section>
 
-    <!-- Sezione Promozioni -->
-    <section id="promozioni" class="promozioni">
-        <h2>Le Nostre Promozioni</h2>
-        <p>Approfitta delle nostre fantastiche offerte e promozioni!</p>
-        <ul>
-            <li>Offerte attive:</li>
-            <li>Scorta illimitata di coccole</li>
-        </ul>
-    </section>
+        <!-- Sezione Calendario -->
+        <section id="calendario" class="calendario">
+            <h2>Calendario</h2>
+            <p>In questa sezione puoi vedere tutte le attività programmate.</p>
+            <div>
+                <!-- Incolla il codice iframe del tuo Google Calendar qui -->
+                <iframe src="https://calendar.google.com/calendar/embed?src=ciscocampanellino%40gmail.com&ctz=Europe%2FRome" 
+                    style="border: 0" 
+                    width="800" 
+                    height="600" 
+                    frameborder="0" 
+                    scrolling="no"></iframe>
+            </div>
+        </section>
 
-    <!-- Sezione Musica -->
-    <section id="musica" class="musica">
-        <h2>La Nostra Musica</h2>
-        <p>Ascolta i nostri brani preferiti direttamente su YouTube!</p>
-        <ul>
-            <li>
-                <h3><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">Rick Astley - Never Gonna Give You Up</a></h3>
-                <p>"Never gonna give you up, never gonna let you down, never gonna run around and desert you."</p>
-            </li>
-            <li>
-                <h3><a href="https://www.youtube.com/watch?v=JwYX52BP2Sk" target="_blank">Queen - Bohemian Rhapsody</a></h3>
-                <p>"Is this the real life? Is this just fantasy? Caught in a landslide, no escape from reality."</p>
-            </li>
-            <li>
-                <h3><a href="https://www.youtube.com/watch?v=9bZkp7q19f0" target="_blank">PSY - Gangnam Style</a></h3>
-                <p>"Oppa Gangnam Style, Gangnam Style, A girl who is warm and human during the day, a classy girl who knows how to enjoy the night."</p>
-            </li>
-        </ul>
-    </section>
+        <!-- Sezione Promozioni -->
+        <section id="promozioni" class="promozioni">
+            <h2>Le Nostre Promozioni</h2>
+            <p>Approfitta delle nostre fantastiche offerte e promozioni!</p>
+            <ul>
+                <li>Offerte attive:</li>
+                <li>Scorta illimitata di coccole</li>
+            </ul>
+        </section>
 
-    <!-- Footer -->
-    <footer>
-        <p>© 2025 Iena Felix Inc.</p>
-    </footer>
+        <!-- Sezione Musica -->
+        <section id="musica" class="musica">
+            <h2>La Nostra Musica</h2>
+            <p>Ascolta i nostri brani preferiti direttamente su YouTube!</p>
+            <ul>
+                <li>
+                    <h3><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">Rick Astley - Never Gonna Give You Up</a></h3>
+                    <p>"Never gonna give you up, never gonna let you down, never gonna run around and desert you."</p>
+                </li>
+                <li>
+                    <h3><a href="https://www.youtube.com/watch?v=JwYX52BP2Sk" target="_blank">Queen - Bohemian Rhapsody</a></h3>
+                    <p>"Is this the real life? Is this just fantasy? Caught in a landslide, no escape from reality."</p>
+                </li>
+                <li>
+                    <h3><a href="https://www.youtube.com/watch?v=9bZkp7q19f0" target="_blank">PSY - Gangnam Style</a></h3>
+                    <p>"Oppa Gangnam Style, Gangnam Style, A girl who is warm and human during the day, a classy girl who knows how to enjoy the night."</p>
+                </li>
+            </ul>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p>© 2025 Iena Felix Inc.</p>
+        </footer>
+    </div>
 
     <script>
-        // JavaScript per il conteggio dei giorni
-        const startDate = new Date('2024-10-11'); // Sostituisci con la tua data
-        const counterElement = document.getElementById('counter');
+        // Password da verificare
+        const correctPassword = 'cisco'; 
+        // Funzione per verificare la password
+        function checkPassword() {
+            const userPassword = document.getElementById('password').value;
 
-        // Funzione per calcolare i giorni trascorsi
-        function calculateDaysPassed() {
-            const currentDate = new Date();
-            const timeDifference = currentDate - startDate; // Differenza in millisecondi
-            const daysPassed = Math.floor(timeDifference / (1000 * 60 * 60 * 24)); // Converte in giorni
-            return daysPassed;
+            if (userPassword === correctPassword) {
+                // Se la password è corretta, mostra il contenuto e nasconde la schermata della password
+                document.getElementById('content').style.display = 'block';
+                document.getElementById('password-screen').style.display = 'none';
+            } else {
+                alert('Password errata! Riprova.');
+            }
         }
-
-        // Funzione per animare l'incremento del numero
-        function animateCounter(targetValue) {
-            let currentValue = 0;
-            const interval = setInterval(() => {
-                if (currentValue < targetValue) {
-                    currentValue++;
-                    counterElement.textContent = currentValue;
-                } else {
-                    clearInterval(interval);
-                }
-            }, 50); // Animazione più lenta
-        }
-
-        // Inizializza il conteggio
-        const daysPassed = calculateDaysPassed();
-        animateCounter(daysPassed);
-
-        // Rileva lo scroll per animare le sezioni
-        window.addEventListener('scroll', () => {
-            document.querySelectorAll('section').forEach(section => {
-                const rect = section.getBoundingClientRect();
-                if (rect.top < window.innerHeight) {
-                    section.classList.add('visible');
-                } else {
-                    section.classList.remove('visible');
-                }
-            });
-        });
     </script>
+
 </body>
 </html>
