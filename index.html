@@ -49,7 +49,35 @@
         /* Lo stile del contenuto, nascosto inizialmente */
         #content {
             display: none;
+            opacity: 0; /* Aggiungiamo opacità per un effetto di transizione */
+            transition: opacity 1s ease-in-out;
         }
+
+        /* Le animazioni e gli stili della pagina */
+        .home-conteggio h1 {
+            font-size: 5vw; /* Utilizza vw per rendere il testo più fluido in base alla larghezza dello schermo */
+            color: #333;
+            margin: 0;
+        }
+
+        .conteggio h1 {
+            font-size: 2.5em;
+            color: #333;
+        }
+        /* Rimuovi la cornice bianca intorno al contatore */
+        #counter {
+            color: #ff6347;
+            font-size: 3em;
+            font-weight: bold;
+            transition: all 1s ease-in-out;
+            border: none; /* Rimuove il bordo */
+            padding: 0; /* Rimuove il padding */
+            background-color: transparent; /* Imposta lo sfondo come trasparente */
+            box-shadow: none; /* Rimuove eventuali ombre */
+        }
+
+        /* CSS per il resto della pagina */
+        /* ... (resto del tuo CSS esistente) ... */
     </style>
 </head>
 <body>
@@ -131,7 +159,8 @@
 
     <script>
         // Password da verificare
-        const correctPassword = 'cisco'; 
+        const correctPassword = 'password123'; // Cambia con la tua password
+
         // Funzione per verificare la password
         function checkPassword() {
             const userPassword = document.getElementById('password').value;
@@ -140,10 +169,44 @@
                 // Se la password è corretta, mostra il contenuto e nasconde la schermata della password
                 document.getElementById('content').style.display = 'block';
                 document.getElementById('password-screen').style.display = 'none';
+                
+                // Aggiungi un piccolo ritardo per rendere più fluido l'accesso al contenuto
+                setTimeout(() => {
+                    document.getElementById('content').style.opacity = '1'; // Rende visibile il contenuto con animazione
+                }, 100);
             } else {
                 alert('Password errata! Riprova.');
             }
         }
+
+        // JavaScript per il conteggio dei giorni
+        const startDate = new Date('2024-10-11'); // Sostituisci con la tua data
+        const counterElement = document.getElementById('counter');
+
+        // Funzione per calcolare i giorni trascorsi
+        function calculateDaysPassed() {
+            const currentDate = new Date();
+            const timeDifference = currentDate - startDate; // Differenza in millisecondi
+            const daysPassed = Math.floor(timeDifference / (1000 * 60 * 60 * 24)); // Converte in giorni
+            return daysPassed;
+        }
+
+        // Funzione per animare l'incremento del numero
+        function animateCounter(targetValue) {
+            let currentValue = 0;
+            const interval = setInterval(() => {
+                if (currentValue < targetValue) {
+                    currentValue++;
+                    counterElement.textContent = currentValue;
+                } else {
+                    clearInterval(interval);
+                }
+            }, 50); // Animazione più lenta
+        }
+
+        // Inizializza il conteggio
+        const daysPassed = calculateDaysPassed();
+        animateCounter(daysPassed);
     </script>
 
 </body>
