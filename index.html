@@ -12,40 +12,6 @@
             background-color: #f0f8ff;
         }
 
-        /* Schermata di protezione con password */
-        #password-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        }
-
-        #password-screen input {
-            padding: 10px;
-            font-size: 1.2em;
-            margin-right: 10px;
-        }
-
-        #password-screen button {
-            padding: 10px;
-            font-size: 1.2em;
-            background-color: #ff6347;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-
-        #password-screen button:hover {
-            background-color: #e5533e;
-        }
-
         /* Sezioni */
         section {
             padding: 50px;
@@ -127,96 +93,68 @@
 </head>
 <body>
 
-    <!-- Schermata di protezione con password -->
-    <div id="password-screen">
-        <input type="password" id="password" placeholder="Inserisci la password">
-        <button onclick="checkPassword()">Accedi</button>
-    </div>
+    <!-- Navbar -->
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#calendario">Calendario</a>
+        <a href="#promozioni">Promozioni</a>
+        <a href="#musica">Musica</a>
+    </nav>
 
-    <!-- Contenuto che sarà nascosto inizialmente -->
-    <div id="content">
-        <!-- Navbar -->
-        <nav>
-            <a href="#home">Home</a>
-            <a href="#calendario">Calendario</a>
-            <a href="#promozioni">Promozioni</a>
-            <a href="#musica">Musica</a>
-        </nav>
+    <!-- Sezione Combinata Home + Conteggio -->
+    <section id="home-conteggio" class="home-conteggio">
+        <h1>Benvenuto nella nostra pagina di felicità!</h1>
+        <div class="conteggio">
+            <h1>Totale giorni di felicità: <span id="counter">0</span></h1>
+        </div>
+    </section>
 
-        <!-- Sezione Combinata Home + Conteggio -->
-        <section id="home-conteggio" class="home-conteggio">
-            <h1>Benvenuto nella nostra pagina di felicità!</h1>
-            <div class="conteggio">
-                <h1>Totale giorni di felicità: <span id="counter">0</span></h1>
-            </div>
-        </section>
+    <!-- Sezione Calendario -->
+    <section id="calendario" class="calendario">
+        <h2>Calendario</h2>
+        <p>In questa sezione puoi vedere tutte le attività programmate.</p>
+        <div>
+            <iframe src="https://calendar.google.com/calendar/embed?src=ciscocampanellino%40gmail.com&ctz=Europe%2FRome" 
+                    style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+        </div>
+    </section>
 
-        <!-- Sezione Calendario -->
-        <section id="calendario" class="calendario">
-            <h2>Calendario</h2>
-            <p>In questa sezione puoi vedere tutte le attività programmate.</p>
-            <div>
-                <iframe src="https://calendar.google.com/calendar/embed?src=ciscocampanellino%40gmail.com&ctz=Europe%2FRome" 
-                        style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
-            </div>
-        </section>
+    <!-- Sezione Promozioni -->
+    <section id="promozioni" class="promozioni">
+        <h2>Le Nostre Promozioni</h2>
+        <p>Approfitta delle nostre fantastiche offerte e promozioni!</p>
+        <ul>
+            <li>Offerte attive:</li>
+            <li>Scorta illimitata di coccole</li>
+        </ul>
+    </section>
 
-        <!-- Sezione Promozioni -->
-        <section id="promozioni" class="promozioni">
-            <h2>Le Nostre Promozioni</h2>
-            <p>Approfitta delle nostre fantastiche offerte e promozioni!</p>
-            <ul>
-                <li>Offerte attive:</li>
-                <li>Scorta illimitata di coccole</li>
-            </ul>
-        </section>
+    <!-- Sezione Musica -->
+    <section id="musica" class="musica">
+        <h2>La Nostra Musica</h2>
+        <p>Ascolta i nostri brani preferiti direttamente su YouTube!</p>
+        <ul>
+            <li>
+                <h3><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">Rick Astley - Never Gonna Give You Up</a></h3>
+                <p>"Never gonna give you up, never gonna let you down, never gonna run around and desert you."</p>
+            </li>
+            <li>
+                <h3><a href="https://www.youtube.com/watch?v=JwYX52BP2Sk" target="_blank">Queen - Bohemian Rhapsody</a></h3>
+                <p>"Is this the real life? Is this just fantasy? Caught in a landslide, no escape from reality."</p>
+            </li>
+            <li>
+                <h3><a href="https://www.youtube.com/watch?v=9bZkp7q19f0" target="_blank">PSY - Gangnam Style</a></h3>
+                <p>"Oppa Gangnam Style, Gangnam Style, A girl who is warm and human during the day, a classy girl who knows how to enjoy the night."</p>
+            </li>
+        </ul>
+    </section>
 
-        <!-- Sezione Musica -->
-        <section id="musica" class="musica">
-            <h2>La Nostra Musica</h2>
-            <p>Ascolta i nostri brani preferiti direttamente su YouTube!</p>
-            <ul>
-                <li>
-                    <h3><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">Rick Astley - Never Gonna Give You Up</a></h3>
-                    <p>"Never gonna give you up, never gonna let you down, never gonna run around and desert you."</p>
-                </li>
-                <li>
-                    <h3><a href="https://www.youtube.com/watch?v=JwYX52BP2Sk" target="_blank">Queen - Bohemian Rhapsody</a></h3>
-                    <p>"Is this the real life? Is this just fantasy? Caught in a landslide, no escape from reality."</p>
-                </li>
-                <li>
-                    <h3><a href="https://www.youtube.com/watch?v=9bZkp7q19f0" target="_blank">PSY - Gangnam Style</a></h3>
-                    <p>"Oppa Gangnam Style, Gangnam Style, A girl who is warm and human during the day, a classy girl who knows how to enjoy the night."</p>
-                </li>
-            </ul>
-        </section>
-
-        <!-- Footer -->
-        <footer>
-            <p>© 2025 Iena Felix Inc.</p>
-        </footer>
-    </div>
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 Iena Felix Inc.</p>
+    </footer>
 
     <script>
-        // Password da verificare
-        const correctPassword = 'password12'; // Cambia con la tua password
-
-        // Funzione per verificare la password
-        function checkPassword() {
-            const userPassword = document.getElementById('password').value;
-
-            if (userPassword === correctPassword) {
-                // Se la password è corretta, nascondiamo la schermata della password
-                document.getElementById('password-screen').style.display = 'none';
-
-                // Mostriamo il contenuto con un effetto di dissolvenza
-                const content = document.getElementById('content');
-                content.classList.add('visible');
-            } else {
-                alert('Password errata! Riprova.');
-            }
-        }
-
         // JavaScript per il conteggio dei giorni
         const startDate = new Date('2024-10-11'); // Sostituisci con la tua data
         const counterElement = document.getElementById('counter');
