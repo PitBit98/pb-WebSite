@@ -46,14 +46,30 @@
             background-color: #e5533e;
         }
 
-        /* Lo stile del contenuto nascosto */
-        #content {
-            visibility: hidden; /* Rende invisibile il contenuto inizialmente */
-            opacity: 0;
-            transition: opacity 1s ease-in-out, visibility 0s 1s; /* Opacità + un delay per la visibilità */
+        /* Sezioni */
+        section {
+            padding: 50px;
+            text-align: center;
+            margin-bottom: 20px;
         }
 
-        /* Stili generali per il resto del layout */
+        .home-conteggio {
+            background-color: #ffebcd;
+        }
+
+        .calendario {
+            background-color: #f0f8ff;
+        }
+
+        .promozioni {
+            background-color: #e0f7fa;
+        }
+
+        .musica {
+            background-color: #e8f5e9;
+        }
+
+        /* Stili generali per il contenuto */
         nav {
             background-color: #333;
             color: white;
@@ -70,16 +86,6 @@
 
         nav a:hover {
             text-decoration: underline;
-        }
-
-        .home-conteggio {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            height: 100vh;
-            background-color: #ffebcd;
-            text-align: center;
         }
 
         .home-conteggio h1 {
@@ -102,6 +108,20 @@
             padding: 0;
             background-color: transparent;
             box-shadow: none;
+        }
+
+        /* Animazione di dissolvenza per il contenuto */
+        #content {
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 1s ease-in-out, visibility 0s 1s;
+        }
+
+        /* Quando il contenuto è visibile */
+        #content.visible {
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 1s ease-in-out;
         }
     </style>
 </head>
@@ -179,7 +199,7 @@
 
     <script>
         // Password da verificare
-        const correctPassword = 'password123'; // Cambia con la tua password
+        const correctPassword = 'password12'; // Cambia con la tua password
 
         // Funzione per verificare la password
         function checkPassword() {
@@ -191,8 +211,7 @@
 
                 // Mostriamo il contenuto con un effetto di dissolvenza
                 const content = document.getElementById('content');
-                content.style.visibility = 'visible';
-                content.style.opacity = 1;
+                content.classList.add('visible');
             } else {
                 alert('Password errata! Riprova.');
             }
