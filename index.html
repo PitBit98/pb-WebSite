@@ -25,10 +25,26 @@
             margin: 0 15px;
             text-decoration: none;
             font-size: 1.2em;
+            position: relative;
+            display: inline-block;
         }
 
-        nav a:hover {
-            text-decoration: underline;
+        nav a::after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background-color: #ff6347;
+            bottom: 0;
+            left: 0;
+            transform: scaleX(0);
+            transform-origin: bottom right;
+            transition: transform 0.3s ease-out;
+        }
+
+        nav a:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
         }
 
         /* Sezione combinata Home + Conteggio */
@@ -40,12 +56,26 @@
             height: 100vh; /* La sezione occupa tutta l'altezza della finestra */
             background-color: #ffebcd;
             text-align: center;
+            background-image: url('your-image.jpg'); /* Aggiungi un'immagine di sfondo */
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
         }
 
         .home-conteggio h1 {
-            font-size: 5vw; /* Utilizza vw per rendere il testo più fluido in base alla larghezza dello schermo */
+            font-size: 5vw;
             color: #333;
             margin: 0;
+            opacity: 0;
+            transform: translateY(-20px);
+            animation: fadeInUp 1.5s forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .conteggio h1 {
@@ -58,11 +88,17 @@
             color: #ff6347;
             font-size: 3em;
             font-weight: bold;
-            transition: all 1s ease-in-out;
-            border: none; /* Rimuove il bordo */
-            padding: 0; /* Rimuove il padding */
-            background-color: transparent; /* Imposta lo sfondo come trasparente */
-            box-shadow: none; /* Rimuove eventuali ombre */
+            transition: color 0.5s ease;
+        }
+
+        #counter.animating {
+            animation: countUp 3s ease-in-out;
+        }
+
+        @keyframes countUp {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
         }
 
         /* Sezione Calendario */
@@ -70,6 +106,14 @@
             padding: 50px;
             background-color: #f0f8ff;
             text-align: center;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+
+        .calendario.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .calendario h2 {
@@ -82,6 +126,14 @@
             padding: 50px;
             background-color: #e0f7fa;
             text-align: center;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+
+        .promozioni.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .promozioni h2 {
@@ -89,11 +141,33 @@
             color: #333;
         }
 
+        .promozioni ul li {
+            background-color: white;
+            padding: 20px;
+            margin: 10px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .promozioni ul li:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+        }
+
         /* Sezione Musica */
         .musica {
             padding: 50px;
             background-color: #e8f5e9; /* Un colore verde chiaro */
             text-align: center;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+
+        .musica.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .musica h2 {
@@ -104,8 +178,7 @@
         .musica p {
             font-style: italic;
             color: #555;
-            padding-bottom: 20px; /* Aggiungi un po' di spazio sotto il paragrafo */
-            /* Rimuoviamo la linea continua dal paragrafo */
+            padding-bottom: 20px;
         }
 
         .musica ul {
@@ -117,13 +190,13 @@
             margin-bottom: 30px;
             font-size: 1.2em;
             color: #333;
-            padding-bottom: 20px; /* Aggiungi un po' di spazio sotto ogni canzone */
-            border-bottom: 2px solid #00796b; /* Linea continua verde sotto ogni canzone */
+            padding-bottom: 20px;
+            border-bottom: 2px solid #00796b;
         }
 
         .musica h3 {
             font-size: 1.5em;
-            color: #00796b; /* Colore del titolo */
+            color: #00796b;
         }
 
         .musica a {
@@ -146,42 +219,41 @@
         /* Media Query per dispositivi mobili */
         @media (max-width: 768px) {
             .home-conteggio h1 {
-                font-size: 6vw; /* Aumenta la dimensione del testo su schermi più piccoli */
+                font-size: 6vw;
             }
 
             .conteggio h1 {
-                font-size: 4vw; /* Riduci leggermente la dimensione del testo nella sezione conteggio */
+                font-size: 4vw;
             }
 
             #counter {
-                font-size: 8vw; /* Adatta la dimensione del contatore ai dispositivi mobili */
+                font-size: 8vw;
             }
 
             nav a {
-                font-size: 1em; /* Modifica la dimensione dei link della navigazione */
+                font-size: 1em;
                 margin: 0 10px;
             }
 
-            /* Modifica la dimensione dell'iframe del calendario */
             .calendario iframe {
                 width: 100%;
                 max-width: 100%;
-                height: 300px; /* Imposta un'altezza fissa per dispositivi mobili */
+                height: 300px;
             }
         }
 
         /* Media Query per schermi molto piccoli (smartphone) */
         @media (max-width: 480px) {
             .home-conteggio h1 {
-                font-size: 8vw; /* Ancora più grande per schermi piccoli */
+                font-size: 8vw;
             }
 
             .conteggio h1 {
-                font-size: 5vw; /* Grande ma leggibile */
+                font-size: 5vw;
             }
 
             #counter {
-                font-size: 10vw; /* Molto grande per i piccoli schermi */
+                font-size: 10vw;
             }
 
             nav a {
@@ -189,9 +261,8 @@
                 margin: 0 8px;
             }
 
-            /* Modifica la dimensione dell'iframe del calendario */
             .calendario iframe {
-                height: 250px; /* Riduci l'altezza per schermi molto piccoli */
+                height: 250px;
             }
         }
     </style>
@@ -293,6 +364,18 @@
         // Inizializza il conteggio
         const daysPassed = calculateDaysPassed();
         animateCounter(daysPassed);
+
+        // Rileva lo scroll per animare le sezioni
+        window.addEventListener('scroll', () => {
+            document.querySelectorAll('section').forEach(section => {
+                const rect = section.getBoundingClientRect();
+                if (rect.top < window.innerHeight) {
+                    section.classList.add('visible');
+                } else {
+                    section.classList.remove('visible');
+                }
+            });
+        });
     </script>
 </body>
 </html>
