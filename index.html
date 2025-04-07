@@ -46,14 +46,14 @@
             background-color: #e5533e;
         }
 
-        /* Lo stile del contenuto, nascosto inizialmente */
+        /* Lo stile del contenuto, nascosto inizialmente con visibility */
         #content {
-            display: none;
-            opacity: 0; /* Aggiungiamo opacità per un effetto di transizione */
-            transition: opacity 1s ease-in-out;
+            visibility: hidden; /* Rende il contenuto invisibile inizialmente */
+            opacity: 0; /* Opacità 0 per animazione */
+            transition: opacity 1s ease-in-out; /* Transizione fluida per l'opacità */
         }
 
-        /* Le animazioni e gli stili della pagina */
+        /* CSS per il resto della pagina */
         .home-conteggio h1 {
             font-size: 5vw; /* Utilizza vw per rendere il testo più fluido in base alla larghezza dello schermo */
             color: #333;
@@ -64,20 +64,19 @@
             font-size: 2.5em;
             color: #333;
         }
-        /* Rimuovi la cornice bianca intorno al contatore */
+
         #counter {
             color: #ff6347;
             font-size: 3em;
             font-weight: bold;
             transition: all 1s ease-in-out;
-            border: none; /* Rimuove il bordo */
-            padding: 0; /* Rimuove il padding */
-            background-color: transparent; /* Imposta lo sfondo come trasparente */
-            box-shadow: none; /* Rimuove eventuali ombre */
+            border: none;
+            padding: 0;
+            background-color: transparent;
+            box-shadow: none;
         }
 
-        /* CSS per il resto della pagina */
-        /* ... (resto del tuo CSS esistente) ... */
+        /* Il resto del CSS esistente per altre sezioni della pagina */
     </style>
 </head>
 <body>
@@ -167,10 +166,10 @@
 
             if (userPassword === correctPassword) {
                 // Se la password è corretta, mostra il contenuto e nasconde la schermata della password
-                document.getElementById('content').style.display = 'block';
+                document.getElementById('content').style.visibility = 'visible';
                 document.getElementById('password-screen').style.display = 'none';
-                
-                // Aggiungi un piccolo ritardo per rendere più fluido l'accesso al contenuto
+
+                // Aggiungi un piccolo ritardo per l'effetto di dissolvenza
                 setTimeout(() => {
                     document.getElementById('content').style.opacity = '1'; // Rende visibile il contenuto con animazione
                 }, 100);
