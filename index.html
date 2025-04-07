@@ -5,14 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cisco & Campanello</title>
     <style>
-        /* CSS */
+        /* CSS generali */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             background-color: #f0f8ff;
         }
 
-        /* CSS per la schermata di protezione con password */
+        /* Schermata di protezione con password */
         #password-screen {
             position: fixed;
             top: 0;
@@ -46,16 +46,44 @@
             background-color: #e5533e;
         }
 
-        /* Lo stile del contenuto, nascosto inizialmente con visibility */
+        /* Lo stile del contenuto nascosto */
         #content {
-            visibility: hidden; /* Rende il contenuto invisibile inizialmente */
-            opacity: 0; /* Opacità 0 per animazione */
-            transition: opacity 1s ease-in-out; /* Transizione fluida per l'opacità */
+            visibility: hidden; /* Rende invisibile il contenuto inizialmente */
+            opacity: 0;
+            transition: opacity 1s ease-in-out, visibility 0s 1s; /* Opacità + un delay per la visibilità */
         }
 
-        /* CSS per il resto della pagina */
+        /* Stili generali per il resto del layout */
+        nav {
+            background-color: #333;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-size: 1.2em;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        .home-conteggio {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            background-color: #ffebcd;
+            text-align: center;
+        }
+
         .home-conteggio h1 {
-            font-size: 5vw; /* Utilizza vw per rendere il testo più fluido in base alla larghezza dello schermo */
+            font-size: 5vw;
             color: #333;
             margin: 0;
         }
@@ -75,8 +103,6 @@
             background-color: transparent;
             box-shadow: none;
         }
-
-        /* Il resto del CSS esistente per altre sezioni della pagina */
     </style>
 </head>
 <body>
@@ -87,9 +113,9 @@
         <button onclick="checkPassword()">Accedi</button>
     </div>
 
-    <!-- Il contenuto della pagina è nascosto inizialmente -->
+    <!-- Contenuto che sarà nascosto inizialmente -->
     <div id="content">
-        <!-- Navbar (barra di navigazione) -->
+        <!-- Navbar -->
         <nav>
             <a href="#home">Home</a>
             <a href="#calendario">Calendario</a>
@@ -110,13 +136,8 @@
             <h2>Calendario</h2>
             <p>In questa sezione puoi vedere tutte le attività programmate.</p>
             <div>
-                <!-- Incolla il codice iframe del tuo Google Calendar qui -->
                 <iframe src="https://calendar.google.com/calendar/embed?src=ciscocampanellino%40gmail.com&ctz=Europe%2FRome" 
-                    style="border: 0" 
-                    width="800" 
-                    height="600" 
-                    frameborder="0" 
-                    scrolling="no"></iframe>
+                        style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
             </div>
         </section>
 
@@ -165,14 +186,13 @@
             const userPassword = document.getElementById('password').value;
 
             if (userPassword === correctPassword) {
-                // Se la password è corretta, mostra il contenuto e nasconde la schermata della password
-                document.getElementById('content').style.visibility = 'visible';
+                // Se la password è corretta, nascondiamo la schermata della password
                 document.getElementById('password-screen').style.display = 'none';
 
-                // Aggiungi un piccolo ritardo per l'effetto di dissolvenza
-                setTimeout(() => {
-                    document.getElementById('content').style.opacity = '1'; // Rende visibile il contenuto con animazione
-                }, 100);
+                // Mostriamo il contenuto con un effetto di dissolvenza
+                const content = document.getElementById('content');
+                content.style.visibility = 'visible';
+                content.style.opacity = 1;
             } else {
                 alert('Password errata! Riprova.');
             }
