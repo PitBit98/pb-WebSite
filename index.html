@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cisco & Campanello</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEJ6HAXaWfQHDnHdu5pimPdxj9+9B5P5ZD4V5QF8hX8BqqJ5HiChB3UJNNFgY" crossorigin="anonymous">
     <style>
-        /* CSS */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -47,216 +47,6 @@
             transform-origin: bottom left;
         }
 
-        /* Sezione combinata Home + Conteggio */
-        .home-conteggio {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            height: 100vh;
-            background-color: #ffebcd;
-            text-align: center;
-            background-image: url('your-image.jpg'); /* Aggiungi un'immagine di sfondo */
-            background-attachment: fixed;
-            background-size: cover;
-            background-position: center;
-        }
-
-        .home-conteggio h1 {
-            font-size: 5vw;
-            color: #333;
-            margin: 0;
-            opacity: 0;
-            transform: translateY(-20px);
-            animation: fadeInUp 1.5s forwards;
-        }
-
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .conteggio h1 {
-            font-size: 2.5em;
-            color: #333;
-        }
-
-        /* Rimuovi la cornice bianca intorno al contatore */
-        #counter {
-            color: #ff6347;
-            font-size: 3em;
-            font-weight: bold;
-            transition: color 0.5s ease;
-        }
-
-        #counter.animating {
-            animation: countUp 3s ease-in-out;
-        }
-
-        @keyframes countUp {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-            100% { transform: scale(1); }
-        }
-
-        /* Sezione Calendario */
-        .calendario {
-            padding: 50px;
-            background-color: #f0f8ff;
-            text-align: center;
-            opacity: 0;
-            transform: translateY(50px);
-            transition: opacity 1s ease, transform 1s ease;
-        }
-
-        .calendario.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .calendario h2 {
-            font-size: 2.5em;
-            color: #333;
-        }
-
-        /* Sezione Promozioni */
-        .promozioni {
-            padding: 50px;
-            background-color: #e0f7fa;
-            text-align: center;
-            opacity: 0;
-            transform: translateY(50px);
-            transition: opacity 1s ease, transform 1s ease;
-        }
-
-        .promozioni.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .promozioni h2 {
-            font-size: 2.5em;
-            color: #333;
-        }
-
-        .promozioni ul li {
-            background-color: white;
-            padding: 20px;
-            margin: 10px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .promozioni ul li:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
-        }
-
-        /* Sezione Musica */
-        .musica {
-            padding: 50px;
-            background-color: #e8f5e9;
-            text-align: center;
-            opacity: 0;
-            transform: translateY(50px);
-            transition: opacity 1s ease, transform 1s ease;
-        }
-
-        .musica.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .musica h2 {
-            font-size: 2.5em;
-            color: #333;
-        }
-
-        .musica p {
-            font-style: italic;
-            color: #555;
-            padding-bottom: 20px;
-        }
-
-        .musica ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        .musica li {
-            margin-bottom: 30px;
-            font-size: 1.2em;
-            color: #333;
-            padding-bottom: 20px;
-            border-bottom: 2px solid #00796b;
-        }
-
-        .musica h3 {
-            font-size: 1.5em;
-            color: #00796b;
-        }
-
-        .musica a {
-            color: #00796b;
-            text-decoration: none;
-        }
-
-        .musica a:hover {
-            text-decoration: underline;
-        }
-
-        /* Sezione Galleria */
-        .galleria {
-            padding: 50px;
-            background-color: #f9f9f9;
-            text-align: center;
-            opacity: 0;
-            transform: translateY(50px);
-            transition: opacity 1s ease, transform 1s ease;
-        }
-
-        .galleria.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .galleria img {
-            width: 80%;
-            max-width: 600px;
-            margin: 0 auto;
-            display: block;
-            border-radius: 10px;
-            transition: transform 0.3s ease;
-        }
-
-        .galleria img:hover {
-            transform: scale(1.05);
-        }
-
-        .galleria .carousel-indicators {
-            list-style-type: none;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            margin-top: 10px;
-        }
-
-        .galleria .carousel-indicators li {
-            width: 10px;
-            height: 10px;
-            background-color: #333;
-            border-radius: 50%;
-            margin: 0 5px;
-            cursor: pointer;
-        }
-
-        .galleria .carousel-indicators .active {
-            background-color: #ff6347;
-        }
-
         /* Sezione Luoghi */
         .luoghi {
             padding: 50px;
@@ -293,38 +83,11 @@
             margin: 5px 0;
         }
 
-        /* Footer */
         footer {
             text-align: center;
             padding: 20px;
             background-color: #333;
             color: white;
-        }
-
-        /* Media Query per dispositivi mobili */
-        @media (max-width: 768px) {
-            .home-conteggio h1 {
-                font-size: 6vw;
-            }
-
-            .conteggio h1 {
-                font-size: 4vw;
-            }
-
-            #counter {
-                font-size: 8vw;
-            }
-
-            nav a {
-                font-size: 1em;
-                margin: 0 10px;
-            }
-
-            .calendario iframe {
-                width: 100%;
-                max-width: 100%;
-                height: 300px;
-            }
         }
     </style>
 </head>
@@ -340,63 +103,15 @@
         <a href="#luoghi">Luoghi</a>
     </nav>
 
-    <!-- Sezione Home + Conteggio -->
-    <section id="home-conteggio" class="home-conteggio">
-        <h1>Benvenuto nella nostra pagina di felicità!</h1>
-        <div class="conteggio">
-            <h1>Totale giorni di felicità: <span id="counter">0</span></h1>
-        </div>
-    </section>
-
-    <!-- Sezione Calendario -->
-    <section id="calendario" class="calendario">
-        <h2>Calendario</h2>
-        <p>In questa sezione puoi vedere tutte le attività programmate.</p>
-        <iframe src="https://calendar.google.com/calendar/embed?src=ciscocampanellino%40gmail.com&ctz=Europe%2FRome"
-            style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
-    </section>
-
-    <!-- Sezione Promozioni -->
-    <section id="promozioni" class="promozioni">
-        <h2>Le Nostre Promozioni</h2>
-        <p>Approfitta delle nostre fantastiche offerte!</p>
-        <ul>
-            <li>Scorta illimitata di coccole</li>
-        </ul>
-    </section>
-
-    <!-- Sezione Musica -->
-    <section id="musica" class="musica">
-        <h2>La Nostra Musica</h2>
-        <ul>
-            <li><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Rick Astley - Never Gonna Give You Up</a></li>
-            <li><a href="https://www.youtube.com/watch?v=JwYX52BP2Sk">Queen - Bohemian Rhapsody</a></li>
-            <li><a href="https://www.youtube.com/watch?v=9bZkp7q19f0">PSY - Gangnam Style</a></li>
-        </ul>
-    </section>
-
-    <!-- Sezione Galleria -->
-    <section id="galleria" class="galleria">
-        <h2>Galleria</h2>
-        <img src="image1.jpg" alt="Immagine 1">
-        <img src="image2.jpg" alt="Immagine 2">
-        <img src="image3.jpg" alt="Immagine 3">
-        <div class="carousel-indicators">
-            <li class="active"></li>
-            <li></li>
-            <li></li>
-        </div>
-    </section>
-
     <!-- Sezione Luoghi -->
     <section id="luoghi" class="luoghi">
         <h2>Luoghi</h2>
-        <select>
+        <select id="luoghiSelect">
             <option value="napoli">Napoli</option>
             <option value="lecce">Lecce</option>
             <option value="benevento">Benevento</option>
         </select>
-        <ul>
+        <ul id="luoghiInfo">
             <!-- Contenuto dinamico in base alla selezione -->
         </ul>
     </section>
@@ -406,32 +121,26 @@
         <p>© 2025 Cisco & Campanello</p>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz4fnFO9gybB5A3jw0XzZ7w3h58Qk0K23vO6X7p+Z6bVYTFtHmvW5bGGw2" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eylD/JF5r+d6u8F8j7w1O9nt/wnYymCkRz6rOEK5ZSYAqF0kPqFcm6f" crossorigin="anonymous"></script>
+
     <script>
-        // JavaScript per il conteggio dei giorni
-        const startDate = new Date('2024-10-11');
-        const counterElement = document.getElementById('counter');
+        // Funzione per aggiornare l'ul con il link corretto in base alla selezione
+        document.getElementById('luoghiSelect').addEventListener('change', function() {
+            const selectedValue = this.value;
+            const luoghiInfo = document.getElementById('luoghiInfo');
+            luoghiInfo.innerHTML = '';  // Pulisce il contenuto precedente
 
-        function calculateDaysPassed() {
-            const currentDate = new Date();
-            const timeDifference = currentDate - startDate;
-            const daysPassed = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
-            return daysPassed;
-        }
-
-        function animateCounter(targetValue) {
-            let currentValue = 0;
-            const interval = setInterval(() => {
-                if (currentValue < targetValue) {
-                    currentValue++;
-                    counterElement.textContent = currentValue;
-                } else {
-                    clearInterval(interval);
-                }
-            }, 50);
-        }
-
-        const daysPassed = calculateDaysPassed();
-        animateCounter(daysPassed);
+            if (selectedValue === 'benevento') {
+                // Mostra l'opzione PepeNero solo quando "Benevento" è selezionato
+                const li = document.createElement('li');
+                const link = document.createElement('a');
+                link.href = 'https://g.co/kgs/2CmfePy';
+                link.textContent = 'PepeNero - Scopri su Google';
+                li.appendChild(link);
+                luoghiInfo.appendChild(li);
+            }
+        });
 
         // Animazione delle sezioni
         window.addEventListener('scroll', () => {
@@ -447,4 +156,3 @@
     </script>
 </body>
 </html>
-
