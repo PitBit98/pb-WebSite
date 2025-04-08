@@ -137,6 +137,21 @@
             bottom: 10px !important;
         }
 
+        /* Sezione altre */
+        .section {
+            padding: 50px;
+            text-align: center;
+            background-color: #f9f9f9;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
         /* Footer */
         footer {
             text-align: center;
@@ -194,6 +209,28 @@
         </div>
     </section>
 
+    <!-- Sezione Calendario -->
+    <section id="calendario" class="section">
+        <h2>Calendario</h2>
+        <div class="calendario">
+            <iframe src="https://calendar.google.com/calendar/embed?src=your-calendar-id&ctz=Europe%2FRome" frameborder="0" width="800" height="600"></iframe>
+        </div>
+    </section>
+
+    <!-- Sezione Promozioni -->
+    <section id="promozioni" class="section">
+        <h2>Promozioni</h2>
+        <p>Le nostre ultime promozioni per te!</p>
+        <!-- Aggiungi contenuto promozioni qui -->
+    </section>
+
+    <!-- Sezione Musica -->
+    <section id="musica" class="section">
+        <h2>Musica</h2>
+        <p>Ascolta la nostra playlist preferita!</p>
+        <!-- Aggiungi contenuto musica qui -->
+    </section>
+
     <!-- Sezione Galleria -->
     <section id="galleria" class="galleria">
         <h2>Galleria</h2>
@@ -212,6 +249,13 @@
             <div class="swiper-button-prev"></div>
         </div>
         <!-- Fine del carosello -->
+    </section>
+
+    <!-- Sezione Luoghi -->
+    <section id="luoghi" class="section">
+        <h2>Luoghi</h2>
+        <p>Esplora i luoghi che abbiamo visitato!</p>
+        <!-- Aggiungi contenuto luoghi qui -->
     </section>
 
     <!-- Footer -->
