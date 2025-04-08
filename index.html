@@ -195,7 +195,7 @@
     </section>
 
     <!-- Sezione Galleria -->
-    <section id="galleria" class="galleria visible">
+    <section id="galleria" class="galleria">
         <h2>Galleria</h2>
         <!-- Inizio del carosello Swiper -->
         <div class="swiper-container">
@@ -222,6 +222,32 @@
     <!-- Script JS di Swiper -->
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script>
+        // JavaScript per il conteggio dei giorni
+        const startDate = new Date('2024-10-10');
+        const counterElement = document.getElementById('counter');
+
+        function calculateDaysPassed() {
+            const currentDate = new Date();
+            const timeDifference = currentDate - startDate;
+            const daysPassed = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+            return daysPassed;
+        }
+
+        function animateCounter(targetValue) {
+            let currentValue = 0;
+            const interval = setInterval(() => {
+                if (currentValue < targetValue) {
+                    currentValue++;
+                    counterElement.textContent = currentValue;
+                } else {
+                    clearInterval(interval);
+                }
+            }, 30);
+        }
+
+        const daysPassed = calculateDaysPassed();
+        animateCounter(daysPassed);
+
         // Configurazione di Swiper
         const swiper = new Swiper('.swiper-container', {
             loop: true,
