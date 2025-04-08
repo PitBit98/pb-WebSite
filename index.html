@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cisco & Campanello</title>
     <style>
-        /* CSS */
+        /* CSS di base */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -47,7 +47,7 @@
             transform-origin: bottom left;
         }
 
-        /* Sezione combinata Home + Conteggio */
+        /* Sezione Home + Conteggio */
         .home-conteggio {
             display: flex;
             justify-content: center;
@@ -56,7 +56,7 @@
             height: 100vh;
             background-color: #ffebcd;
             text-align: center;
-            background-image: url('your-image.jpg'); /* Aggiungi un'immagine di sfondo */
+            background-image: url('your-image.jpg');
             background-attachment: fixed;
             background-size: cover;
             background-position: center;
@@ -83,28 +83,112 @@
             color: #333;
         }
 
-        /* Rimuovi la cornice bianca intorno al contatore */
-        #counter {
-            color: #ff6347;
-            font-size: 3em;
-            font-weight: bold;
-            transition: color 0.5s ease;
+        /* Sezione Calendario */
+        .calendario {
+            padding: 50px;
+            background-color: #f1c40f; /* Giallo */
+            text-align: center;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1s ease, transform 1s ease;
         }
 
-        #counter.animating {
-            animation: countUp 3s ease-in-out;
+        .calendario.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
-        @keyframes countUp {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-            100% { transform: scale(1); }
+        .calendario h2 {
+            font-size: 2.5em;
+            color: #333;
+        }
+
+        /* Sezione Promozioni */
+        .promozioni {
+            padding: 50px;
+            background-color: #e74c3c; /* Rosso */
+            text-align: center;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+
+        .promozioni.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .promozioni h2 {
+            font-size: 2.5em;
+            color: #333;
+        }
+
+        .promozioni ul li {
+            background-color: white;
+            padding: 20px;
+            margin: 10px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .promozioni ul li:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Sezione Musica */
+        .musica {
+            padding: 50px;
+            background-color: #8e44ad; /* Viola */
+            text-align: center;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+
+        .musica.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .musica h2 {
+            font-size: 2.5em;
+            color: #fff;
+        }
+
+        .musica p {
+            font-style: italic;
+            color: #ddd;
+            padding-bottom: 20px;
+        }
+
+        .musica ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .musica li {
+            margin-bottom: 30px;
+            font-size: 1.2em;
+            color: #fff;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #fff;
+        }
+
+        .musica a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .musica a:hover {
+            text-decoration: underline;
         }
 
         /* Sezione Galleria */
         .galleria {
             padding: 50px;
-            background-color: #f9f9f9;
+            background-color: #3498db; /* Blu */
             text-align: center;
             opacity: 0;
             transform: translateY(50px);
@@ -116,40 +200,74 @@
             transform: translateY(0);
         }
 
-        .swiper-container {
-            width: 100%;
-            height: 100%;
+        .galleria img {
+            width: 80%;
+            max-width: 600px;
+            margin: 0 auto;
+            display: block;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
         }
 
-        .swiper-slide {
+        .galleria img:hover {
+            transform: scale(1.05);
+        }
+
+        .galleria .carousel-indicators {
+            list-style-type: none;
+            padding: 0;
             display: flex;
             justify-content: center;
-            align-items: center;
+            margin-top: 10px;
         }
 
-        .swiper-slide img {
-            width: 100%;
-            height: auto;
-            border-radius: 10px;
+        .galleria .carousel-indicators li {
+            width: 10px;
+            height: 10px;
+            background-color: #333;
+            border-radius: 50%;
+            margin: 0 5px;
+            cursor: pointer;
         }
 
-        .swiper-pagination {
-            bottom: 10px !important;
+        .galleria .carousel-indicators .active {
+            background-color: #ff6347;
         }
 
-        /* Sezione altre */
-        .section {
+        /* Sezione Luoghi */
+        .luoghi {
             padding: 50px;
+            background-color: #2ecc71; /* Verde */
             text-align: center;
-            background-color: #f9f9f9;
             opacity: 0;
             transform: translateY(50px);
             transition: opacity 1s ease, transform 1s ease;
         }
 
-        .section.visible {
+        .luoghi.visible {
             opacity: 1;
             transform: translateY(0);
+        }
+
+        .luoghi select {
+            padding: 10px;
+            font-size: 1em;
+            margin-top: 20px;
+        }
+
+        .luoghi option {
+            padding: 10px;
+        }
+
+        .luoghi ul {
+            padding: 0;
+            list-style-type: none;
+            text-align: left;
+        }
+
+        .luoghi li {
+            font-size: 1.2em;
+            margin: 5px 0;
         }
 
         /* Footer */
@@ -186,8 +304,6 @@
             }
         }
     </style>
-    <!-- Link CSS di Swiper -->
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
 </head>
 <body>
 
@@ -210,52 +326,56 @@
     </section>
 
     <!-- Sezione Calendario -->
-    <section id="calendario" class="section">
+    <section id="calendario" class="calendario">
         <h2>Calendario</h2>
-        <div class="calendario">
-            <iframe src="https://calendar.google.com/calendar/embed?src=your-calendar-id&ctz=Europe%2FRome" frameborder="0" width="800" height="600"></iframe>
-        </div>
+        <p>In questa sezione puoi vedere tutte le attività programmate.</p>
+        <iframe src="https://calendar.google.com/calendar/embed?src=ciscocampanellino%40gmail.com&ctz=Europe%2FRome"
+            style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
     </section>
 
     <!-- Sezione Promozioni -->
-    <section id="promozioni" class="section">
-        <h2>Promozioni</h2>
-        <p>Le nostre ultime promozioni per te!</p>
-        <!-- Aggiungi contenuto promozioni qui -->
+    <section id="promozioni" class="promozioni">
+        <h2>Le Nostre Promozioni</h2>
+        <p>Approfitta delle nostre fantastiche offerte!</p>
+        <ul>
+            <li>Scorta illimitata di coccole</li>
+        </ul>
     </section>
 
     <!-- Sezione Musica -->
-    <section id="musica" class="section">
-        <h2>Musica</h2>
-        <p>Ascolta la nostra playlist preferita!</p>
-        <!-- Aggiungi contenuto musica qui -->
+    <section id="musica" class="musica">
+        <h2>Musica che mi parla di te</h2>
+        <ul>
+            <li><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Rick Astley - Never Gonna Give You Up</a></li>
+            <li><a href="https://www.youtube.com/watch?v=JwYX52BP2Sk">Queen - Bohemian Rhapsody</a></li>
+            <li><a href="https://www.youtube.com/watch?v=9bZkp7q19f0">PSY - Gangnam Style</a></li>
+        </ul>
     </section>
 
     <!-- Sezione Galleria -->
     <section id="galleria" class="galleria">
         <h2>Galleria</h2>
-        <!-- Inizio del carosello Swiper -->
         <div class="swiper-container">
             <div class="swiper-wrapper">
                 <div class="swiper-slide"><img src="image1.jpg" alt="Immagine 1"></div>
                 <div class="swiper-slide"><img src="image2.jpg" alt="Immagine 2"></div>
                 <div class="swiper-slide"><img src="image3.jpg" alt="Immagine 3"></div>
-                <!-- Aggiungi altre immagini qui -->
             </div>
-            <!-- Paginazione -->
             <div class="swiper-pagination"></div>
-            <!-- Pulsanti di navigazione -->
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
         </div>
-        <!-- Fine del carosello -->
     </section>
 
     <!-- Sezione Luoghi -->
-    <section id="luoghi" class="section">
+    <section id="luoghi" class="luoghi">
         <h2>Luoghi</h2>
-        <p>Esplora i luoghi che abbiamo visitato!</p>
-        <!-- Aggiungi contenuto luoghi qui -->
+        <select>
+            <option value="napoli">Napoli</option>
+            <option value="lecce">Lecce</option>
+            <option value="benevento">Benevento</option>
+        </select>
+        <ul>
+            <!-- Contenuto dinamico in base alla selezione -->
+        </ul>
     </section>
 
     <!-- Footer -->
@@ -263,7 +383,6 @@
         <p>© 2025 Iena Felix</p>
     </footer>
 
-    <!-- Script JS di Swiper -->
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script>
         // JavaScript per il conteggio dei giorni
@@ -292,21 +411,6 @@
         const daysPassed = calculateDaysPassed();
         animateCounter(daysPassed);
 
-        // Configurazione di Swiper
-        const swiper = new Swiper('.swiper-container', {
-            loop: true,
-            slidesPerView: 1,
-            spaceBetween: 10,
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-            },
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
-        });
-
         // Animazione delle sezioni
         window.addEventListener('scroll', () => {
             document.querySelectorAll('section').forEach(section => {
@@ -317,6 +421,15 @@
                     section.classList.remove('visible');
                 }
             });
+        });
+
+        // Inizializzare il carosello Swiper
+        const swiper = new Swiper('.swiper-container', {
+            loop: true,
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
         });
     </script>
 </body>
