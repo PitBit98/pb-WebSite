@@ -4,7 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cisco & Campanello</title>
+    
+    <!-- Link CSS per Swiper -->
     <link href="https://unpkg.com/swiper/swiper-bundle.min.css" rel="stylesheet">
+    
     <style>
         /* CSS di base */
         body {
@@ -48,6 +51,30 @@
             transform-origin: bottom left;
         }
 
+        /* Sezione Galleria */
+        .galleria {
+            padding: 50px;
+            background-color: #3498db; /* Blu */
+            text-align: center;
+        }
+
+        .swiper-container {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .swiper-slide img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .swiper-slide img:hover {
+            transform: scale(1.05);
+        }
+
         /* Sezione Home + Conteggio */
         .home-conteggio {
             display: flex;
@@ -83,129 +110,7 @@
             font-size: 2.5em;
             color: #333;
         }
-
-        /* Sezione Galleria */
-        .galleria {
-            padding: 50px;
-            background-color: #3498db; /* Blu */
-            text-align: center;
-            opacity: 0;
-            transform: translateY(50px);
-            transition: opacity 1s ease, transform 1s ease;
-        }
-
-        .galleria.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .galleria .swiper-container {
-            width: 80%;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .galleria img {
-            width: 100%;
-            border-radius: 10px;
-            transition: transform 0.3s ease;
-        }
-
-        .galleria img:hover {
-            transform: scale(1.05);
-        }
-
-        /* Sezione Calendario */
-        .calendario {
-            padding: 50px;
-            background-color: #f1c40f; /* Giallo */
-            text-align: center;
-            opacity: 0;
-            transform: translateY(50px);
-            transition: opacity 1s ease, transform 1s ease;
-        }
-
-        .calendario.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .calendario h2 {
-            font-size: 2.5em;
-            color: #333;
-        }
-
-        /* Sezione Promozioni */
-        .promozioni {
-            padding: 50px;
-            background-color: #e74c3c; /* Rosso */
-            text-align: center;
-            opacity: 0;
-            transform: translateY(50px);
-            transition: opacity 1s ease, transform 1s ease;
-        }
-
-        .promozioni.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .promozioni h2 {
-            font-size: 2.5em;
-            color: #333;
-        }
-
-        .promozioni ul li {
-            background-color: white;
-            padding: 20px;
-            margin: 10px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .promozioni ul li:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
-        }
-
-        /* Sezione Luoghi */
-        .luoghi {
-            padding: 50px;
-            background-color: #2ecc71; /* Verde */
-            text-align: center;
-            opacity: 0;
-            transform: translateY(50px);
-            transition: opacity 1s ease, transform 1s ease;
-        }
-
-        .luoghi.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .luoghi select {
-            padding: 10px;
-            font-size: 1em;
-            margin-top: 20px;
-        }
-
-        .luoghi option {
-            padding: 10px;
-        }
-
-        .luoghi ul {
-            padding: 0;
-            list-style-type: none;
-            text-align: left;
-        }
-
-        .luoghi li {
-            font-size: 1.2em;
-            margin: 5px 0;
-        }
-
-        /* Footer */
+        
         footer {
             text-align: center;
             padding: 20px;
@@ -230,12 +135,6 @@
             nav a {
                 font-size: 1em;
                 margin: 0 10px;
-            }
-
-            .calendario iframe {
-                width: 100%;
-                max-width: 100%;
-                height: 300px;
             }
         }
     </style>
@@ -274,33 +173,11 @@
     </section>
 
     <!-- Sezione Calendario -->
-    <section id="calendario" class="calendario">
+    <section id="calendario">
         <h2>Calendario</h2>
         <p>In questa sezione puoi vedere tutte le attività programmate.</p>
         <iframe src="https://calendar.google.com/calendar/embed?src=ciscocampanellino%40gmail.com&ctz=Europe%2FRome"
             style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
-    </section>
-
-    <!-- Sezione Promozioni -->
-    <section id="promozioni" class="promozioni">
-        <h2>Le Nostre Promozioni</h2>
-        <p>Approfitta delle nostre fantastiche offerte!</p>
-        <ul>
-            <li>Scorta illimitata di coccole</li>
-        </ul>
-    </section>
-
-    <!-- Sezione Luoghi -->
-    <section id="luoghi" class="luoghi">
-        <h2>Luoghi</h2>
-        <select>
-            <option value="napoli">Napoli</option>
-            <option value="lecce">Lecce</option>
-            <option value="benevento">Benevento</option>
-        </select>
-        <ul>
-            <!-- Contenuto dinamico in base alla selezione -->
-        </ul>
     </section>
 
     <!-- Footer -->
@@ -308,6 +185,7 @@
         <p>© 2025 Iena Felix</p>
     </footer>
 
+    <!-- Script per Swiper e Conteggio -->
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script>
         // JavaScript per il conteggio dei giorni
@@ -336,24 +214,16 @@
         const daysPassed = calculateDaysPassed();
         animateCounter(daysPassed);
 
-        // Animazione delle sezioni
-        window.addEventListener('scroll', () => {
-            document.querySelectorAll('section').forEach(section => {
-                const rect = section.getBoundingClientRect();
-                if (rect.top < window.innerHeight) {
-                    section.classList.add('visible');
-                } else {
-                    section.classList.remove('visible');
-                }
-            });
-        });
-
         // Inizializzare il carosello Swiper
         const swiper = new Swiper('.swiper-container', {
-            loop: true,
+            loop: true, // Ciclare le immagini
             pagination: {
-                el: '.swiper-pagination',
+                el: '.swiper-pagination', // Paginazione
                 clickable: true,
+            },
+            autoplay: {
+                delay: 2500, // Tempo tra un'immagine e l'altra
+                disableOnInteraction: false,
             },
         });
     </script>
