@@ -4,9 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cisco & Campanello</title>
-    <!-- Link al CSS di Swiper -->
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
     <style>
+        /* CSS */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -26,6 +25,26 @@
             margin: 0 15px;
             text-decoration: none;
             font-size: 1.2em;
+            position: relative;
+            display: inline-block;
+        }
+
+        nav a::after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background-color: #ff6347;
+            bottom: 0;
+            left: 0;
+            transform: scaleX(0);
+            transform-origin: bottom right;
+            transition: transform 0.3s ease-out;
+        }
+
+        nav a:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
         }
 
         /* Sezione combinata Home + Conteggio */
@@ -37,6 +56,26 @@
             height: 100vh;
             background-color: #ffebcd;
             text-align: center;
+            background-image: url('your-image.jpg'); /* Aggiungi un'immagine di sfondo */
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .home-conteggio h1 {
+            font-size: 5vw;
+            color: #333;
+            margin: 0;
+            opacity: 0;
+            transform: translateY(-20px);
+            animation: fadeInUp 1.5s forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .conteggio h1 {
@@ -44,10 +83,22 @@
             color: #333;
         }
 
+        /* Rimuovi la cornice bianca intorno al contatore */
         #counter {
             color: #ff6347;
             font-size: 3em;
             font-weight: bold;
+            transition: color 0.5s ease;
+        }
+
+        #counter.animating {
+            animation: countUp 3s ease-in-out;
+        }
+
+        @keyframes countUp {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
         }
 
         /* Sezione Galleria */
@@ -55,9 +106,16 @@
             padding: 50px;
             background-color: #f9f9f9;
             text-align: center;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1s ease, transform 1s ease;
         }
 
-        /* Swiper Styles */
+        .galleria.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
         .swiper-container {
             width: 100%;
             height: 100%;
@@ -67,21 +125,24 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         .swiper-slide img {
             width: 100%;
-            max-width: 600px;
             height: auto;
             border-radius: 10px;
-            transition: transform 0.3s ease;
         }
 
-        .swiper-slide img:hover {
-            transform: scale(1.05);
+        .swiper-pagination {
+            bottom: 10px !important;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #333;
+            color: white;
         }
 
         /* Media Query per dispositivi mobili */
@@ -89,15 +150,40 @@
             .home-conteggio h1 {
                 font-size: 6vw;
             }
+
+            .conteggio h1 {
+                font-size: 4vw;
+            }
+
+            #counter {
+                font-size: 8vw;
+            }
+
+            nav a {
+                font-size: 1em;
+                margin: 0 10px;
+            }
+
+            .calendario iframe {
+                width: 100%;
+                max-width: 100%;
+                height: 300px;
+            }
         }
     </style>
+    <!-- Link CSS di Swiper -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
 </head>
 <body>
 
     <!-- Navbar -->
     <nav>
         <a href="#home">Home</a>
+        <a href="#calendario">Calendario</a>
+        <a href="#promozioni">Promozioni</a>
+        <a href="#musica">Musica</a>
         <a href="#galleria">Galleria</a>
+        <a href="#luoghi">Luoghi</a>
     </nav>
 
     <!-- Sezione Home + Conteggio -->
@@ -109,8 +195,9 @@
     </section>
 
     <!-- Sezione Galleria -->
-    <section id="galleria" class="galleria">
+    <section id="galleria" class="galleria visible">
         <h2>Galleria</h2>
+        <!-- Inizio del carosello Swiper -->
         <div class="swiper-container">
             <div class="swiper-wrapper">
                 <div class="swiper-slide"><img src="image1.jpg" alt="Immagine 1"></div>
@@ -118,48 +205,24 @@
                 <div class="swiper-slide"><img src="image3.jpg" alt="Immagine 3"></div>
                 <!-- Aggiungi altre immagini qui -->
             </div>
-            <!-- Navigazione Swiper -->
+            <!-- Paginazione -->
             <div class="swiper-pagination"></div>
+            <!-- Pulsanti di navigazione -->
             <div class="swiper-button-next"></div>
             <div class="swiper-button-prev"></div>
         </div>
+        <!-- Fine del carosello -->
     </section>
 
     <!-- Footer -->
     <footer>
-        <p>© 2025 Cisco & Campanello</p>
+        <p>© 2025 Iena Felix</p>
     </footer>
 
-    <!-- Link al JS di Swiper -->
+    <!-- Script JS di Swiper -->
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script>
-        // JavaScript per il conteggio dei giorni
-        const startDate = new Date('2024-10-10');
-        const counterElement = document.getElementById('counter');
-
-        function calculateDaysPassed() {
-            const currentDate = new Date();
-            const timeDifference = currentDate - startDate;
-            const daysPassed = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
-            return daysPassed;
-        }
-
-        function animateCounter(targetValue) {
-            let currentValue = 0;
-            const interval = setInterval(() => {
-                if (currentValue < targetValue) {
-                    currentValue++;
-                    counterElement.textContent = currentValue;
-                } else {
-                    clearInterval(interval);
-                }
-            }, 30);
-        }
-
-        const daysPassed = calculateDaysPassed();
-        animateCounter(daysPassed);
-
-        // Inizializzazione del carosello Swiper
+        // Configurazione di Swiper
         const swiper = new Swiper('.swiper-container', {
             loop: true,
             slidesPerView: 1,
@@ -173,7 +236,18 @@
                 prevEl: '.swiper-button-prev',
             },
         });
-    </script>
 
+        // Animazione delle sezioni
+        window.addEventListener('scroll', () => {
+            document.querySelectorAll('section').forEach(section => {
+                const rect = section.getBoundingClientRect();
+                if (rect.top < window.innerHeight) {
+                    section.classList.add('visible');
+                } else {
+                    section.classList.remove('visible');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
