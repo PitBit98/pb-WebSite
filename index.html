@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cisco & Campanello</title>
+    <link href="https://unpkg.com/swiper/swiper-bundle.min.css" rel="stylesheet">
     <style>
         /* CSS di base */
         body {
@@ -83,6 +84,37 @@
             color: #333;
         }
 
+        /* Sezione Galleria */
+        .galleria {
+            padding: 50px;
+            background-color: #3498db; /* Blu */
+            text-align: center;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+
+        .galleria.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .galleria .swiper-container {
+            width: 80%;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .galleria img {
+            width: 100%;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .galleria img:hover {
+            transform: scale(1.05);
+        }
+
         /* Sezione Calendario */
         .calendario {
             padding: 50px;
@@ -135,103 +167,6 @@
         .promozioni ul li:hover {
             transform: translateY(-10px);
             box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
-        }
-
-        /* Sezione Musica */
-        .musica {
-            padding: 50px;
-            background-color: #8e44ad; /* Viola */
-            text-align: center;
-            opacity: 0;
-            transform: translateY(50px);
-            transition: opacity 1s ease, transform 1s ease;
-        }
-
-        .musica.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .musica h2 {
-            font-size: 2.5em;
-            color: #fff;
-        }
-
-        .musica p {
-            font-style: italic;
-            color: #ddd;
-            padding-bottom: 20px;
-        }
-
-        .musica ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        .musica li {
-            margin-bottom: 30px;
-            font-size: 1.2em;
-            color: #fff;
-            padding-bottom: 20px;
-            border-bottom: 2px solid #fff;
-        }
-
-        .musica a {
-            color: #fff;
-            text-decoration: none;
-        }
-
-        .musica a:hover {
-            text-decoration: underline;
-        }
-
-        /* Sezione Galleria */
-        .galleria {
-            padding: 50px;
-            background-color: #3498db; /* Blu */
-            text-align: center;
-            opacity: 0;
-            transform: translateY(50px);
-            transition: opacity 1s ease, transform 1s ease;
-        }
-
-        .galleria.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .galleria img {
-            width: 80%;
-            max-width: 600px;
-            margin: 0 auto;
-            display: block;
-            border-radius: 10px;
-            transition: transform 0.3s ease;
-        }
-
-        .galleria img:hover {
-            transform: scale(1.05);
-        }
-
-        .galleria .carousel-indicators {
-            list-style-type: none;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            margin-top: 10px;
-        }
-
-        .galleria .carousel-indicators li {
-            width: 10px;
-            height: 10px;
-            background-color: #333;
-            border-radius: 50%;
-            margin: 0 5px;
-            cursor: pointer;
-        }
-
-        .galleria .carousel-indicators .active {
-            background-color: #ff6347;
         }
 
         /* Sezione Luoghi */
@@ -325,6 +260,19 @@
         </div>
     </section>
 
+    <!-- Sezione Galleria -->
+    <section id="galleria" class="galleria">
+        <h2>Galleria</h2>
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide"><img src="image1.jpg" alt="Immagine 1"></div>
+                <div class="swiper-slide"><img src="image2.jpg" alt="Immagine 2"></div>
+                <div class="swiper-slide"><img src="image3.jpg" alt="Immagine 3"></div>
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </section>
+
     <!-- Sezione Calendario -->
     <section id="calendario" class="calendario">
         <h2>Calendario</h2>
@@ -340,29 +288,6 @@
         <ul>
             <li>Scorta illimitata di coccole</li>
         </ul>
-    </section>
-
-    <!-- Sezione Musica -->
-    <section id="musica" class="musica">
-        <h2>Musica che mi parla di te</h2>
-        <ul>
-            <li><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Rick Astley - Never Gonna Give You Up</a></li>
-            <li><a href="https://www.youtube.com/watch?v=JwYX52BP2Sk">Queen - Bohemian Rhapsody</a></li>
-            <li><a href="https://www.youtube.com/watch?v=9bZkp7q19f0">PSY - Gangnam Style</a></li>
-        </ul>
-    </section>
-
-    <!-- Sezione Galleria -->
-    <section id="galleria" class="galleria">
-        <h2>Galleria</h2>
-        <div class="swiper-container">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide"><img src="image1.jpg" alt="Immagine 1"></div>
-                <div class="swiper-slide"><img src="image2.jpg" alt="Immagine 2"></div>
-                <div class="swiper-slide"><img src="image3.jpg" alt="Immagine 3"></div>
-            </div>
-            <div class="swiper-pagination"></div>
-        </div>
     </section>
 
     <!-- Sezione Luoghi -->
