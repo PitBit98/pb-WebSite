@@ -125,13 +125,14 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 400px; /* Impostiamo un'altezza fissa per uniformare le immagini */
+            height: 400px; /* Altezza fissa per tutte le immagini */
+            width: 100%; /* Assicurati che le slide occupino tutta la larghezza del contenitore */
         }
 
         .swiper-slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover; /* Ritaglia e adatta l'immagine al contenitore */
+            width: 100%; /* Rende le immagini larghe al 100% del contenitore */
+            height: 100%; /* Rende le immagini alte al 100% del contenitore */
+            object-fit: cover; /* Ritaglia le immagini per farle adattare al contenitore */
             border-radius: 10px;
         }
 
