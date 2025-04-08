@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -214,48 +213,33 @@
             padding: 50px;
             background-color: #f9f9f9;
             text-align: center;
-            opacity: 0;
-            transform: translateY(50px);
-            transition: opacity 1s ease, transform 1s ease;
         }
 
-        .galleria.visible {
-            opacity: 1;
-            transform: translateY(0);
+        /* Swiper Styles */
+        .swiper-container {
+            width: 100%;
+            height: 100%;
         }
 
-        .galleria img {
-            width: 80%;
+        .swiper-slide {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .swiper-slide img {
+            width: 100%;
             max-width: 600px;
-            margin: 0 auto;
-            display: block;
+            height: auto;
             border-radius: 10px;
             transition: transform 0.3s ease;
         }
 
-        .galleria img:hover {
+        .swiper-slide img:hover {
             transform: scale(1.05);
-        }
-
-        .galleria .carousel-indicators {
-            list-style-type: none;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            margin-top: 10px;
-        }
-
-        .galleria .carousel-indicators li {
-            width: 10px;
-            height: 10px;
-            background-color: #333;
-            border-radius: 50%;
-            margin: 0 5px;
-            cursor: pointer;
-        }
-
-        .galleria .carousel-indicators .active {
-            background-color: #ff6347;
         }
 
         /* Sezione Luoghi */
@@ -379,13 +363,16 @@
     <!-- Sezione Galleria -->
     <section id="galleria" class="galleria">
         <h2>Galleria</h2>
-        <img src="image1.jpg" alt="Immagine 1">
-        <img src="image2.jpg" alt="Immagine 2">
-        <img src="image3.jpg" alt="Immagine 3">
-        <div class="carousel-indicators">
-            <li class="active"></li>
-            <li></li>
-            <li></li>
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide"><img src="image1.jpg" alt="Immagine 1"></div>
+                <div class="swiper-slide"><img src="image2.jpg" alt="Immagine 2"></div>
+                <div class="swiper-slide"><img src="image3.jpg" alt="Immagine 3"></div>
+                <!-- Aggiungi altre immagini qui -->
+            </div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
         </div>
     </section>
 
@@ -445,7 +432,14 @@
                 }
             });
         });
-    </script>
-</body>
-</html>
 
+        // Inizializzazione del carosello Swiper
+        const swiper = new Swiper('.swiper-container', {
+            loop: true,
+            slidesPerView: 1,
+            spaceBetween: 10,
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation
