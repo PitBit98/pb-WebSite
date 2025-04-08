@@ -125,11 +125,13 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            height: 400px; /* Impostiamo un'altezza fissa per uniformare le immagini */
         }
 
         .swiper-slide img {
             width: 100%;
-            height: auto;
+            height: 100%;
+            object-fit: cover; /* Ritaglia e adatta l'immagine al contenitore */
             border-radius: 10px;
         }
 
