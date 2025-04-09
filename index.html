@@ -163,6 +163,13 @@
             background-color: #add8e6; /* Azzurro cielo */
         }
 
+        /* Stile per l'estratto del testo nella sezione musica */
+        .estratto {
+            font-size: 0.9em;
+            color: #555;
+            margin-top: 5px;
+        }
+
         /* Footer */
         footer {
             text-align: center;
@@ -231,8 +238,23 @@
 
     <section id="musica" class="section">
         <h2>Musica</h2>
-        <p>Ascolta la nostra playlist preferita!</p>
-        </section>
+        <p>Parole in musica che mi parlano di te</p>
+        <ul>
+            <li>
+                <a href="https://www.youtube.com/watch?v=3Jya13PNlYk" target="_blank">Mi fido di te</a>
+                <p class="estratto">"Teste fasciate, ferite curate...dottore che sintomi ha la felicità"</p>
+            </li>
+            <li>
+                <a href="https://www.youtube.com/watch?v=9i_AuKkvlGQ" target="_blank">Amati sempre</a>
+                <p class="estratto">"confesso che non guardo mai i suoi occhi da vicino
+Perché poi ci casco dentro e non mi accorgo che respiro"</p>
+            </li>
+            <li>
+                <a href="https://www.youtube.com/watch?v=zzm-sTI5Q-E" target="_blank">Balorda nostalgia</a>
+                <p class="estratto">Però ti voglio bene ed è stata tutta vita.</p>
+            </li>
+            </ul>
+    </section>
 
     <section id="galleria" class="galleria">
         <h2>Galleria</h2>
@@ -279,7 +301,7 @@
                 } else {
                     clearInterval(interval);
                 }
-            }, 30);
+            }, 20);
         }
 
         const daysPassed = calculateDaysPassed();
