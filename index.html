@@ -159,6 +159,22 @@
             background-color: #f0ead6; /* Giallo pallido */
         }
 
+        #musica p { /* Seleziona il primo <p> dentro la sezione musica */
+            font-family: 'NomeDelFontDesiderato', sans-serif; /* Sostituisci 'NomeDelFontDesiderato' con il font che vuoi usare */
+        }
+
+        #musica ul li {
+            margin-bottom: 10px; /* Aggiunge un po' di spazio sotto ogni elemento */
+            padding-bottom: 10px; /* Aggiunge un po' di spazio interno sotto ogni elemento */
+            border-bottom: 1px solid #ccc; /* Aggiunge una linea grigia chiara come separatore */
+            list-style-type: none; /* Rimuove i pallini dalla lista */
+        }
+
+        /* Rimuovi il bordo dall'ultimo elemento della lista per non avere una linea extra alla fine */
+        #musica ul li:last-child {
+            border-bottom: none;
+        }
+
         #luoghi {
             background-color: #add8e6; /* Azzurro cielo */
         }
