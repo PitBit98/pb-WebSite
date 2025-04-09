@@ -136,11 +136,10 @@
             border-radius: 10px;
         }
 
-        /* Sezione altre */
+        /* Sezione altre (modificata per generalità) */
         .section {
             padding: 50px;
             text-align: center;
-            background-color: #f4d1d1; /* Colore tenue per altre sezioni */
             opacity: 0;
             transform: translateY(50px);
             transition: opacity 1s ease, transform 1s ease;
@@ -149,6 +148,19 @@
         .section.visible {
             opacity: 1;
             transform: translateY(0);
+        }
+
+        /* Stili specifici per le sezioni */
+        #promozioni {
+            background-color: #a8dadc; /* Verde acqua chiaro */
+        }
+
+        #musica {
+            background-color: #f0ead6; /* Giallo pallido */
+        }
+
+        #luoghi {
+            background-color: #add8e6; /* Azzurro cielo */
         }
 
         /* Footer */
@@ -185,12 +197,10 @@
             }
         }
     </style>
-    <!-- Link CSS di Swiper -->
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
 </head>
 <body>
 
-    <!-- Navbar -->
     <nav>
         <a href="#home">Home</a>
         <a href="#calendario">Calendario</a>
@@ -200,7 +210,6 @@
         <a href="#luoghi">Luoghi</a>
     </nav>
 
-    <!-- Sezione Home + Conteggio -->
     <section id="home-conteggio" class="home-conteggio">
         <h1>Benvenuto nella nostra pagina di felicità!</h1>
         <div class="conteggio">
@@ -208,7 +217,6 @@
         </div>
     </section>
 
-    <!-- Sezione Calendario -->
     <section id="calendario" class="section">
         <h2>Calendario</h2>
         <div class="calendario">
@@ -216,53 +224,39 @@
         </div>
     </section>
 
-    <!-- Sezione Promozioni -->
     <section id="promozioni" class="section">
         <h2>Promozioni</h2>
         <p>Descrizione</p>
-        <!-- Aggiungi contenuto promozioni qui -->
-    </section>
+        </section>
 
-    <!-- Sezione Musica -->
     <section id="musica" class="section">
         <h2>Musica</h2>
         <p>Ascolta la nostra playlist preferita!</p>
-        <!-- Aggiungi contenuto musica qui -->
-    </section>
+        </section>
 
-    <!-- Sezione Galleria -->
     <section id="galleria" class="galleria">
         <h2>Galleria</h2>
-        <!-- Inizio del carosello Swiper -->
         <div class="swiper-container">
             <div class="swiper-wrapper">
                 <div class="swiper-slide"><img src="image1.jpg" alt="Immagine 1"></div>
                 <div class="swiper-slide"><img src="image2.jpg" alt="Immagine 2"></div>
                 <div class="swiper-slide"><img src="image3.jpg" alt="Immagine 3"></div>
-                <!-- Aggiungi altre immagini qui -->
-            </div>
-            <!-- Paginazione -->
+                </div>
             <div class="swiper-pagination"></div>
-            <!-- Pulsanti di navigazione -->
             <div class="swiper-button-next"></div>
             <div class="swiper-button-prev"></div>
         </div>
-        <!-- Fine del carosello -->
-    </section>
+        </section>
 
-    <!-- Sezione Luoghi -->
     <section id="luoghi" class="section">
         <h2>Luoghi</h2>
         <p>Esplora i luoghi che abbiamo visitato!</p>
-        <!-- Aggiungi contenuto luoghi qui -->
-    </section>
+        </section>
 
-    <!-- Footer -->
     <footer>
         <p>© 2025 Iena Felix</p>
     </footer>
 
-    <!-- Script JS di Swiper -->
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script>
         // JavaScript per il conteggio dei giorni
