@@ -157,22 +157,37 @@
 
         #musica {
             background-color: #f0ead6; /* Giallo pallido */
+            text-align: center; /* Allinea il titolo e il paragrafo al centro */
         }
 
         #musica p { /* Seleziona il primo <p> dentro la sezione musica */
             font-family: 'NomeDelFontDesiderato', sans-serif; /* Sostituisci 'NomeDelFontDesiderato' con il font che vuoi usare */
         }
 
-        #musica ul li {
-            margin-bottom: 10px; /* Aggiunge un po' di spazio sotto ogni elemento */
-            padding-bottom: 10px; /* Aggiunge un po' di spazio interno sotto ogni elemento */
-            border-bottom: 1px solid #ccc; /* Aggiunge una linea grigia chiara come separatore */
-            list-style-type: none; /* Rimuove i pallini dalla lista */
+        #musica ul {
+            list-style-type: none; /* Rimuove i pallini */
+            padding-left: 0; /* Rimuove il padding a sinistra predefinito della lista */
+            text-align: left; /* Allinea gli elementi della lista a sinistra */
+            max-width: 600px; /* Imposta una larghezza massima per la lista */
+            margin: 0 auto; /* Centra la lista orizzontalmente */
         }
 
-        /* Rimuovi il bordo dall'ultimo elemento della lista per non avere una linea extra alla fine */
+        #musica ul li {
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ccc;
+        }
+
         #musica ul li:last-child {
             border-bottom: none;
+        }
+
+        #musica ul li a {
+            display: block; /* Rende il link un elemento a blocco per occupare tutta la larghezza */
+            margin-bottom: 5px; /* Aggiunge un po' di spazio sotto il titolo della canzone */
+            text-decoration: none; /* Rimuove la sottolineatura predefinita dei link */
+            color: #333; /* Imposta il colore del testo del link */
+            font-weight: bold; /* Rende il titolo della canzone in grassetto */
         }
 
         #luoghi {
