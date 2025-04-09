@@ -115,6 +115,7 @@
             opacity: 0;
             transform: translateY(50px);
             transition: opacity 1s ease, transform 1s ease;
+            overflow: hidden; /* Aggiungiamo overflow: hidden */
         }
 
         .galleria.visible {
@@ -124,21 +125,27 @@
 
         .swiper-container {
             width: 100%;
-            height: 100%;
+            height: auto; /* Cambiamo l'altezza ad auto */
+        }
+
+        .swiper-wrapper {
+            display: flex; /* Assicuriamoci che gli elementi siano in riga */
+            width: 100%;
         }
 
         .swiper-slide {
+            flex-shrink: 0; /* Impedisce alle slide di ridursi */
+            width: 100%;
+            height: auto;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 400px; /* Altezza fissa per tutte le immagini */
-            width: 100%; /* Assicurati che le slide occupino tutta la larghezza del contenitore */
         }
 
         .swiper-slide img {
-            width: 100%; /* Rende le immagini larghe al 100% del contenitore */
-            height: 100%; /* Rende le immagini alte al 100% del contenitore */
-            object-fit: cover; /* Ritaglia le immagini per farle adattare al contenitore */
+            display: block;
+            max-width: 100%; /* Assicura che l'immagine non sia più larga del contenitore */
+            height: auto;
             border-radius: 10px;
         }
 
