@@ -1,6 +1,7 @@
 
 
 
+
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -451,13 +452,6 @@ Perché poi ci casco dentro e non mi accorgo che respiro"</p>
     <span id="marker-benevento" style="color:orange; cursor: pointer;">B</span> Benevento,
     <span id="marker-napoli" style="color:red; cursor: pointer;">N</span> Napoli
 </p>
-
-    <div id="image-container" style="position: absolute; top: 20px; left: 50%; transform: translateX(-50%); background-color: white; padding: 10px; border: 1px solid #ccc; box-shadow: 2px 2px 5px rgba(0,0,0,0.1); z-index: 1000; display: none;">
-        <img id="city-image" src="" style="max-width: 300px; height: auto;">
-        <button onclick="document.getElementById('image-container').style.display='none';" style="margin-top: 5px;">Chiudi</button>
-    </div>
-    </section>
-    
 <div id="info-container">
     <div id="info-lecce" class="city-info" style="background-image: url('lecce_sfondo.jpg'); background-size: cover; padding: 20px; margin-top: 20px;">
         <h3>Ristoranti tipici di Lecce</h3>
@@ -606,10 +600,6 @@ function showCityInfo(cityId) {
         cityInfoSection.classList.add('open'); // Questo la rende visibile
     }
 }
-
- // Ottieni il contenitore dell'immagine e l'elemento immagine
-const imageContainer = document.getElementById('image-container');
-const cityImage = document.getElementById('city-image');
 
 // Aggiungi un "ascoltatore" di eventi (click) a ogni elemento della legenda
 document.getElementById('marker-lecce').addEventListener('click', function() {
