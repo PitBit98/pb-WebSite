@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -18,117 +19,39 @@
             min-height: 100vh; /* Assicura che il body sia almeno alto quanto la viewport */
         }
 
-        /* Stili per il menu principale */
-        .menu-principale {
+        /* Navbar */
+        nav {
             background-color: #333;
             color: white;
-            padding: 10px 20px; /* Aggiungo un po' di spazio ai lati */
-            display: flex; /* Per allineare l'icona a sinistra e il resto a destra (se necessario) */
-            align-items: center; /* Per centrare verticalmente gli elementi */
-            justify-content: space-between; /* Spazia l'icona dai link (per ora vuoto a destra) */
-        }
-
-        /* Stili per l'icona hamburger */
-        .hamburger-icon {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            width: 30px;
-            height: 21px;
-            cursor: pointer; /* Cambia il cursore in una mano quando ci passi sopra */
-        }
-
-        .line {
-            width: 100%;
-            height: 3px;
-            background-color: white;
-            transition: 0.3s; /* Aggiunge un effetto di transizione per l'animazione */
-        }
-
-        /* Stili per la lista dei link (inizialmente nascosta) */
-        .menu-links {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: none; /* Nasconde la lista all'inizio */
-            background-color: #333; /* Stesso colore della navbar */
-            width: 100%; /* Occupare tutta la larghezza */
-            text-align: center; /* Centra i link */
-            position: absolute; /* Per posizionarlo sotto l'header */
-            top: 100%; /* Inizia subito sotto l'header */
-            left: 0;
-            z-index: 10; /* Assicura che sia sopra altri elementi */
-        }
-
-        .menu-links.open {
-            display: block; /* Mostra la lista quando la classe 'open' è aggiunta */
-        }
-
-        .menu-links li {
             padding: 10px 0;
+            text-align: center;
         }
 
-        .menu-links li a {
+        nav a {
             color: white;
+            margin: 0 15px;
             text-decoration: none;
             font-size: 1.2em;
-            display: block; /* Rende l'intero elemento cliccabile */
+            position: relative;
+            display: inline-block;
         }
 
-        .menu-links li a:hover {
-            background-color: #555; /* Cambia colore al passaggio del mouse */
+        nav a::after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background-color: #ff6347;
+            bottom: 0;
+            left: 0;
+            transform: scaleX(0);
+            transform-origin: bottom right;
+            transition: transform 0.3s ease-out;
         }
 
-        /* Nascondi i link normali se il menu a tendina è attivo (opzionale, dipende da come vuoi che appaia su desktop) */
-        @media (min-width: 769px) {
-            .hamburger-icon {
-                display: none; /* Nascondi l'icona su schermi più grandi */
-            }
-            .menu-links {
-                display: flex; /* Mostra i link in orizzontale su desktop */
-                position: static; /* Togli la posizione assoluta */
-                width: auto; /* Larghezza automatica */
-                text-align: left; /* Allinea a sinistra su desktop */
-                background-color: transparent; /* Sfondo trasparente */
-            }
-            .menu-links li {
-                padding: 0;
-                margin-left: 15px;
-            }
-            .menu-links li:first-child {
-                margin-left: 0;
-            }
-            .menu-links li a {
-                color: white;
-                display: inline-block; /* Permette l'effetto hover che avevi prima */
-                position: relative;
-            }
-            .menu-links li a::after {
-                content: "";
-                position: absolute;
-                width: 100%;
-                height: 2px;
-                background-color: #ff6347;
-                bottom: 0;
-                left: 0;
-                transform: scaleX(0);
-                transform-origin: bottom right;
-                transition: transform 0.3s ease-out;
-            }
-            .menu-links li a:hover::after {
-                transform: scaleX(1);
-                transform-origin: bottom left;
-            }
-        }
-
-        /* Stili specifici per schermi più piccoli (come i telefoni) */
-        @media (max-width: 768px) {
-            .menu-principale {
-                justify-content: flex-start; /* Allinea l'icona all'inizio */
-            }
-            .menu-links {
-                /* Gli stili per il menu a tendina su mobile sono già definiti sopra */
-            }
+        nav a:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
         }
 
         /* Sezione combinata Home + Conteggio */
@@ -314,7 +237,10 @@
                 font-size: 8vw;
             }
 
-            /* L'icona hamburger e il menu a tendina sono gestiti dalle regole generali e dalla media query min-width */
+            nav a {
+                font-size: 1em;
+                margin: 0 10px;
+            }
 
             .calendario iframe {
                 width: 100%;
@@ -328,20 +254,13 @@
 </head>
 <body>
 
-    <nav class="menu-principale">
-        <div class="hamburger-icon">
-            <div class="line"></div>
-            <div class="line"></div>
-            <div class="line"></div>
-        </div>
-        <ul class="menu-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#calendario">Calendario</a></li>
-            <li><a href="#promozioni">Promozioni</a></li>
-            <li><a href="#musica">Musica</a></li>
-            <li><a href="#galleria">Galleria</a></li>
-            <li><a href="#luoghi">Luoghi</a></li>
-        </ul>
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#calendario">Calendario</a>
+        <a href="#promozioni">Promozioni</a>
+        <a href="#musica">Musica</a>
+        <a href="#galleria">Galleria</a>
+        <a href="#luoghi">Luoghi</a>
     </nav>
 
     <section id="home-conteggio" class="home-conteggio">
@@ -380,7 +299,7 @@ Perché poi ci casco dentro e non mi accorgo che respiro"</p>
                 <a href="https://www.youtube.com/watch?v=zzm-sTI5Q-E" target="_blank">Balorda nostalgia</a>
                 <p class="estratto">Però ti voglio bene ed è stata tutta vita.</p>
             </li>
-        </ul>
+            </ul>
     </section>
 
     <section id="galleria" class="galleria">
