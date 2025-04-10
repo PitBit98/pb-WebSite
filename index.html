@@ -1,688 +1,1340 @@
-
-
-
-
 <!DOCTYPE html>
+
 <html lang="it">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cisco & Campanello</title>
-    <style>
-        /* CSS */
-        html {
-            width: 100%;
-            overflow-x: hidden; /* Nasconde la barra di scorrimento orizzontale se dovesse apparire */
-        }
 
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            background-color: #f0f8ff; /* Il tuo colore attuale */
-            min-height: 100vh; /* Assicura che il body sia almeno alto quanto la viewport */
-        }
+    <meta charset="UTF-8">
 
- /* Stili per l'icona hamburger */
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Cisco & Campanello</title>
+
+    <style>
+
+        /* CSS */
+
+        html {
+
+            width: 100%;
+
+            overflow-x: hidden; /* Nasconde la barra di scorrimento orizzontale se dovesse apparire */
+
+        }
+
+
+
+        body {
+
+            font-family: Arial, sans-serif;
+
+            margin: 0;
+
+            background-color: #f0f8ff; /* Il tuo colore attuale */
+
+            min-height: 100vh; /* Assicura che il body sia almeno alto quanto la viewport */
+
+        }
+
+
+
+ /* Stili per l'icona hamburger */
+
 .hamburger-icon {
-    position: fixed; /* Rimane visibile anche durante lo scrolling */
-    top: 20px;
-    left: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 30px;
-    height: 22px;
-    cursor: pointer;
-    z-index: 100; /* Assicura che sia sopra ad altri elementi */
+
+    position: fixed; /* Rimane visibile anche durante lo scrolling */
+
+    top: 20px;
+
+    left: 20px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: space-between;
+
+    width: 30px;
+
+    height: 22px;
+
+    cursor: pointer;
+
+    z-index: 100; /* Assicura che sia sopra ad altri elementi */
+
 }
+
+
 
 .hamburger-icon div {
-    width: 100%;
-    height: 3px;
-    background-color: #333; /* Colore dell'icona */
-    transition: all 0.3s ease-in-out;
+
+    width: 100%;
+
+    height: 3px;
+
+    background-color: #333; /* Colore dell'icona */
+
+    transition: all 0.3s ease-in-out;
+
 }
+
+
 
 /* Stili per il menu laterale */
+
 .side-menu {
-    position: fixed;
-    top: 0;
-    left: -250px; /* Inizialmente nascosto a sinistra */
-    width: 250px;
-    height: 100%;
-    background-color: #f8f8f8; /* Colore del menu */
-    padding-top: 60px; /* Spazio per l'icona hamburger */
-    transition: left 0.3s ease-in-out;
-    z-index: 99; /* Sotto l'icona ma sopra al resto */
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+
+    position: fixed;
+
+    top: 0;
+
+    left: -250px; /* Inizialmente nascosto a sinistra */
+
+    width: 250px;
+
+    height: 100%;
+
+    background-color: #f8f8f8; /* Colore del menu */
+
+    padding-top: 60px; /* Spazio per l'icona hamburger */
+
+    transition: left 0.3s ease-in-out;
+
+    z-index: 99; /* Sotto l'icona ma sopra al resto */
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+
 }
+
+
 
 .side-menu.open {
-    left: 0; /* Mostra il menu */
+
+    left: 0; /* Mostra il menu */
+
 }
+
+
 
 .side-menu a {
-    padding: 15px 20px;
-    text-decoration: none;
-    color: #333;
-    font-size: 1.1em;
-    transition: background-color 0.3s ease;
-    width: 100%;
-    box-sizing: border-box;
+
+    padding: 15px 20px;
+
+    text-decoration: none;
+
+    color: #333;
+
+    font-size: 1.1em;
+
+    transition: background-color 0.3s ease;
+
+    width: 100%;
+
+    box-sizing: border-box;
+
 }
+
+
 
 .side-menu a:hover {
-    background-color: #ddd;
+
+    background-color: #ddd;
+
 }
 
-        /* Navbar */
-        nav {
-            background-color: #333;
-            color: white;
-            padding: 10px 0;
-            text-align: center;
-        }
-
-        nav a {
-            color: white;
-            margin: 0 15px;
-            text-decoration: none;
-            font-size: 1.2em;
-            position: relative;
-            display: inline-block;
-        }
-
-        nav a::after {
-            content: "";
-            position: absolute;
-            width: 100%;
-            height: 2px;
-            background-color: #ff6347;
-            bottom: 0;
-            left: 0;
-            transform: scaleX(0);
-            transform-origin: bottom right;
-            transition: transform 0.3s ease-out;
-        }
-
-        nav a:hover::after {
-            transform: scaleX(1);
-            transform-origin: bottom left;
-        }
-
-        /* Sezione combinata Home + Conteggio */
-        .home-conteggio {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            height: 100vh;
-            background-color: #b2c2bf; /* Colore tenue per la sezione home */
-            text-align: center;
-            background-image: url('home1.jpg'); /* Aggiungi un'immagine di sfondo */
-            background-attachment: fixed;
-            background-size: cover;
-            background-position: center;
-        }
-
-        .home-conteggio h1 {
-            font-size: 5vw;
-            color: #333;
-            margin: 0;
-            opacity: 0;
-            transform: translateY(-20px);
-            animation: fadeInUp 1.5s forwards;
-        }
-
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .conteggio h1 {
-            font-size: 2.5em;
-            color: #333;
-        }
-
-        /* Rimuovi la cornice bianca intorno al contatore */
-        #counter {
-            color: #ff6347;
-            font-size: 3em;
-            font-weight: bold;
-            transition: color 0.5s ease;
-        }
-
-        #counter.animating {
-            animation: countUp 3s ease-in-out;
-        }
-
-        @keyframes countUp {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-            100% { transform: scale(1); }
-        }
-
-        /* Sezione Galleria */
-        .galleria {
-            padding: 50px;
-            background-color: #d0e8d7; /* Colore tenue per la galleria */
-            text-align: center;
-            opacity: 0;
-            transform: translateY(50px);
-            transition: opacity 1s ease, transform 1s ease;
-            overflow: hidden; /* Aggiungiamo overflow: hidden */
-        }
-
-        .galleria.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .swiper-container {
-            width: 100%;
-            height: auto; /* Cambiamo l'altezza ad auto */
-        }
-
-        .swiper-wrapper {
-            display: flex; /* Assicuriamoci che gli elementi siano in riga */
-            width: 100%;
-        }
-
-        .swiper-slide {
-            flex-shrink: 0; /* Impedisce alle slide di ridursi */
-            width: 100%;
-            height: auto;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .swiper-slide img {
-            display: block;
-            max-width: 100%; /* Assicura che l'immagine non sia più larga del contenitore */
-            height: auto;
-            border-radius: 10px;
-        }
-
-        /* Sezione altre (modificata per generalità) */
-        .section {
-            padding: 50px;
-            text-align: center;
-            opacity: 0;
-            transform: translateY(50px);
-            transition: opacity 1s ease, transform 1s ease;
-        }
-
-        .section.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
 
 
-      #map {
-    width: 100%;
-    height: 400px;
-    margin-bottom: 20px; /* Potresti non aver più bisogno di questo, prova a rimuoverlo se vuoi meno spazio */
+        /* Navbar */
+
+        nav {
+
+            background-color: #333;
+
+            color: white;
+
+            padding: 10px 0;
+
+            text-align: center;
+
+        }
+
+
+
+        nav a {
+
+            color: white;
+
+            margin: 0 15px;
+
+            text-decoration: none;
+
+            font-size: 1.2em;
+
+            position: relative;
+
+            display: inline-block;
+
+        }
+
+
+
+        nav a::after {
+
+            content: "";
+
+            position: absolute;
+
+            width: 100%;
+
+            height: 2px;
+
+            background-color: #ff6347;
+
+            bottom: 0;
+
+            left: 0;
+
+            transform: scaleX(0);
+
+            transform-origin: bottom right;
+
+            transition: transform 0.3s ease-out;
+
+        }
+
+
+
+        nav a:hover::after {
+
+            transform: scaleX(1);
+
+            transform-origin: bottom left;
+
+        }
+
+
+
+        /* Sezione combinata Home + Conteggio */
+
+        .home-conteggio {
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            flex-direction: column;
+
+            height: 100vh;
+
+            background-color: #b2c2bf; /* Colore tenue per la sezione home */
+
+            text-align: center;
+
+            background-image: url('home1.jpg'); /* Aggiungi un'immagine di sfondo */
+
+            background-attachment: fixed;
+
+            background-size: cover;
+
+            background-position: center;
+
+        }
+
+
+
+        .home-conteggio h1 {
+
+            font-size: 5vw;
+
+            color: #333;
+
+            margin: 0;
+
+            opacity: 0;
+
+            transform: translateY(-20px);
+
+            animation: fadeInUp 1.5s forwards;
+
+        }
+
+
+
+        @keyframes fadeInUp {
+
+            to {
+
+                opacity: 1;
+
+                transform: translateY(0);
+
+            }
+
+        }
+
+
+
+        .conteggio h1 {
+
+            font-size: 2.5em;
+
+            color: #333;
+
+        }
+
+
+
+        /* Rimuovi la cornice bianca intorno al contatore */
+
+        #counter {
+
+            color: #ff6347;
+
+            font-size: 3em;
+
+            font-weight: bold;
+
+            transition: color 0.5s ease;
+
+        }
+
+
+
+        #counter.animating {
+
+            animation: countUp 3s ease-in-out;
+
+        }
+
+
+
+        @keyframes countUp {
+
+            0% { transform: scale(1); }
+
+            50% { transform: scale(1.2); }
+
+            100% { transform: scale(1); }
+
+        }
+
+
+
+        /* Sezione Galleria */
+
+        .galleria {
+
+            padding: 50px;
+
+            background-color: #d0e8d7; /* Colore tenue per la galleria */
+
+            text-align: center;
+
+            opacity: 0;
+
+            transform: translateY(50px);
+
+            transition: opacity 1s ease, transform 1s ease;
+
+            overflow: hidden; /* Aggiungiamo overflow: hidden */
+
+        }
+
+
+
+        .galleria.visible {
+
+            opacity: 1;
+
+            transform: translateY(0);
+
+        }
+
+
+
+        .swiper-container {
+
+            width: 100%;
+
+            height: auto; /* Cambiamo l'altezza ad auto */
+
+        }
+
+
+
+        .swiper-wrapper {
+
+            display: flex; /* Assicuriamoci che gli elementi siano in riga */
+
+            width: 100%;
+
+        }
+
+
+
+        .swiper-slide {
+
+            flex-shrink: 0; /* Impedisce alle slide di ridursi */
+
+            width: 100%;
+
+            height: auto;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+        }
+
+
+
+        .swiper-slide img {
+
+            display: block;
+
+            max-width: 100%; /* Assicura che l'immagine non sia più larga del contenitore */
+
+            height: auto;
+
+            border-radius: 10px;
+
+        }
+
+
+
+        /* Sezione altre (modificata per generalità) */
+
+        .section {
+
+            padding: 50px;
+
+            text-align: center;
+
+            opacity: 0;
+
+            transform: translateY(50px);
+
+            transition: opacity 1s ease, transform 1s ease;
+
+        }
+
+
+
+        .section.visible {
+
+            opacity: 1;
+
+            transform: translateY(0);
+
+        }
+
+
+
+
+
+      #map {
+
+    width: 100%;
+
+    height: 400px;
+
+    margin-bottom: 20px; /* Potresti non aver più bisogno di questo, prova a rimuoverlo se vuoi meno spazio */
+
 }
+
+
 
 #info-container {
-    margin-top: 20px; /* Aggiungi un margine superiore per distanziarlo dalla mappa */
-    left: 0; /* Puoi lasciare questo se vuoi che sia allineato a sinistra */
-    width: 100%;
-     position: relative;
-    padding-bottom: 400px; /* Aggiungi spazio in basso (prova con questo valore nel caso incrementa) */
+
+    margin-top: 20px; /* Aggiungi un margine superiore per distanziarlo dalla mappa */
+
+    left: 0; /* Puoi lasciare questo se vuoi che sia allineato a sinistra */
+
+    width: 100%;
+
+     position: relative;
+
+    padding-bottom: 400px; /* Aggiungi spazio in basso (prova con questo valore nel caso incrementa) */
+
 }
+
+
 
 .city-info {
-     position: absolute;
-    left: 0; /* Questo la allinea a sinistra */
-     top: 0; /* Le mette tutte all'inizio del contenitore */
-    width: 100%; /* Questo la fa essere larga quanto lo spazio disponibile */
-    opacity: 0; /* Questo la rende invisibile all'inizio */
-    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out, background-color 0.3s ease-in-out; /* Assicurati che ci sia la transizione */
-    transform: scaleY(0); /* Assicurati che ci sia la trasformazione iniziale */
-    transform-origin: top; /* Assicurati che l'origine della trasformazione sia in alto */
-    overflow: hidden; /* Assicurati che l'overflow sia nascosto */
-    margin-bottom: 20px; /* Aggiungi un po' di spazio sotto ogni finestra informativa */
+
+     position: absolute;
+
+    left: 0; /* Questo la allinea a sinistra */
+
+     top: 0; /* Le mette tutte all'inizio del contenitore */
+
+    width: 100%; /* Questo la fa essere larga quanto lo spazio disponibile */
+
+    opacity: 0; /* Questo la rende invisibile all'inizio */
+
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out, background-color 0.3s ease-in-out; /* Assicurati che ci sia la transizione */
+
+    transform: scaleY(0); /* Assicurati che ci sia la trasformazione iniziale */
+
+    transform-origin: top; /* Assicurati che l'origine della trasformazione sia in alto */
+
+    overflow: hidden; /* Assicurati che l'overflow sia nascosto */
+
+    margin-bottom: 20px; /* Aggiungi un po' di spazio sotto ogni finestra informativa */
+
 }
+
+
 
 .city-info.open {
-    opacity: 1; /* Questo la rende visibile quando è "aperta" */
-    transform: scaleY(1);
-    height: auto;
-    margin-bottom: 20px; /* Prova con questo valore e modificalo se necessario */
+
+    opacity: 1; /* Questo la rende visibile quando è "aperta" */
+
+    transform: scaleY(1);
+
+    height: auto;
+
+    margin-bottom: 20px; /* Prova con questo valore e modificalo se necessario */
+
 }
 
-    /* Stili specifici per il colore iniziale di sfondo */
-    #info-lecce {
-        background-color: rgba(0, 0, 255, 0.2); /* Blu leggermente trasparente */
-    }
-
-    #info-galatina {
-        background-color: rgba(0, 128, 0, 0.2); /* Verde leggermente trasparente */
-    }
-
-    #info-benevento {
-        background-color: rgba(255, 165, 0, 0.2); /* Arancione leggermente trasparente */
-    }
-
-    #info-napoli {
-        background-color: rgba(255, 0, 0, 0.2); /* Rosso leggermente trasparente */
-    }
-
-    .city-info ul {
-        list-style-type: none;
-        padding-left: 0;
-    }
-
-    .city-info ul li {
-        margin-bottom: 10px;
-    }
 
 
-        /* Stili specifici per le sezioni */
-        #promozioni {
-            background-color: #a8dadc; /* Verde acqua chiaro */
-        }
+    /* Stili specifici per il colore iniziale di sfondo */
 
-        #musica {
-            background-color: #f0ead6; /* Giallo pallido */
-            text-align: center; /* Allinea il titolo e il paragrafo al centro */
-        }
+    #info-lecce {
 
-        #musica p { /* Seleziona il primo <p> dentro la sezione musica */
-            font-family: 'NomeDelFontDesiderato', sans-serif; /* Sostituisci 'NomeDelFontDesiderato' con il font che vuoi usare */
-        }
+        background-color: rgba(0, 0, 255, 0.2); /* Blu leggermente trasparente */
 
-        #musica ul {
-            list-style-type: none; /* Rimuove i pallini */
-            padding-left: 0; /* Rimuove il padding a sinistra predefinito della lista */
-            text-align: left; /* Allinea gli elementi della lista a sinistra */
-            max-width: 600px; /* Imposta una larghezza massima per la lista */
-            margin: 0 auto; /* Centra la lista orizzontalmente */
-        }
+    }
 
-        #musica ul li {
-            margin-bottom: 10px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid #ccc;
-        }
 
-        #musica ul li:last-child {
-            border-bottom: none;
-        }
 
-        #musica ul li a {
-            display: block;
-            margin-bottom: 5px;
-            text-decoration: underline; /* Aggiunge la sottolineatura per indicare il link */
-            color: #007bff; /* Cambia il colore del testo in blu (colore tipico dei link) */
-            font-weight: bold;
-        }
+    #info-galatina {
 
-        #luoghi {
-            background-color: #add8e6; /* Azzurro cielo */
-        }
+        background-color: rgba(0, 128, 0, 0.2); /* Verde leggermente trasparente */
 
-        /* Stile per l'estratto del testo nella sezione musica */
-        .estratto {
-            font-size: 0.9em;
-            color: #555;
-            margin-top: 5px;
-        }
+    }
 
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 20px;
-            background-color: #333;
-            color: white;
-            position: static;
-        }
 
-        /* Media Query per dispositivi mobili */
-        @media (max-width: 768px) {
-            .home-conteggio h1 {
-                font-size: 6vw;
-            }
 
-            .conteggio h1 {
-                font-size: 4vw;
-            }
+    #info-benevento {
 
-            #counter {
-                font-size: 8vw;
-            }
+        background-color: rgba(255, 165, 0, 0.2); /* Arancione leggermente trasparente */
 
-            nav a {
-                font-size: 1em;
-                margin: 0 10px;
-            }
+    }
 
-            .calendario iframe {
-                width: 100%;
-                max-width: 100%;
-                height: 300px;
-            }
-        }
-    </style>
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+
+
+    #info-napoli {
+
+        background-color: rgba(255, 0, 0, 0.2); /* Rosso leggermente trasparente */
+
+    }
+
+
+
+    .city-info ul {
+
+        list-style-type: none;
+
+        padding-left: 0;
+
+    }
+
+
+
+    .city-info ul li {
+
+        margin-bottom: 10px;
+
+    }
+
+
+
+
+
+        /* Stili specifici per le sezioni */
+
+        #promozioni {
+
+            background-color: #a8dadc; /* Verde acqua chiaro */
+
+        }
+
+
+
+        #musica {
+
+            background-color: #f0ead6; /* Giallo pallido */
+
+            text-align: center; /* Allinea il titolo e il paragrafo al centro */
+
+        }
+
+
+
+        #musica p { /* Seleziona il primo <p> dentro la sezione musica */
+
+            font-family: 'NomeDelFontDesiderato', sans-serif; /* Sostituisci 'NomeDelFontDesiderato' con il font che vuoi usare */
+
+        }
+
+
+
+        #musica ul {
+
+            list-style-type: none; /* Rimuove i pallini */
+
+            padding-left: 0; /* Rimuove il padding a sinistra predefinito della lista */
+
+            text-align: left; /* Allinea gli elementi della lista a sinistra */
+
+            max-width: 600px; /* Imposta una larghezza massima per la lista */
+
+            margin: 0 auto; /* Centra la lista orizzontalmente */
+
+        }
+
+
+
+        #musica ul li {
+
+            margin-bottom: 10px;
+
+            padding-bottom: 10px;
+
+            border-bottom: 1px solid #ccc;
+
+        }
+
+
+
+        #musica ul li:last-child {
+
+            border-bottom: none;
+
+        }
+
+
+
+        #musica ul li a {
+
+            display: block;
+
+            margin-bottom: 5px;
+
+            text-decoration: underline; /* Aggiunge la sottolineatura per indicare il link */
+
+            color: #007bff; /* Cambia il colore del testo in blu (colore tipico dei link) */
+
+            font-weight: bold;
+
+        }
+
+
+
+        #luoghi {
+
+            background-color: #add8e6; /* Azzurro cielo */
+
+        }
+
+
+
+        /* Stile per l'estratto del testo nella sezione musica */
+
+        .estratto {
+
+            font-size: 0.9em;
+
+            color: #555;
+
+            margin-top: 5px;
+
+        }
+
+
+
+        /* Footer */
+
+        footer {
+
+            text-align: center;
+
+            padding: 20px;
+
+            background-color: #333;
+
+            color: white;
+
+            position: static;
+
+        }
+
+
+
+        /* Media Query per dispositivi mobili */
+
+        @media (max-width: 768px) {
+
+            .home-conteggio h1 {
+
+                font-size: 6vw;
+
+            }
+
+
+
+            .conteggio h1 {
+
+                font-size: 4vw;
+
+            }
+
+
+
+            #counter {
+
+                font-size: 8vw;
+
+            }
+
+
+
+            nav a {
+
+                font-size: 1em;
+
+                margin: 0 10px;
+
+            }
+
+
+
+            .calendario iframe {
+
+                width: 100%;
+
+                max-width: 100%;
+
+                height: 300px;
+
+            }
+
+        }
+
+    </style>
+
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+
 </head>
+
 <body>
+
 <div class="hamburger-icon">
-    <div></div>
-    <div></div>
-    <div></div>
+
+    <div></div>
+
+    <div></div>
+
+    <div></div>
+
 </div>
 
-    <div id="side-menu" class="side-menu">
-    <a href="#home">Home</a>
-    <a href="#calendario">Calendario</a>
-    <a href="#promozioni">Promozioni</a>
-    <a href="#musica">Musica</a>
-    <a href="#galleria">Galleria</a>
-    <a href="#luoghi">Luoghi</a>
+
+
+    <div id="side-menu" class="side-menu">
+
+    <a href="#home">Home</a>
+
+    <a href="#calendario">Calendario</a>
+
+    <a href="#promozioni">Promozioni</a>
+
+    <a href="#musica">Musica</a>
+
+    <a href="#galleria">Galleria</a>
+
+    <a href="#luoghi">Luoghi</a>
+
 </div>
 
-    <section id="home-conteggio" class="home-conteggio">
-        <h1>Benvenuto nella nostra pagina di felicità!</h1>
-        <div class="conteggio">
-            <h1>Totale giorni felici vissuti insieme: <span id="counter">0</span></h1>
-        </div>
-    </section>
 
-    <section id="calendario" class="section">
-        <h2>Calendario</h2>
-        <div class="calendario">
-            <iframe src="https://calendar.google.com/calendar/embed?src=ciscocampanellino%40gmail.com&ctz=Europe%2FRome" frameborder="0" width="800" height="600"></iframe>
-        </div>
-    </section>
 
-    <section id="promozioni" class="section">
-        <h2>Promozioni</h2>
-        <p>Descrizione</p>
-        </section>
+    <section id="home-conteggio" class="home-conteggio">
 
-    <section id="musica" class="section">
-        <h2>Musica</h2>
-        <p>Parole in musica che mi parlano di te</p>
-        <ul>
-            <li>
-                <a href="https://www.youtube.com/watch?v=3Jya13PNlYk" target="_blank">Mi fido di te</a>
-                <p class="estratto">"Teste fasciate, ferite curate...dottore che sintomi ha la felicità"</p>
-            </li>
-            <li>
-                <a href="https://www.youtube.com/watch?v=9i_AuKkvlGQ" target="_blank">Amati sempre</a>
-                <p class="estratto">"confesso che non guardo mai i suoi occhi da vicino
+        <h1>Benvenuto nella nostra pagina di felicità!</h1>
+
+        <div class="conteggio">
+
+            <h1>Totale giorni felici vissuti insieme: <span id="counter">0</span></h1>
+
+        </div>
+
+    </section>
+
+
+
+    <section id="calendario" class="section">
+
+        <h2>Calendario</h2>
+
+        <div class="calendario">
+
+            <iframe src="https://calendar.google.com/calendar/embed?src=ciscocampanellino%40gmail.com&ctz=Europe%2FRome" frameborder="0" width="800" height="600"></iframe>
+
+        </div>
+
+    </section>
+
+
+
+    <section id="promozioni" class="section">
+
+        <h2>Promozioni</h2>
+
+        <p>Descrizione</p>
+
+        </section>
+
+
+
+    <section id="musica" class="section">
+
+        <h2>Musica</h2>
+
+        <p>Parole in musica che mi parlano di te</p>
+
+        <ul>
+
+            <li>
+
+                <a href="https://www.youtube.com/watch?v=3Jya13PNlYk" target="_blank">Mi fido di te</a>
+
+                <p class="estratto">"Teste fasciate, ferite curate...dottore che sintomi ha la felicità"</p>
+
+            </li>
+
+            <li>
+
+                <a href="https://www.youtube.com/watch?v=9i_AuKkvlGQ" target="_blank">Amati sempre</a>
+
+                <p class="estratto">"confesso che non guardo mai i suoi occhi da vicino
+
 Perché poi ci casco dentro e non mi accorgo che respiro"</p>
-            </li>
-            <li>
-                <a href="https://www.youtube.com/watch?v=zzm-sTI5Q-E" target="_blank">Balorda nostalgia</a>
-                <p class="estratto">Però ti voglio bene ed è stata tutta vita.</p>
-            </li>
-            </ul>
-    </section>
 
-    <section id="galleria" class="galleria">
-        <h2>Galleria</h2>
-        <div class="swiper-container">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide"><img src="image1.jpg" alt="Immagine 1"></div>
-                <div class="swiper-slide"><img src="image2.jpg" alt="Immagine 2"></div>
-                <div class="swiper-slide"><img src="image3.jpg" alt="Immagine 3"></div>
-                </div>
-            <div class="swiper-pagination"></div>
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
-        </div>
-        </section>
+            </li>
+
+            <li>
+
+                <a href="https://www.youtube.com/watch?v=zzm-sTI5Q-E" target="_blank">Balorda nostalgia</a>
+
+                <p class="estratto">Però ti voglio bene ed è stata tutta vita.</p>
+
+            </li>
+
+            </ul>
+
+    </section>
+
+
+
+    <section id="galleria" class="galleria">
+
+        <h2>Galleria</h2>
+
+        <div class="swiper-container">
+
+            <div class="swiper-wrapper">
+
+                <div class="swiper-slide"><img src="image1.jpg" alt="Immagine 1"></div>
+
+                <div class="swiper-slide"><img src="image2.jpg" alt="Immagine 2"></div>
+
+                <div class="swiper-slide"><img src="image3.jpg" alt="Immagine 3"></div>
+
+                </div>
+
+            <div class="swiper-pagination"></div>
+
+            <div class="swiper-button-next"></div>
+
+            <div class="swiper-button-prev"></div>
+
+        </div>
+
+        </section>
+
+
 
 <section id="luoghi" class="section">
-    <h2>Luoghi Speciali</h2>
-    <p>Abbiamo visitato posti bellissimi in Italia!</p>
-    <div id="map" style="width: 100%; height: 400px;"></div>
+
+    <h2>Luoghi Speciali</h2>
+
+    <p>Abbiamo visitato posti bellissimi in Italia!</p>
+
+    <div id="map" style="width: 100%; height: 400px;"></div>
+
 <p>
-    <span id="marker-lecce" style="color:blue; cursor: pointer;">L</span> Lecce,
-    <span id="marker-galatina" style="color:green; cursor: pointer;">G</span> Galatina,
-    <span id="marker-benevento" style="color:orange; cursor: pointer;">B</span> Benevento,
-    <span id="marker-napoli" style="color:red; cursor: pointer;">N</span> Napoli
+
+    <span id="marker-lecce" style="color:blue; cursor: pointer;">L</span> Lecce,
+
+    <span id="marker-galatina" style="color:green; cursor: pointer;">G</span> Galatina,
+
+    <span id="marker-benevento" style="color:orange; cursor: pointer;">B</span> Benevento,
+
+    <span id="marker-napoli" style="color:red; cursor: pointer;">N</span> Napoli
+
 </p>
+
 <div id="image-container" style="position: absolute; top: 20px; left: 50%; transform: translateX(-50%); background-color: white; padding: 10px; border: 1px solid #ccc; box-shadow: 2px 2px 5px rgba(0,0,0,0.1); z-index: 1000; display: none;">
-    <img id="city-image" src="" style="max-width: 300px; height: auto;">
-    <button onclick="document.getElementById('image-container').style.display='none';" style="margin-top: 5px;">Chiudi</button>
+
+    <img id="city-image" src="" style="max-width: 300px; height: auto;">
+
+    <button onclick="document.getElementById('image-container').style.display='none';" style="margin-top: 5px;">Chiudi</button>
+
 </div>
-    </section>
+
+    </section>
+
+
 
 <div id="info-container">
-    <div id="info-lecce" class="city-info" style="background-image: url(''); background-size: cover; padding: 20px; margin-top: 20px;">
-        <h3>Ristoranti tipici di Lecce</h3>
-        <ul>
-            <li><a href="#">Ristorante Le Zie</a></li>
-            <li><a href="#">Osteria degli Spiriti</a></li>
-            <li><a href="#">Trattoria Nonna Tetti</a></li>
-        </ul>
-    </div>
 
-    <div id="info-galatina" class="city-info" style="background-image: url(''); background-size: cover; padding: 20px; margin-top: 20px;">
-        <h3>Specialità di Galatina</h3>
-        <p>Qui potrai gustare il famoso pasticciotto!</p>
-    </div>
+    <div id="info-lecce" class="city-info" style="background-image: url(''); background-size: cover; padding: 20px; margin-top: 20px;">
 
-    <div id="info-benevento" class="city-info" style="background-image: url(''); background-size: cover; padding: 20px; margin-top: 20px;">
-        <h3>Ristoranti tipici di Benevento</h3>
-        <ul>
-            <li><a href="#">Antica Trattoria Ai Due Ponti</a></li>
-            <li><a href="#">Ristorante Locanda della Strega</a></li>
-        </ul>
-    </div>
+        <h3>Ristoranti tipici di Lecce</h3>
 
-    <div id="info-napoli" class="city-info" style="background-image: url(''); background-size: cover; padding: 20px; margin-top: 20px;">
-        <h3>Pizzerie consigliate a Napoli</h3>
-        <ul>
-            <li><a href="#">Sorbillo</a></li>
-            <li><a href="#">Da Michele</a></li>
-            <li><a href="#">Starita a Materdei</a></li>
-        </ul>
-    </div>
+        <ul>
+
+            <li><a href="#">Ristorante Le Zie</a></li>
+
+            <li><a href="#">Osteria degli Spiriti</a></li>
+
+            <li><a href="#">Trattoria Nonna Tetti</a></li>
+
+        </ul>
+
+    </div>
+
+
+
+    <div id="info-galatina" class="city-info" style="background-image: url(''); background-size: cover; padding: 20px; margin-top: 20px;">
+
+        <h3>Specialità di Galatina</h3>
+
+        <p>Qui potrai gustare il famoso pasticciotto!</p>
+
+    </div>
+
+
+
+    <div id="info-benevento" class="city-info" style="background-image: url(''); background-size: cover; padding: 20px; margin-top: 20px;">
+
+        <h3>Ristoranti tipici di Benevento</h3>
+
+        <ul>
+
+            <li><a href="#">Antica Trattoria Ai Due Ponti</a></li>
+
+            <li><a href="#">Ristorante Locanda della Strega</a></li>
+
+        </ul>
+
+    </div>
+
+
+
+    <div id="info-napoli" class="city-info" style="background-image: url(''); background-size: cover; padding: 20px; margin-top: 20px;">
+
+        <h3>Pizzerie consigliate a Napoli</h3>
+
+        <ul>
+
+            <li><a href="#">Sorbillo</a></li>
+
+            <li><a href="#">Da Michele</a></li>
+
+            <li><a href="#">Starita a Materdei</a></li>
+
+        </ul>
+
+    </div>
+
 </div>
 
 
-    
+
+
+
+    
+
 </section>
 
-<style>
-    .city-info ul {
-        list-style-type: none;
-        padding-left: 0;
-    }
 
-    .city-info ul li {
-        margin-bottom: 10px;
-    }
+
+<style>
+
+    .city-info ul {
+
+        list-style-type: none;
+
+        padding-left: 0;
+
+    }
+
+
+
+    .city-info ul li {
+
+        margin-bottom: 10px;
+
+    }
+
 </style>
 
-    <footer>
-        <p>© 2025 Iena Felix</p>
-    </footer>
 
-    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-    <script>
-       
-    </script>
-// JavaScript per il conteggio dei giorni
-  const startDate = new Date('2024-10-10');
-  const counterElement = document.getElementById('counter');
 
-  function calculateDaysPassed() {
-    const currentDate = new Date();
-    const timeDifference = currentDate - startDate;
-    const daysPassed = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
-    return daysPassed;
-  }
+    <footer>
 
-  function animateCounter(targetValue) {
-    let currentValue = 0;
-    const interval = setInterval(() => {
-      if (currentValue < targetValue) {
-        currentValue++;
-        counterElement.textContent = currentValue;
-      } else {
-        clearInterval(interval);
-      }
-    }, 20);
-  }
+        <p>© 2025 Iena Felix</p>
 
-  const daysPassed = calculateDaysPassed();
-  animateCounter(daysPassed);
+    </footer>
 
-  // Configurazione di Swiper
-  const swiper = new Swiper('.swiper-container', {
-    loop: true,
-    slidesPerView: 1,  // Imposta 1 slide per vista su dispositivi mobili
-    spaceBetween: 10,
-    pagination: {
-      el: '.swiper-pagination',
-      clickable: true,
-    },
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
-    },
-    breakpoints: {
-      // Quando la larghezza è maggiore di 768px (desktop)
-      768: {
-        slidesPerView: 3,  // Mostra 3 slide per vista su dispositivi più grandi
-        spaceBetween: 20,
-      },
-    },
-  });
 
-  // Animazione delle sezioni
-  window.addEventListener('scroll', () => {
-    document.querySelectorAll('section').forEach(section => {
-      const rect = section.getBoundingClientRect();
-      if (rect.top < window.innerHeight) {
-        section.classList.add('visible');
-      } else {
-        section.classList.remove('visible');
-      }
-    });
-  });
 
-  // Leaflet map integration
-  var map = L.map('map').setView([41.8719, 12.5674], 6); // Imposta la visualizzazione sull'Italia
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-  }).addTo(map);
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
 
-  // Aggiungi i marker per le città
-  L.marker([40.3552, 18.1792], {icon: L.divIcon({className: 'my-icon', html: '<div style="background-color: blue; width: 10px; height: 10px; border-radius: 50%;"></div>'})}).addTo(map).bindPopup('Lecce');
-  L.marker([40.1633, 18.1639], {icon: L.divIcon({className: 'my-icon', html: '<div style="background-color: green; width: 10px; height: 10px; border-radius: 50%;"></div>'})}).addTo(map).bindPopup('Galatina');
-  L.marker([41.1333, 14.7833], {icon: L.divIcon({className: 'my-icon', html: '<div style="background-color: orange; width: 10px; height: 10px; border-radius: 50%;"></div>'})}).addTo(map).bindPopup('Benevento');
-  L.marker([40.8333, 14.2500], {icon: L.divIcon({className: 'my-icon', html: '<div style="background-color: red; width: 10px; height: 10px; border-radius: 50%;"></div>'})}).addTo(map).bindPopup('Napoli');
+    <script>
 
+        // JavaScript per il conteggio dei giorni
+
+        const startDate = new Date('2024-10-10');
+
+        const counterElement = document.getElementById('counter');
+
+
+
+        function calculateDaysPassed() {
+
+            const currentDate = new Date();
+
+            const timeDifference = currentDate - startDate;
+
+            const daysPassed = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+
+            return daysPassed;
+
+        }
+
+
+
+        function animateCounter(targetValue) {
+
+            let currentValue = 0;
+
+            const interval = setInterval(() => {
+
+                if (currentValue < targetValue) {
+
+                    currentValue++;
+
+                    counterElement.textContent = currentValue;
+
+                } else {
+
+                    clearInterval(interval);
+
+                }
+
+            }, 20);
+
+        }
+
+
+
+        const daysPassed = calculateDaysPassed();
+
+        animateCounter(daysPassed);
+
+
+
+        // Configurazione di Swiper
+
+        const swiper = new Swiper('.swiper-container', {
+
+            loop: true,
+
+            slidesPerView: 1,  // Imposta 1 slide per vista su dispositivi mobili
+
+            spaceBetween: 10,
+
+            pagination: {
+
+                el: '.swiper-pagination',
+
+                clickable: true,
+
+            },
+
+            navigation: {
+
+                nextEl: '.swiper-button-next',
+
+                prevEl: '.swiper-button-prev',
+
+            },
+
+            breakpoints: {
+
+                // Quando la larghezza è maggiore di 768px (desktop)
+
+                768: {
+
+                    slidesPerView: 3,  // Mostra 3 slide per vista su dispositivi più grandi
+
+                    spaceBetween: 20,
+
+                },
+
+            },
+
+        });
+
+
+
+        // Animazione delle sezioni
+
+        window.addEventListener('scroll', () => {
+
+            document.querySelectorAll('section').forEach(section => {
+
+                const rect = section.getBoundingClientRect();
+                if (rect.top < window.innerHeight) {
+                    section.classList.add('visible');
+                } else {
+                    section.classList.remove('visible');
+                }
+            });
+        });
+
+
+
+        // Leaflet map integration
+
+        var map = L.map('map').setView([41.8719, 12.5674], 6); // Imposta la visualizzazione sull'Italia
+
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Aggiungi i marker per le città
+
+        L.marker([40.3552, 18.1792], {icon: L.divIcon({className: 'my-icon', html: '<div style="background-color: blue; width: 10px; height: 10px; border-radius: 50%;"></div>'})}).addTo(map).bindPopup('Lecce');
+        L.marker([40.1633, 18.1639], {icon: L.divIcon({className: 'my-icon', html: '<div style="background-color: green; width: 10px; height: 10px; border-radius: 50%;"></div>'})}).addTo(map).bindPopup('Galatina');
+        L.marker([41.1333, 14.7833], {icon: L.divIcon({className: 'my-icon', html: '<div style="background-color: orange; width: 10px; height: 10px; border-radius: 50%;"></div>'})}).addTo(map).bindPopup('Benevento');
+        L.marker([40.8333, 14.2500], {icon: L.divIcon({className: 'my-icon', html: '<div style="background-color: red; width: 10px; height: 10px; border-radius: 50%;"></div>'})}).addTo(map).bindPopup('Napoli');
 
 // Funzione per spostare la mappa su una data coordinata e zoom
+
 function flyToCity(lat, lng, zoom) {
-  map.flyTo([lat, lng], zoom);
+    map.flyTo([lat, lng], zoom);
 }
 
 // Funzione per mostrare le informazioni della città (con animazione) e nascondere le altre
 function showCityInfo(cityId) {
-  // Prima, nascondiamo tutte le finestre informative
-  const allInfoSections = document.querySelectorAll('.city-info');
-  allInfoSections.forEach(section => {
-    section.classList.remove('open'); // Questo le nasconde
-  });
+    // Prima, nascondiamo tutte le finestre informative
+    const allInfoSections = document.querySelectorAll('.city-info');
+    allInfoSections.forEach(section => {
+   section.classList.remove('open'); // Questo le nasconde
+    });
 
-  // Poi, mostriamo la finestra informativa della città che è stata cliccata
-  const cityInfoSection = document.getElementById('info-' + cityId);
-  if (cityInfoSection) {
-    cityInfoSection.classList.add('open'); // Questo la rende visibile
-  }
+    // Poi, mostriamo la finestra informativa della città che è stata cliccata
+
+    const cityInfoSection = document.getElementById('info-' + cityId);
+    if (cityInfoSection) {
+   cityInfoSection.classList.add('open'); // Questo la rende visibile
+    }
 }
 
 // Ottieni il contenitore dell'immagine e l'elemento immagine
+
 const imageContainer = document.getElementById('image-container');
 const cityImage = document.getElementById('city-image');
 
 // Funzione per spostare la mappa su una data coordinata e zoom e poi mostrare l'immagine
-function flyToCityAndShowImage(lat, lng, zoom, imageName) {
-  map.flyTo([lat, lng], zoom);
 
-  // Aspetta che l'animazione 'fly' (lo spostamento) finisca
-  map.once('flyend', function() {
-    cityImage.src = imageName;
-    imageContainer.style.display = 'block';
-  });
+function flyToCityAndShowImage(lat, lng, zoom, imageName) {
+    map.flyTo([lat, lng], zoom);
+    // Aspetta che l'animazione 'fly' (lo spostamento) finisca
+    map.once('flyend', function() {
+        cityImage.src = imageName;
+        imageContainer.style.display = 'block';
+   });
 }
 
+ /*       
+// Funzione per mostrare le informazioni della città (con animazione) e nascondere le altre
+
+function showCityInfo(cityId) {
+
+    const allInfoSections = document.querySelectorAll('.city-info');
+
+    allInfoSections.forEach(section => {
+
+        section.classList.remove('open');
+
+    });
+
+
+
+    const cityInfoSection = document.getElementById('info-' + cityId);
+
+    if (cityInfoSection) {
+
+        cityInfoSection.classList.add('open');
+
+    }
+
+}
+*/
+
+
+
 // Aggiungi un "ascoltatore" di eventi (click) a ogni elemento della legenda
+
 document.getElementById('marker-lecce').addEventListener('click', function() {
-  flyToCityAndShowImage(40.3552, 18.1792, 10, 'lecce_sfondo.jpg');
-  showCityInfo('lecce');
+
+    flyToCityAndShowImage(40.3552, 18.1792, 10, 'lecce_sfondo.jpg');
+
+    showCityInfo('lecce');
+
 });
+
+
 
 document.getElementById('marker-galatina').addEventListener('click', function() {
-  flyToCityAndShowImage(40.1633, 18.1639, 12, 'galatina_sfondo.jpg');
-  showCityInfo('galatina');
+
+    flyToCityAndShowImage(40.1633, 18.1639, 12, 'galatina_sfondo.jpg');
+
+    showCityInfo('galatina');
+
 });
+
+
 
 document.getElementById('marker-benevento').addEventListener('click', function() {
-  flyToCityAndShowImage(41.1333, 14.7833, 10, 'benevento_sfondo.jpg');
-  showCityInfo('benevento');
+
+    flyToCityAndShowImage(41.1333, 14.7833, 10, 'benevento_sfondo.jpg');
+
+    showCityInfo('benevento');
+
 });
+
+
 
 document.getElementById('marker-napoli').addEventListener('click', function() {
-  flyToCityAndShowImage(40.8333, 14.2500, 10, 'napoli_sfondo.jpg');
-  showCityInfo('napoli');
+
+    flyToCityAndShowImage(40.8333, 14.2500, 10, 'napoli_sfondo.jpg');
+
+    showCityInfo('napoli');
+
 });
+
+
 
 const hamburgerIcon = document.querySelector('.hamburger-icon');
+
 const sideMenu = document.getElementById('side-menu');
+
 const sideMenuLinks = sideMenu.querySelectorAll('a'); // Otteniamo tutti i link nel menu a tendina
 
+
+
 hamburgerIcon.addEventListener('click', () => {
-  sideMenu.classList.toggle('open');
+
+    sideMenu.classList.toggle('open');
+
 });
 
-// Aggiungiamo un "ascoltatore" di eventi a ogni link del menu a tendina
-sideMenuLinks.forEach(link => {
-  link.addEventListener('click', (event) => {
-    sideMenu.classList.remove('open'); // Chiude il menu
 
-    // Se il link cliccato è "Home", scorriamo all'inizio della pagina
-    if (link.getAttribute('href') === '#home') {
-      event.preventDefault(); // Impedisce il comportamento predefinito del link (saltare all'id)
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth' // Per uno scorrimento più плавный (opzionale)
-      });
-    } else {
-      // Per gli altri link, il comportamento predefinito (saltare alla sezione) va bene
-      const targetId = link.getAttribute('href');
-      const targetElement = document.querySelector(targetId);
-      if (targetElement) {
-        targetElement.scrollIntoView({ behavior: 'smooth' }); // Scorri alla sezione (opzionale: aggiungi 'smooth' per l'animazione)
-      }
-    }
-  });
+
+// Aggiungiamo un "ascoltatore" di eventi a ogni link del menu a tendina
+
+sideMenuLinks.forEach(link => {
+
+    link.addEventListener('click', (event) => {
+
+        sideMenu.classList.remove('open'); // Chiude il menu
+
+
+
+        // Se il link cliccato è "Home", scorriamo all'inizio della pagina
+
+        if (link.getAttribute('href') === '#home') {
+
+            event.preventDefault(); // Impedisce il comportamento predefinito del link (saltare all'id)
+
+            window.scrollTo({
+
+                top: 0,
+
+                behavior: 'smooth' // Per uno scorrimento più плавный (opzionale)
+
+            });
+
+        } else {
+
+            // Per gli altri link, il comportamento predefinito (saltare alla sezione) va bene
+
+            const targetId = link.getAttribute('href');
+
+            const targetElement = document.querySelector(targetId);
+
+            if (targetElement) {
+
+                targetElement.scrollIntoView({ behavior: 'smooth' }); // Scorri alla sezione (opzionale: aggiungi 'smooth' per l'animazione)
+
+            }
+
+        }
+
+    });
+
 });;
 
-  </script>
+    
 
-  <style>
-    .my-icon {
-      background: none;
-      border: none;
-    }
-  </style>
+    </script>
+
+
+
+    <style>
+
+        .my-icon {
+
+            background: none;
+
+            border: none;
+
+        }
+
+    </style>
+
 </body>
+
 </html>
