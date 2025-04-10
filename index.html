@@ -252,9 +252,6 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
         integrity="sha512-xodZBNTC5n17Xt2atTPvknHGwwPiYiBrsyI7JxPgmuCBRIFl6CwPTkoPbn+uh9FI2jWc9xEhXTk+TvVSj2GFaw=="
         crossorigin=""/>
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
-        integrity="sha512-XQoYM8m31QHoSG6hkcZy4GGaXAl5hjcPTtYwnqqwUyNB5woNrZB2jy9HH9GUi86TREJL5YxJMx+8W+DQjvMPEg=="
-        crossorigin=""></script>
 </head>
 <body>
 
@@ -337,6 +334,9 @@ Perché poi ci casco dentro e non mi accorgo che respiro"</p>
     </footer>
 
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+        integrity="sha512-XQoYM8m31QHoSG6hkcZy4GGaXAl5hjcPTtYwnqqwUyNB5woNrZB2jy9HH9GUi86TREJL5YxJMx+8W+DQjvMPEg=="
+        crossorigin=""></script>
     <script>
         // JavaScript per il conteggio dei giorni
         const startDate = new Date('2024-10-10');
@@ -402,21 +402,11 @@ Perché poi ci casco dentro e non mi accorgo che respiro"</p>
         var map = L.map('map').setView([41.8719, 12.5674], 6); // Imposta la visualizzazione sull'Italia
 
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
 
         // Aggiungi i marker per le città
         L.marker([40.3552, 18.1792], {icon: L.divIcon({className: 'my-icon', html: '<div style="background-color: blue; width: 10px; height: 10px; border-radius: 50%;"></div>'})}).addTo(map).bindPopup('Lecce');
         L.marker([40.1633, 18.1639], {icon: L.divIcon({className: 'my-icon', html: '<div style="background-color: green; width: 10px; height: 10px; border-radius: 50%;"></div>'})}).addTo(map).bindPopup('Galatina');
         L.marker([41.1333, 14.7833], {icon: L.divIcon({className: 'my-icon', html: '<div style="background-color: orange; width: 10px; height: 10px; border-radius: 50%;"></div>'})}).addTo(map).bindPopup('Benevento');
-        L.marker([40.8333, 14.2500], {icon: L.divIcon({className: 'my-icon', html: '<div style="background-color: red; width: 10px; height: 10px; border-radius: 50%;"></div>'})}).addTo(map).bindPopup('Napoli');
-    </script>
-
-    <style>
-        .my-icon {
-            background: none;
-            border: none;
-        }
-    </style>
-</body>
-</html>
+        L.marker([40.8333, 14.2500], {icon: L.divIcon({className: 'my-icon', html: '<div
