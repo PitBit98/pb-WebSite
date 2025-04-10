@@ -453,7 +453,6 @@ Perché poi ci casco dentro e non mi accorgo che respiro"</p>
     <span id="marker-napoli" style="color:red; cursor: pointer;">N</span> Napoli
 </p>
 <div id="image-container" style="position: absolute; top: 20px; left: 50%; transform: translateX(-50%); background-color: white; padding: 10px; border: 1px solid #ccc; box-shadow: 2px 2px 5px rgba(0,0,0,0.1); z-index: 1000; display: none;">
-    <img src="lecce_sfondo.jpg" style="max-width: 100px;"> 
     <img id="city-image" src="" style="max-width: 300px; height: auto;">
     <button onclick="document.getElementById('image-container').style.display='none';" style="margin-top: 5px;">Chiudi</button>
 </div>
@@ -514,98 +513,100 @@ Perché poi ci casco dentro e non mi accorgo che respiro"</p>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script>
-        // JavaScript per il conteggio dei giorni
-        const startDate = new Date('2024-10-10');
-        const counterElement = document.getElementById('counter');
+       
+    </script>
+// JavaScript per il conteggio dei giorni
+  const startDate = new Date('2024-10-10');
+  const counterElement = document.getElementById('counter');
 
-        function calculateDaysPassed() {
-            const currentDate = new Date();
-            const timeDifference = currentDate - startDate;
-            const daysPassed = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
-            return daysPassed;
-        }
+  function calculateDaysPassed() {
+    const currentDate = new Date();
+    const timeDifference = currentDate - startDate;
+    const daysPassed = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+    return daysPassed;
+  }
 
-        function animateCounter(targetValue) {
-            let currentValue = 0;
-            const interval = setInterval(() => {
-                if (currentValue < targetValue) {
-                    currentValue++;
-                    counterElement.textContent = currentValue;
-                } else {
-                    clearInterval(interval);
-                }
-            }, 20);
-        }
+  function animateCounter(targetValue) {
+    let currentValue = 0;
+    const interval = setInterval(() => {
+      if (currentValue < targetValue) {
+        currentValue++;
+        counterElement.textContent = currentValue;
+      } else {
+        clearInterval(interval);
+      }
+    }, 20);
+  }
 
-        const daysPassed = calculateDaysPassed();
-        animateCounter(daysPassed);
+  const daysPassed = calculateDaysPassed();
+  animateCounter(daysPassed);
 
-        // Configurazione di Swiper
-        const swiper = new Swiper('.swiper-container', {
-            loop: true,
-            slidesPerView: 1,  // Imposta 1 slide per vista su dispositivi mobili
-            spaceBetween: 10,
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-            },
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
-            breakpoints: {
-                // Quando la larghezza è maggiore di 768px (desktop)
-                768: {
-                    slidesPerView: 3,  // Mostra 3 slide per vista su dispositivi più grandi
-                    spaceBetween: 20,
-                },
-            },
-        });
+  // Configurazione di Swiper
+  const swiper = new Swiper('.swiper-container', {
+    loop: true,
+    slidesPerView: 1,  // Imposta 1 slide per vista su dispositivi mobili
+    spaceBetween: 10,
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    },
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+    breakpoints: {
+      // Quando la larghezza è maggiore di 768px (desktop)
+      768: {
+        slidesPerView: 3,  // Mostra 3 slide per vista su dispositivi più grandi
+        spaceBetween: 20,
+      },
+    },
+  });
 
-        // Animazione delle sezioni
-        window.addEventListener('scroll', () => {
-            document.querySelectorAll('section').forEach(section => {
-                const rect = section.getBoundingClientRect();
-                if (rect.top < window.innerHeight) {
-                    section.classList.add('visible');
-                } else {
-                    section.classList.remove('visible');
-                }
-            });
-        });
+  // Animazione delle sezioni
+  window.addEventListener('scroll', () => {
+    document.querySelectorAll('section').forEach(section => {
+      const rect = section.getBoundingClientRect();
+      if (rect.top < window.innerHeight) {
+        section.classList.add('visible');
+      } else {
+        section.classList.remove('visible');
+      }
+    });
+  });
 
-        // Leaflet map integration
-        var map = L.map('map').setView([41.8719, 12.5674], 6); // Imposta la visualizzazione sull'Italia
+  // Leaflet map integration
+  var map = L.map('map').setView([41.8719, 12.5674], 6); // Imposta la visualizzazione sull'Italia
 
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        }).addTo(map);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+  }).addTo(map);
 
-        // Aggiungi i marker per le città
-        L.marker([40.3552, 18.1792], {icon: L.divIcon({className: 'my-icon', html: '<div style="background-color: blue; width: 10px; height: 10px; border-radius: 50%;"></div>'})}).addTo(map).bindPopup('Lecce');
-        L.marker([40.1633, 18.1639], {icon: L.divIcon({className: 'my-icon', html: '<div style="background-color: green; width: 10px; height: 10px; border-radius: 50%;"></div>'})}).addTo(map).bindPopup('Galatina');
-        L.marker([41.1333, 14.7833], {icon: L.divIcon({className: 'my-icon', html: '<div style="background-color: orange; width: 10px; height: 10px; border-radius: 50%;"></div>'})}).addTo(map).bindPopup('Benevento');
-        L.marker([40.8333, 14.2500], {icon: L.divIcon({className: 'my-icon', html: '<div style="background-color: red; width: 10px; height: 10px; border-radius: 50%;"></div>'})}).addTo(map).bindPopup('Napoli');
-   
-   
+  // Aggiungi i marker per le città
+  L.marker([40.3552, 18.1792], {icon: L.divIcon({className: 'my-icon', html: '<div style="background-color: blue; width: 10px; height: 10px; border-radius: 50%;"></div>'})}).addTo(map).bindPopup('Lecce');
+  L.marker([40.1633, 18.1639], {icon: L.divIcon({className: 'my-icon', html: '<div style="background-color: green; width: 10px; height: 10px; border-radius: 50%;"></div>'})}).addTo(map).bindPopup('Galatina');
+  L.marker([41.1333, 14.7833], {icon: L.divIcon({className: 'my-icon', html: '<div style="background-color: orange; width: 10px; height: 10px; border-radius: 50%;"></div>'})}).addTo(map).bindPopup('Benevento');
+  L.marker([40.8333, 14.2500], {icon: L.divIcon({className: 'my-icon', html: '<div style="background-color: red; width: 10px; height: 10px; border-radius: 50%;"></div>'})}).addTo(map).bindPopup('Napoli');
+
+
 // Funzione per spostare la mappa su una data coordinata e zoom
 function flyToCity(lat, lng, zoom) {
-    map.flyTo([lat, lng], zoom);
+  map.flyTo([lat, lng], zoom);
 }
 
 // Funzione per mostrare le informazioni della città (con animazione) e nascondere le altre
 function showCityInfo(cityId) {
-    // Prima, nascondiamo tutte le finestre informative
-    const allInfoSections = document.querySelectorAll('.city-info');
-    allInfoSections.forEach(section => {
-        section.classList.remove('open'); // Questo le nasconde
-    });
+  // Prima, nascondiamo tutte le finestre informative
+  const allInfoSections = document.querySelectorAll('.city-info');
+  allInfoSections.forEach(section => {
+    section.classList.remove('open'); // Questo le nasconde
+  });
 
-    // Poi, mostriamo la finestra informativa della città che è stata cliccata
-    const cityInfoSection = document.getElementById('info-' + cityId);
-    if (cityInfoSection) {
-        cityInfoSection.classList.add('open'); // Questo la rende visibile
-    }
+  // Poi, mostriamo la finestra informativa della città che è stata cliccata
+  const cityInfoSection = document.getElementById('info-' + cityId);
+  if (cityInfoSection) {
+    cityInfoSection.classList.add('open'); // Questo la rende visibile
+  }
 }
 
 // Ottieni il contenitore dell'immagine e l'elemento immagine
@@ -614,47 +615,34 @@ const cityImage = document.getElementById('city-image');
 
 // Funzione per spostare la mappa su una data coordinata e zoom e poi mostrare l'immagine
 function flyToCityAndShowImage(lat, lng, zoom, imageName) {
-    map.flyTo([lat, lng], zoom);
+  map.flyTo([lat, lng], zoom);
 
-    // Aspetta che l'animazione 'fly' (lo spostamento) finisca
-    map.once('flyend', function() {
-        cityImage.src = imageName;
-        imageContainer.style.display = 'block';
-    });
-}
-
-// Funzione per mostrare le informazioni della città (con animazione) e nascondere le altre
-function showCityInfo(cityId) {
-    const allInfoSections = document.querySelectorAll('.city-info');
-    allInfoSections.forEach(section => {
-        section.classList.remove('open');
-    });
-
-    const cityInfoSection = document.getElementById('info-' + cityId);
-    if (cityInfoSection) {
-        cityInfoSection.classList.add('open');
-    }
+  // Aspetta che l'animazione 'fly' (lo spostamento) finisca
+  map.once('flyend', function() {
+    cityImage.src = imageName;
+    imageContainer.style.display = 'block';
+  });
 }
 
 // Aggiungi un "ascoltatore" di eventi (click) a ogni elemento della legenda
 document.getElementById('marker-lecce').addEventListener('click', function() {
-    flyToCityAndShowImage(40.3552, 18.1792, 10, 'lecce_sfondo.jpg');
-    showCityInfo('lecce');
+  flyToCityAndShowImage(40.3552, 18.1792, 10, 'lecce_sfondo.jpg');
+  showCityInfo('lecce');
 });
 
 document.getElementById('marker-galatina').addEventListener('click', function() {
-    flyToCityAndShowImage(40.1633, 18.1639, 12, 'galatina_sfondo.jpg');
-    showCityInfo('galatina');
+  flyToCityAndShowImage(40.1633, 18.1639, 12, 'galatina_sfondo.jpg');
+  showCityInfo('galatina');
 });
 
 document.getElementById('marker-benevento').addEventListener('click', function() {
-    flyToCityAndShowImage(41.1333, 14.7833, 10, 'benevento_sfondo.jpg');
-    showCityInfo('benevento');
+  flyToCityAndShowImage(41.1333, 14.7833, 10, 'benevento_sfondo.jpg');
+  showCityInfo('benevento');
 });
 
 document.getElementById('marker-napoli').addEventListener('click', function() {
-    flyToCityAndShowImage(40.8333, 14.2500, 10, 'napoli_sfondo.jpg');
-    showCityInfo('napoli');
+  flyToCityAndShowImage(40.8333, 14.2500, 10, 'napoli_sfondo.jpg');
+  showCityInfo('napoli');
 });
 
 const hamburgerIcon = document.querySelector('.hamburger-icon');
@@ -662,39 +650,39 @@ const sideMenu = document.getElementById('side-menu');
 const sideMenuLinks = sideMenu.querySelectorAll('a'); // Otteniamo tutti i link nel menu a tendina
 
 hamburgerIcon.addEventListener('click', () => {
-    sideMenu.classList.toggle('open');
+  sideMenu.classList.toggle('open');
 });
 
 // Aggiungiamo un "ascoltatore" di eventi a ogni link del menu a tendina
 sideMenuLinks.forEach(link => {
-    link.addEventListener('click', (event) => {
-        sideMenu.classList.remove('open'); // Chiude il menu
+  link.addEventListener('click', (event) => {
+    sideMenu.classList.remove('open'); // Chiude il menu
 
-        // Se il link cliccato è "Home", scorriamo all'inizio della pagina
-        if (link.getAttribute('href') === '#home') {
-            event.preventDefault(); // Impedisce il comportamento predefinito del link (saltare all'id)
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth' // Per uno scorrimento più плавный (opzionale)
-            });
-        } else {
-            // Per gli altri link, il comportamento predefinito (saltare alla sezione) va bene
-            const targetId = link.getAttribute('href');
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-                targetElement.scrollIntoView({ behavior: 'smooth' }); // Scorri alla sezione (opzionale: aggiungi 'smooth' per l'animazione)
-            }
-        }
-    });
+    // Se il link cliccato è "Home", scorriamo all'inizio della pagina
+    if (link.getAttribute('href') === '#home') {
+      event.preventDefault(); // Impedisce il comportamento predefinito del link (saltare all'id)
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth' // Per uno scorrimento più плавный (opzionale)
+      });
+    } else {
+      // Per gli altri link, il comportamento predefinito (saltare alla sezione) va bene
+      const targetId = link.getAttribute('href');
+      const targetElement = document.querySelector(targetId);
+      if (targetElement) {
+        targetElement.scrollIntoView({ behavior: 'smooth' }); // Scorri alla sezione (opzionale: aggiungi 'smooth' per l'animazione)
+      }
+    }
+  });
 });;
-    
-    </script>
 
-    <style>
-        .my-icon {
-            background: none;
-            border: none;
-        }
-    </style>
+  </script>
+
+  <style>
+    .my-icon {
+      background: none;
+      border: none;
+    }
+  </style>
 </body>
 </html>
