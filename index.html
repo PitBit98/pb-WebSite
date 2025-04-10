@@ -654,22 +654,22 @@ function showCityInfo(cityId) {
 
 // Aggiungi un "ascoltatore" di eventi (click) a ogni elemento della legenda
 document.getElementById('marker-lecce').addEventListener('click', function() {
-    flyToCity(40.3552, 18.1792, 10);
+    flyToCity(40.3552, 18.1792, 10,'lecce');
     showCityInfo('lecce');
 });
 
 document.getElementById('marker-galatina').addEventListener('click', function() {
-    flyToCity(40.1633, 18.1639, 12);
+    flyToCity(40.1633, 18.1639, 12,'galatina');
     showCityInfo('galatina');
 });
 
 document.getElementById('marker-benevento').addEventListener('click', function() {
-    flyToCity(41.1333, 14.7833, 10);
+    flyToCity(41.1333, 14.7833, 10,'benevento');
     showCityInfo('benevento');
 });
 
 document.getElementById('marker-napoli').addEventListener('click', function() {
-    flyToCity(40.8333, 14.2500, 10);
+    flyToCity(40.8333, 14.2500, 10,'napoli');
     showCityInfo('napoli');
 });
 
