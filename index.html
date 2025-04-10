@@ -440,7 +440,15 @@ Perché poi ci casco dentro e non mi accorgo che respiro"</p>
             },
         });
 
-        // Animazione delle sezioni
+        // Mostra le sezioni dopo il caricamento della pagina
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('section').forEach(section => {
+                section.classList.add('visible');
+            });
+        });
+
+        // Animazione delle sezioni (rimuovi l'event listener dello scroll per ora)
+        /*
         window.addEventListener('scroll', () => {
             document.querySelectorAll('section').forEach(section => {
                 const rect = section.getBoundingClientRect();
@@ -451,6 +459,7 @@ Perché poi ci casco dentro e non mi accorgo che respiro"</p>
                 }
             });
         });
+        */
 
         // Leaflet map integration
         var map = L.map('map').setView([41.8719, 12.5674], 6);
@@ -470,5 +479,4 @@ Perché poi ci casco dentro e non mi accorgo che respiro"</p>
         // Aggiungi i marker (ora con un riferimento per interazione)
         const markers = {};
         markers['lecce'] = L.marker(cityCoordinates['lecce'], {icon: L.divIcon({className: 'my-icon', html: '<div style="background-color: blue; width: 10px; height: 10px; border-radius: 50%;"></div>'})}).addTo(map).bindPopup('Lecce');
-        markers['galatina'] = L.marker(cityCoordinates['galatina'], {icon: L.divIcon({className: 'my-icon', html: '<div style="background-color: green; width: 10px; height: 10px; border-radius: 50%;"></div>'})}).addTo(map).bindPopup('Galatina');
-        markers['benevento'] = L.marker(cityCoordinates['benevento'], {icon: L.divIcon({className: 'my-icon', html: '<div style="background-color: orange; width: 10px; height: 10px; border
+        markers['galatina'] = L.marker(cityCoordinates['galatina'], {icon: L.divIcon({className: 'my-icon', html: '<div style="background-color: green; width: 10px; height: 10px; border-radius: 50%;">
