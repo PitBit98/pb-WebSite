@@ -5,20 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cisco & Campanello</title>
     <style>
-        /* CSS */
+        /* CSS (aggiunte e modifiche) */
         html {
             width: 100%;
-            overflow-x: hidden; /* Nasconde la barra di scorrimento orizzontale se dovesse apparire */
+            overflow-x: hidden;
         }
 
         body {
             font-family: Arial, sans-serif;
             margin: 0;
-            background-color: #f0f8ff; /* Il tuo colore attuale */
-            min-height: 100vh; /* Assicura che il body sia almeno alto quanto la viewport */
+            background-color: #f0f8ff;
+            min-height: 100vh;
         }
 
-        /* Navbar */
         nav {
             background-color: #333;
             color: white;
@@ -53,16 +52,15 @@
             transform-origin: bottom left;
         }
 
-        /* Sezione combinata Home + Conteggio */
         .home-conteggio {
             display: flex;
             justify-content: center;
             align-items: center;
             flex-direction: column;
             height: 100vh;
-            background-color: #b2c2bf; /* Colore tenue per la sezione home */
+            background-color: #b2c2bf;
             text-align: center;
-            background-image: url('home1.jpg'); /* Aggiungi un'immagine di sfondo */
+            background-image: url('home1.jpg');
             background-attachment: fixed;
             background-size: cover;
             background-position: center;
@@ -89,7 +87,6 @@
             color: #333;
         }
 
-        /* Rimuovi la cornice bianca intorno al contatore */
         #counter {
             color: #ff6347;
             font-size: 3em;
@@ -107,15 +104,14 @@
             100% { transform: scale(1); }
         }
 
-        /* Sezione Galleria */
         .galleria {
             padding: 50px;
-            background-color: #d0e8d7; /* Colore tenue per la galleria */
+            background-color: #d0e8d7;
             text-align: center;
             opacity: 0;
             transform: translateY(50px);
             transition: opacity 1s ease, transform 1s ease;
-            overflow: hidden; /* Aggiungiamo overflow: hidden */
+            overflow: hidden;
         }
 
         .galleria.visible {
@@ -125,16 +121,16 @@
 
         .swiper-container {
             width: 100%;
-            height: auto; /* Cambiamo l'altezza ad auto */
+            height: auto;
         }
 
         .swiper-wrapper {
-            display: flex; /* Assicuriamoci che gli elementi siano in riga */
+            display: flex;
             width: 100%;
         }
 
         .swiper-slide {
-            flex-shrink: 0; /* Impedisce alle slide di ridursi */
+            flex-shrink: 0;
             width: 100%;
             height: auto;
             display: flex;
@@ -144,12 +140,11 @@
 
         .swiper-slide img {
             display: block;
-            max-width: 100%; /* Assicura che l'immagine non sia più larga del contenitore */
+            max-width: 100%;
             height: auto;
             border-radius: 10px;
         }
 
-        /* Sezione altre (modificata per generalità) */
         .section {
             padding: 50px;
             text-align: center;
@@ -163,26 +158,25 @@
             transform: translateY(0);
         }
 
-        /* Stili specifici per le sezioni */
         #promozioni {
-            background-color: #a8dadc; /* Verde acqua chiaro */
+            background-color: #a8dadc;
         }
 
         #musica {
-            background-color: #f0ead6; /* Giallo pallido */
-            text-align: center; /* Allinea il titolo e il paragrafo al centro */
+            background-color: #f0ead6;
+            text-align: center;
         }
 
-        #musica p { /* Seleziona il primo <p> dentro la sezione musica */
-            font-family: 'NomeDelFontDesiderato', sans-serif; /* Sostituisci 'NomeDelFontDesiderato' con il font che vuoi usare */
+        #musica p {
+            font-family: 'NomeDelFontDesiderato', sans-serif;
         }
 
         #musica ul {
-            list-style-type: none; /* Rimuove i pallini */
-            padding-left: 0; /* Rimuove il padding a sinistra predefinito della lista */
-            text-align: left; /* Allinea gli elementi della lista a sinistra */
-            max-width: 600px; /* Imposta una larghezza massima per la lista */
-            margin: 0 auto; /* Centra la lista orizzontalmente */
+            list-style-type: none;
+            padding-left: 0;
+            text-align: left;
+            max-width: 600px;
+            margin: 0 auto;
         }
 
         #musica ul li {
@@ -198,23 +192,26 @@
         #musica ul li a {
             display: block;
             margin-bottom: 5px;
-            text-decoration: underline; /* Aggiunge la sottolineatura per indicare il link */
-            color: #007bff; /* Cambia il colore del testo in blu (colore tipico dei link) */
+            text-decoration: underline;
+            color: #007bff;
             font-weight: bold;
         }
 
         #luoghi {
-            background-color: #add8e6; /* Azzurro cielo */
+            background-color: #add8e6;
         }
 
-        /* Stile per l'estratto del testo nella sezione musica */
+        #luoghi-interattivo p span {
+            cursor: pointer; /* Cambia il cursore per indicare che è cliccabile */
+            text-decoration: underline; /* Indica visivamente che è un link */
+        }
+
         .estratto {
             font-size: 0.9em;
             color: #555;
             margin-top: 5px;
         }
 
-        /* Footer */
         footer {
             text-align: center;
             padding: 20px;
@@ -222,7 +219,6 @@
             color: white;
         }
 
-        /* Media Query per dispositivi mobili */
         @media (max-width: 768px) {
             .home-conteggio h1 {
                 font-size: 6vw;
@@ -246,6 +242,36 @@
                 max-width: 100%;
                 height: 300px;
             }
+        }
+
+        /* Stili per le sezioni specifiche delle città (inizialmente nascoste) */
+        .city-info {
+            margin-top: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            display: none; /* Nascondi all'inizio */
+        }
+
+        #napoli-info {
+            background-image: url('napoli_sfondo.jpg'); /* Sostituisci con la tua immagine */
+            background-size: cover;
+            background-position: center;
+            color: white; /* Adatta il colore del testo al tuo sfondo */
+        }
+
+        #galatina-info {
+            background-image: url('galatina_sfondo.jpg'); /* Sostituisci con la tua immagine */
+            background-size: cover;
+            background-position: center;
+        }
+
+        #benevento-info {
+            /* Puoi aggiungere uno sfondo se vuoi */
+        }
+
+        #lecce-info {
+            /* Puoi aggiungere uno sfondo se vuoi */
         }
     </style>
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
@@ -315,16 +341,56 @@ Perché poi ci casco dentro e non mi accorgo che respiro"</p>
         </div>
         </section>
 
-    <section id="luoghi" class="section">
+    <section id="luoghi" class="section" id="luoghi-interattivo">
         <h2>Luoghi Speciali</h2>
         <p>Abbiamo visitato posti bellissimi in Italia!</p>
         <div id="map" style="width: 100%; height: 400px;"></div>
         <p>
-            <span style="color:blue;">L</span> Lecce,
-            <span style="color:green;">G</span> Galatina,
-            <span style="color:orange;">B</span> Benevento,
-            <span style="color:red;">N</span> Napoli
+            <span style="color:blue;" data-city="lecce">Lecce</span>,
+            <span style="color:green;" data-city="galatina">Galatina</span>,
+            <span style="color:orange;" data-city="benevento">Benevento</span>,
+            <span style="color:red;" data-city="napoli">Napoli</span>
         </p>
+
+        <div id="napoli-info" class="city-info">
+            <h3>Napoli</h3>
+            <p>Una città vivace con tanta storia e ottima pizza!</p>
+            <ul>
+                <li><a href="#" target="_blank">Pizzeria Starita</a></li>
+                <li><a href="#" target="_blank">Museo Archeologico Nazionale</a></li>
+                <li><a href="#" target="_blank">Castel dell'Ovo</a></li>
+            </ul>
+        </div>
+
+        <div id="galatina-info" class="city-info">
+            <h3>Galatina</h3>
+            <p>Un gioiello del Salento con una bellissima basilica.</p>
+            <ul>
+                <li><a href="#" target="_blank">Basilica di Santa Caterina d'Alessandria</a></li>
+                <li><a href="#" target="_blank">Palazzo del Sedile</a></li>
+                <li><a href="#" target="_blank">Chiesa di San Paolo</a></li>
+            </ul>
+        </div>
+
+        <div id="benevento-info" class="city-info">
+            <h3>Benevento</h3>
+            <p>Una città ricca di storia romana e longobarda.</p>
+            <ul>
+                <li><a href="#" target="_blank">Arco di Traiano</a></li>
+                <li><a href="#" target="_blank">Teatro Romano</a></li>
+                <li><a href="#" target="_blank">Chiesa di Santa Sofia</a></li>
+            </ul>
+        </div>
+
+        <div id="lecce-info" class="city-info">
+            <h3>Lecce</h3>
+            <p>Famosa per la sua architettura barocca.</p>
+            <ul>
+                <li><a href="#" target="_blank">Basilica di Santa Croce</a></li>
+                <li><a href="#" target="_blank">Piazza del Duomo</a></li>
+                <li><a href="#" target="_blank">Anfiteatro Romano</a></li>
+            </ul>
+        </div>
     </section>
 
     <footer>
@@ -363,7 +429,7 @@ Perché poi ci casco dentro e non mi accorgo che respiro"</p>
         // Configurazione di Swiper
         const swiper = new Swiper('.swiper-container', {
             loop: true,
-            slidesPerView: 1,  // Imposta 1 slide per vista su dispositivi mobili
+            slidesPerView: 1,
             spaceBetween: 10,
             pagination: {
                 el: '.swiper-pagination',
@@ -374,15 +440,14 @@ Perché poi ci casco dentro e non mi accorgo che respiro"</p>
                 prevEl: '.swiper-button-prev',
             },
             breakpoints: {
-                // Quando la larghezza è maggiore di 768px (desktop)
                 768: {
-                    slidesPerView: 3,  // Mostra 3 slide per vista su dispositivi più grandi
+                    slidesPerView: 3,
                     spaceBetween: 20,
                 },
             },
         });
 
-        // Animazione delle sezioni
+        // Animazione delle sezioni (lasciamo questa parte così com'è)
         window.addEventListener('scroll', () => {
             document.querySelectorAll('section').forEach(section => {
                 const rect = section.getBoundingClientRect();
@@ -395,24 +460,21 @@ Perché poi ci casco dentro e non mi accorgo che respiro"</p>
         });
 
         // Leaflet map integration
-        var map = L.map('map').setView([41.8719, 12.5674], 6); // Imposta la visualizzazione sull'Italia
+        var map = L.map('map').setView([41.8719, 12.5674], 6);
 
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
 
-        // Aggiungi i marker per le città
-        L.marker([40.3552, 18.1792], {icon: L.divIcon({className: 'my-icon', html: '<div style="background-color: blue; width: 10px; height: 10px; border-radius: 50%;"></div>'})}).addTo(map).bindPopup('Lecce');
-        L.marker([40.1633, 18.1639], {icon: L.divIcon({className: 'my-icon', html: '<div style="background-color: green; width: 10px; height: 10px; border-radius: 50%;"></div>'})}).addTo(map).bindPopup('Galatina');
-        L.marker([41.1333, 14.7833], {icon: L.divIcon({className: 'my-icon', html: '<div style="background-color: orange; width: 10px; height: 10px; border-radius: 50%;"></div>'})}).addTo(map).bindPopup('Benevento');
-        L.marker([40.8333, 14.2500], {icon: L.divIcon({className: 'my-icon', html: '<div style="background-color: red; width: 10px; height: 10px; border-radius: 50%;"></div>'})}).addTo(map).bindPopup('Napoli');
-    </script>
+        // Coordinate delle città
+        const cityCoordinates = {
+            lecce: [40.3552, 18.1792],
+            galatina: [40.1633, 18.1639],
+            benevento: [41.1333, 14.7833],
+            napoli: [40.8333, 14.2500]
+        };
 
-    <style>
-        .my-icon {
-            background: none;
-            border: none;
-        }
-    </style>
-</body>
-</html>
+        // Aggiungi i marker (ora con un riferimento per interazione)
+        const markers = {};
+        markers['lecce'] = L.marker(cityCoordinates['lecce'], {icon: L.divIcon({className: 'my-icon', html: '<div style="background-color: blue; width: 10px; height: 10px; border-radius: 50%;"></div>'})}).addTo(map).bindPopup('Lecce');
+        markers['galatina'] = L.marker(
