@@ -629,12 +629,36 @@ document.getElementById('marker-napoli').addEventListener('click', function() {
     showCityInfo('napoli');
 });
 
-        const hamburgerIcon = document.querySelector('.hamburger-icon');
+const hamburgerIcon = document.querySelector('.hamburger-icon');
 const sideMenu = document.getElementById('side-menu');
+const sideMenuLinks = sideMenu.querySelectorAll('a'); // Otteniamo tutti i link nel menu a tendina
 
 hamburgerIcon.addEventListener('click', () => {
     sideMenu.classList.toggle('open');
 });
+
+// Aggiungiamo un "ascoltatore" di eventi a ogni link del menu a tendina
+sideMenuLinks.forEach(link => {
+    link.addEventListener('click', (event) => {
+        sideMenu.classList.remove('open'); // Chiude il menu
+
+        // Se il link cliccato è "Home", scorriamo all'inizio della pagina
+        if (link.getAttribute('href') === '#home') {
+            event.preventDefault(); // Impedisce il comportamento predefinito del link (saltare all'id)
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth' // Per uno scorrimento più плавный (opzionale)
+            });
+        } else {
+            // Per gli altri link, il comportamento predefinito (saltare alla sezione) va bene
+            const targetId = link.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                targetElement.scrollIntoView({ behavior: 'smooth' }); // Scorri alla sezione (opzionale: aggiungi 'smooth' per l'animazione)
+            }
+        }
+    });
+});;
     
     </script>
 
