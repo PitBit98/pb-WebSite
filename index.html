@@ -611,10 +611,6 @@ function showCityInfo(cityId) {
 const imageContainer = document.getElementById('image-container');
 const cityImage = document.getElementById('city-image');
 
-// Ottieni il contenitore dell'immagine e l'elemento immagine
-const imageContainer = document.getElementById('image-container');
-const cityImage = document.getElementById('city-image');
-
 // Funzione per spostare la mappa su una data coordinata e zoom e poi mostrare l'immagine
 function flyToCityAndShowImage(lat, lng, zoom, imageName) {
     map.flyTo([lat, lng], zoom);
