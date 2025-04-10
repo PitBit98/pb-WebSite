@@ -183,18 +183,15 @@
 }
 
 .city-info {
-    /* ... (gli altri stili che hai per .city-info) ... */
-    /* Lascia position: absolute; top: 0; left: 0; width: 100%; z-index: 1; per sovrapporle */
-    opacity: 0;
-    transform: scaleY(0);
-    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out, background-color 0.3s ease-in-out;
-    overflow: hidden;
+    position: absolute; /* Questo dice di metterla in un punto preciso */
+    top: [10]px; /* Dovrai provare con un numero per vedere dov'è il posto giusto sotto la mappa */
+    left: 0; /* Questo la allinea a sinistra */
+    width: 100%; /* Questo la fa essere larga quanto lo spazio disponibile */
+    opacity: 0; /* Questo la rende invisibile all'inizio */
 }
 
 .city-info.open {
-    opacity: 1;
-    transform: scaleY(1);
-    height: auto; /* L'altezza si adatta al contenuto quando è aperta */
+    opacity: 1; /* Questo la rende visibile quando è "aperta" */
 }
 
     /* Stili specifici per il colore iniziale di sfondo */
@@ -522,18 +519,16 @@ function flyToCity(lat, lng, zoom) {
 
 // Funzione per mostrare le informazioni della città (con animazione) e nascondere le altre
 function showCityInfo(cityId) {
-    // Nascondi tutte le sezioni informative rimuovendo la classe 'open'
+    // Prima, nascondiamo tutte le finestre informative
     const allInfoSections = document.querySelectorAll('.city-info');
     allInfoSections.forEach(section => {
-        section.classList.remove('open');
+        section.classList.remove('open'); // Questo le nasconde
     });
 
-    // Mostra la sezione informativa della città selezionata aggiungendo la classe 'open'
+    // Poi, mostriamo la finestra informativa della città che è stata cliccata
     const cityInfoSection = document.getElementById('info-' + cityId);
     if (cityInfoSection) {
-        // Forza un "reflow" per far ripartire l'animazione se la stessa città viene cliccata di nuovo
-        void cityInfoSection.offsetWidth;
-        cityInfoSection.classList.add('open');
+        cityInfoSection.classList.add('open'); // Questo la rende visibile
     }
 }
 
