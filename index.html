@@ -628,6 +628,13 @@ document.getElementById('marker-napoli').addEventListener('click', function() {
     flyToCity(40.8333, 14.2500, 10);
     showCityInfo('napoli');
 });
+
+        const hamburgerIcon = document.querySelector('.hamburger-icon');
+const sideMenu = document.getElementById('side-menu');
+
+hamburgerIcon.addEventListener('click', () => {
+    sideMenu.classList.toggle('open');
+});
     
     </script>
 
