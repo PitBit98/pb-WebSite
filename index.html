@@ -644,31 +644,6 @@ function flyToCity(lat, lng, zoom, cityKey) {
     });
 }
 
-// Quando il flyTo è terminato, mostriamo l'immagine
-map.on('moveend', () => {
-    if (pendingCity && cityImages[pendingCity]) {
-        // Rimuove la classe 'show' per far partire il fade-out e lo zoom out
-        imageContainer.classList.remove('show');
-
-        const tempImage = new Image();
-        tempImage.onload = () => {
-            // Quando la nuova immagine è pronta, aggiorna l'elemento
-            imageElement.src = tempImage.src;
-            imageElement.alt = `Immagine di ${pendingCity}`;
-
-            // Usa un piccolo delay per riattivare il fade-in con l'immagine nuova
-            setTimeout(() => {
-                // Zooma e fa il fade-in della nuova immagine
-                imageContainer.classList.add('show');
-            }, 50); // 50ms di delay
-        };
-
-        tempImage.src = cityImages[pendingCity];
-
-        pendingCity = null;
-    }
-});
-
      /* Se l'utente seleziona un punto sulla mappa diverso dal marker allora fai sparire l'immagine della città*/ 
    // Event listener per clic sulla mappa
 map.on('click', (e) => {
