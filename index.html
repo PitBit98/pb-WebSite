@@ -611,9 +611,19 @@ function showCityInfo(cityId) {
 const imageContainer = document.getElementById('image-container');
 const cityImage = document.getElementById('city-image');
 
-// Funzione per spostare la mappa su una data coordinata e zoom
-function flyToCity(lat, lng, zoom) {
+// Ottieni il contenitore dell'immagine e l'elemento immagine
+const imageContainer = document.getElementById('image-container');
+const cityImage = document.getElementById('city-image');
+
+// Funzione per spostare la mappa su una data coordinata e zoom e poi mostrare l'immagine
+function flyToCityAndShowImage(lat, lng, zoom, imageName) {
     map.flyTo([lat, lng], zoom);
+
+    // Attendi che l'animazione flyTo finisca, poi mostra l'immagine
+    map.once('flyend', function() {
+        cityImage.src = imageName;
+        imageContainer.style.display = 'block';
+    });
 }
 
 // Funzione per mostrare le informazioni della città (con animazione) e nascondere le altre
@@ -631,32 +641,26 @@ function showCityInfo(cityId) {
 
 // Aggiungi un "ascoltatore" di eventi (click) a ogni elemento della legenda
 document.getElementById('marker-lecce').addEventListener('click', function() {
-    flyToCity(40.3552, 18.1792, 10);
+    flyToCityAndShowImage(40.3552, 18.1792, 10, 'lecce_sfondo.jpg');
     showCityInfo('lecce');
-    cityImage.src = 'lecce_sfondo.jpg'; // Mostra l'immagine di Lecce
-    imageContainer.style.display = 'block'; // Rendi visibile il contenitore dell'immagine
 });
 
 document.getElementById('marker-galatina').addEventListener('click', function() {
-    flyToCity(40.1633, 18.1639, 12);
+    flyToCityAndShowImage(40.1633, 18.1639, 12, 'galatina_sfondo.jpg');
     showCityInfo('galatina');
-    cityImage.src = 'galatina_sfondo.jpg'; // Mostra l'immagine di Galatina
-    imageContainer.style.display = 'block'; // Rendi visibile il contenitore dell'immagine
 });
 
 document.getElementById('marker-benevento').addEventListener('click', function() {
-    flyToCity(41.1333, 14.7833, 10);
+    flyToCityAndShowImage(41.1333, 14.7833, 10, 'benevento_sfondo.jpg');
     showCityInfo('benevento');
-    cityImage.src = 'benevento_sfondo.jpg'; // Mostra l'immagine di Benevento
-    imageContainer.style.display = 'block'; // Rendi visibile il contenitore dell'immagine
 });
 
 document.getElementById('marker-napoli').addEventListener('click', function() {
-    flyToCity(40.8333, 14.2500, 10);
+    flyToCityAndShowImage(40.8333, 14.2500, 10, 'napoli_sfondo.jpg');
     showCityInfo('napoli');
-    cityImage.src = 'napoli_sfondo.jpg'; // Mostra l'immagine di Napoli
-    imageContainer.style.display = 'block'; // Rendi visibile il contenitore dell'immagine
 });
+
+// ... il resto del tuo codice JavaScript ...
 
 const hamburgerIcon = document.querySelector('.hamburger-icon');
 const sideMenu = document.getElementById('side-menu');
