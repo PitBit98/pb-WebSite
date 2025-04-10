@@ -165,6 +165,55 @@
             transform: translateY(0);
         }
 
+        /* ____________INIZIO Codice di prova */
+
+        .city-info {
+        /* ... altri stili di base ... */
+        border: 2px solid #888;
+        border-radius: 10px;
+        box-shadow: 3px 3px 5px #ccc;
+        padding: 20px;
+        margin-top: 20px;
+        background-color: #f9f9f9; /* Colore di sfondo predefinito */
+        height: auto; /* Assicurati che l'altezza non sia 0 qui */
+        opacity: 0; /* Inizialmente invisibile */
+        transform: scaleY(0); /* Inizia con un'altezza scalata a 0 */
+        transform-origin: top; /* L'animazione parte dall'alto */
+        transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out, background-color 0.3s ease-in-out;
+    }
+
+    .city-info.open {
+        opacity: 1; /* Diventa visibile */
+        transform: scaleY(1); /* Torna all'altezza normale */
+    }
+
+    /* Stili specifici per il colore iniziale di sfondo */
+    #info-lecce {
+        background-color: rgba(0, 0, 255, 0.2); /* Blu leggermente trasparente */
+    }
+
+    #info-galatina {
+        background-color: rgba(0, 128, 0, 0.2); /* Verde leggermente trasparente */
+    }
+
+    #info-benevento {
+        background-color: rgba(255, 165, 0, 0.2); /* Arancione leggermente trasparente */
+    }
+
+    #info-napoli {
+        background-color: rgba(255, 0, 0, 0.2); /* Rosso leggermente trasparente */
+    }
+
+    .city-info ul {
+        list-style-type: none;
+        padding-left: 0;
+    }
+
+    .city-info ul li {
+        margin-bottom: 10px;
+    }
+/*___________FINE codice di prova */
+
         /* Stili specifici per le sezioni */
         #promozioni {
             background-color: #a8dadc; /* Verde acqua chiaro */
@@ -452,25 +501,25 @@ Perché poi ci casco dentro e non mi accorgo che respiro"</p>
         L.marker([40.8333, 14.2500], {icon: L.divIcon({className: 'my-icon', html: '<div style="background-color: red; width: 10px; height: 10px; border-radius: 50%;"></div>'})}).addTo(map).bindPopup('Napoli');
    
    
-// ... (il tuo codice JavaScript precedente) ...
-
 // Funzione per spostare la mappa su una data coordinata e zoom
 function flyToCity(lat, lng, zoom) {
     map.flyTo([lat, lng], zoom);
 }
 
-// Funzione per mostrare le informazioni della città e nascondere le altre
+// Funzione per mostrare le informazioni della città (con animazione) e nascondere le altre
 function showCityInfo(cityId) {
-    // Nascondi tutte le sezioni informative
+    // Nascondi tutte le sezioni informative rimuovendo la classe 'open'
     const allInfoSections = document.querySelectorAll('.city-info');
     allInfoSections.forEach(section => {
-        section.style.display = 'none';
+        section.classList.remove('open');
     });
 
-    // Mostra la sezione informativa della città selezionata
+    // Mostra la sezione informativa della città selezionata aggiungendo la classe 'open'
     const cityInfoSection = document.getElementById('info-' + cityId);
     if (cityInfoSection) {
-        cityInfoSection.style.display = 'block';
+        // Forza un "reflow" per far ripartire l'animazione se la stessa città viene cliccata di nuovo
+        void cityInfoSection.offsetWidth;
+        cityInfoSection.classList.add('open');
     }
 }
 
