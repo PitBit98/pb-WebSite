@@ -627,6 +627,148 @@ const sideMenuLinks = sideMenu.querySelectorAll('a'); // Otteniamo tutti i link 
 hamburgerIcon.addEventListener('click', () => {
     sideMenu.classList.toggle('open');
 });
+        var map = L.map('map').setView([41.8719, 12.5674], 6);
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+}).addTo(map);
+
+// Funzione per creare un marker con un'immagine personalizzata
+function createCityMarker(latlng, cityId, imageName, popupContent) {
+    const marker = L.marker(latlng, {
+        icon: L.divIcon({
+            className: 'city-marker',
+            html: `<div id="marker-${cityId}" style="background-color: transparent; border-radius: 50%; width: 15px; height: 15px; border: 2px solid black; display: flex; justify-content: center; align-items: center; font-size: 0.8em; font-weight: bold; color: black;">${cityId.charAt(0).toUpperCase()}</div>`
+        })
+    }).addTo(map).bindPopup(popupContent);
+
+    // Aggiungi un evento di click per mostrare la finestra con l'immagine
+    marker.on('click', function(e) {
+        flyToCity(e.latlng.lat, e.latlng.lng, 10); // Sposta la mappa sulla città
+        showImagePopup(imageName, cityId); // Mostra la finestra con l'immagine
+    });
+
+    return marker;
+}
+
+// Crea i marker per le città
+createCityMarker([40.3552, 18.1792], 'lecce', 'lecce.jpg', 'Scopri Lecce!');
+createCityMarker([40.1633, 18.1639], 'galatina', 'galatina.jpg', 'Visita Galatina!');
+createCityMarker([41.1333, 14.7833], 'benevento', 'benevento.jpg', 'Esplora Benevento!');
+createCityMarker([40.8333, 14.2500], 'napoli', 'napoli.jpg', 'Ammira Napoli!');
+
+// Funzione per spostare la mappa su una data coordinata e zoom
+function flyToCity(lat, lng, zoom) {
+    map.flyTo([lat, lng], zoom);
+}
+
+// Funzione per mostrare la finestra popup con l'immagine
+function showImagePopup(imageName, cityId) {
+    const popupContainerId = 'image-popup-container';
+    let popupContainer = document.getElementById(popupContainerId);
+
+    // Se la finestra non esiste, creala
+    if (!popupContainer) {
+        popupContainer = document.createElement('div');
+        popupContainer.id = popupContainerId;
+        document.body.appendChild(popupContainer);
+
+        // Aggiungi uno stile di base per la finestra popup
+        popupContainer.style.position = 'fixed';
+        popupContainer.style.top = '50%';
+        popupContainer.style.left = '50%';
+        popupContainer.style.transform = 'translate(-50%, -50%)';
+        popupContainer.style.backgroundColor = 'rgba(255, 255, 255, 0.9)'; // Sfondo semi-trasparente
+        popupContainer.style.padding = '20px';
+        popupContainer.style.borderRadius = '10px';
+        popupContainer.style.zIndex = '1000'; // Assicurati che sia sopra la mappa
+        popupContainer.style.boxShadow = '0 0 10px rgba(0, 0, 0, 0.3)';
+        popupContainer.style.textAlign = 'center';
+
+        // Aggiungi un pulsante per chiudere la finestra
+        const closeButton = document.createElement('button');
+        closeButton.textContent = 'Chiudi';
+        closeButton.style.marginTop = '10px';
+        closeButton.addEventListener('click', closeImagePopup);
+        popupContainer.appendChild(closeButton);
+    } else {
+        // Se la finestra esiste già, svuota il suo contenuto
+        popupContainer.innerHTML = '';
+        const closeButton = document.createElement('button');
+        closeButton.textContent = 'Chiudi';
+        closeButton.style.marginTop = '10px';
+        closeButton.addEventListener('click', closeImagePopup);
+        popupContainer.appendChild(closeButton);
+    }
+
+    // Aggiungi l'immagine della città
+    const cityImage = document.createElement('img');
+    cityImage.src = imageName;
+    cityImage.style.maxWidth = '80vw'; // Larghezza massima relativa alla finestra
+    cityImage.style.maxHeight = '80vh'; // Altezza massima relativa alla finestra
+    popupContainer.insertBefore(cityImage, popupContainer.firstChild); // Inserisci l'immagine prima del pulsante
+
+    // Rendi la finestra visibile
+    popupContainer.style.display = 'block';
+
+    // Rendi la mappa semi-trasparente
+    document.getElementById('map').style.opacity = '0.5';
+}
+
+// Funzione per chiudere la finestra popup
+function closeImagePopup() {
+    const popupContainer = document.getElementById('image-popup-container');
+    if (popupContainer) {
+        popupContainer.style.display = 'none';
+    }
+    // Rendi la mappa di nuovo opaca
+    document.getElementById('map').style.opacity = '1';
+}
+
+// Aggiungi un "ascoltatore" di eventi (click) a ogni elemento della legenda (modificato per centrare e aprire la popup)
+document.getElementById('marker-lecce').addEventListener('click', function() {
+    flyToCity(40.3552, 18.1792, 10);
+    showImagePopup('lecce.jpg', 'lecce');
+});
+
+document.getElementById('marker-galatina').addEventListener('click', function() {
+    flyToCity(40.1633, 18.1639, 12);
+    showImagePopup('galatina.jpg', 'galatina');
+});
+
+document.getElementById('marker-benevento').addEventListener('click', function() {
+    flyToCity(41.1333, 14.7833, 10);
+    showImagePopup('benevento.jpg', 'benevento');
+});
+
+document.getElementById('marker-napoli').addEventListener('click', function() {
+    flyToCity(40.8333, 14.2500, 10);
+    showImagePopup('napoli.jpg', 'napoli');
+});
+
+const hamburgerIcon = document.querySelector('.hamburger-icon');
+const sideMenu = document.getElementById('side-menu');
+const sideMenuLinks = sideMenu.querySelectorAll('a');
+
+hamburgerIcon.addEventListener('click', () => {
+    sideMenu.classList.toggle('open');
+});
+
+sideMenuLinks.forEach(link => {
+    link.addEventListener('click', (event) => {
+        sideMenu.classList.remove('open');
+        if (link.getAttribute('href') === '#home') {
+            event.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else {
+            const targetId = link.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                targetElement.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+    });
+});
 
 // Aggiungiamo un "ascoltatore" di eventi a ogni link del menu a tendina
 sideMenuLinks.forEach(link => {
