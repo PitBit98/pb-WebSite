@@ -1,4 +1,398 @@
-<script>
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cisco & Campanello</title>
+    <style>
+        /* CSS */
+        html {
+            width: 100%;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #f0f8ff;
+            min-height: 100vh;
+        }
+
+        nav {
+            background-color: #333;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-size: 1.2em;
+            position: relative;
+            display: inline-block;
+        }
+
+        nav a::after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background-color: #ff6347;
+            bottom: 0;
+            left: 0;
+            transform: scaleX(0);
+            transform-origin: bottom right;
+            transition: transform 0.3s ease-out;
+        }
+
+        nav a:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+
+        .home-conteggio {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            background-color: #b2c2bf;
+            text-align: center;
+            background-image: url('home1.jpg');
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .home-conteggio h1 {
+            font-size: 5vw;
+            color: #333;
+            margin: 0;
+            opacity: 0;
+            transform: translateY(-20px);
+            animation: fadeInUp 1.5s forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .conteggio h1 {
+            font-size: 2.5em;
+            color: #333;
+        }
+
+        #counter {
+            color: #ff6347;
+            font-size: 3em;
+            font-weight: bold;
+            transition: color 0.5s ease;
+        }
+
+        #counter.animating {
+            animation: countUp 3s ease-in-out;
+        }
+
+        @keyframes countUp {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        .galleria {
+            padding: 50px;
+            background-color: #d0e8d7;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1s ease, transform 1s ease;
+            overflow: hidden;
+        }
+
+        .galleria.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .swiper-container {
+            width: 100%;
+            height: auto;
+        }
+
+        .swiper-wrapper {
+            display: flex;
+            width: 100%;
+        }
+
+        .swiper-slide {
+            flex-shrink: 0;
+            width: 100%;
+            height: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .swiper-slide img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .section {
+            padding: 50px;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        #promozioni {
+            background-color: #a8dadc;
+        }
+
+        #musica {
+            background-color: #f0ead6;
+            text-align: center;
+        }
+
+        #musica p {
+            font-family: 'NomeDelFontDesiderato', sans-serif;
+        }
+
+        #musica ul {
+            list-style-type: none;
+            padding-left: 0;
+            text-align: left;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        #musica ul li {
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        #musica ul li:last-child {
+            border-bottom: none;
+        }
+
+        #musica ul li a {
+            display: block;
+            margin-bottom: 5px;
+            text-decoration: underline;
+            color: #007bff;
+            font-weight: bold;
+        }
+
+        #luoghi {
+            background-color: #add8e6;
+        }
+
+        #luoghi-interattivo p span {
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        .estratto {
+            font-size: 0.9em;
+            color: #555;
+            margin-top: 5px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #333;
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .home-conteggio h1 {
+                font-size: 6vw;
+            }
+
+            .conteggio h1 {
+                font-size: 4vw;
+            }
+
+            #counter {
+                font-size: 8vw;
+            }
+
+            nav a {
+                font-size: 1em;
+                margin: 0 10px;
+            }
+
+            .calendario iframe {
+                width: 100%;
+                max-width: 100%;
+                height: 300px;
+            }
+        }
+
+        .city-info {
+            margin-top: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            display: none;
+        }
+
+        #napoli-info {
+            background-image: url('napoli_sfondo.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+        }
+
+        #galatina-info {
+            background-image: url('galatina_sfondo.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Aggiungi sfondi per le altre città se vuoi */
+    </style>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+</head>
+<body>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#calendario">Calendario</a>
+        <a href="#promozioni">Promozioni</a>
+        <a href="#musica">Musica</a>
+        <a href="#galleria">Galleria</a>
+        <a href="#luoghi">Luoghi</a>
+    </nav>
+
+    <section id="home-conteggio" class="home-conteggio">
+        <h1>Benvenuto nella nostra pagina di felicità!</h1>
+        <div class="conteggio">
+            <h1>Totale giorni felici vissuti insieme: <span id="counter">0</span></h1>
+        </div>
+    </section>
+
+    <section id="calendario" class="section">
+        <h2>Calendario</h2>
+        <div class="calendario">
+            <iframe src="https://calendar.google.com/calendar/embed?src=ciscocampanellino%40gmail.com&ctz=Europe%2FRome" frameborder="0" width="800" height="600"></iframe>
+        </div>
+    </section>
+
+    <section id="promozioni" class="section">
+        <h2>Promozioni</h2>
+        <p>Descrizione</p>
+        </section>
+
+    <section id="musica" class="section">
+        <h2>Musica</h2>
+        <p>Parole in musica che mi parlano di te</p>
+        <ul>
+            <li>
+                <a href="https://www.youtube.com/watch?v=3Jya13PNlYk" target="_blank">Mi fido di te</a>
+                <p class="estratto">"Teste fasciate, ferite curate...dottore che sintomi ha la felicità"</p>
+            </li>
+            <li>
+                <a href="https://www.youtube.com/watch?v=9i_AuKkvlGQ" target="_blank">Amati sempre</a>
+                <p class="estratto">"confesso che non guardo mai i suoi occhi da vicino
+Perché poi ci casco dentro e non mi accorgo che respiro"</p>
+            </li>
+            <li>
+                <a href="https://www.youtube.com/watch?v=zzm-sTI5Q-E" target="_blank">Balorda nostalgia</a>
+                <p class="estratto">Però ti voglio bene ed è stata tutta vita.</p>
+            </li>
+            </ul>
+    </section>
+
+    <section id="galleria" class="galleria">
+        <h2>Galleria</h2>
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide"><img src="image1.jpg" alt="Immagine 1"></div>
+                <div class="swiper-slide"><img src="image2.jpg" alt="Immagine 2"></div>
+                <div class="swiper-slide"><img src="image3.jpg" alt="Immagine 3"></div>
+                </div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+        </section>
+
+    <section id="luoghi" class="section" id="luoghi-interattivo">
+        <h2>Luoghi Speciali</h2>
+        <p>Abbiamo visitato posti bellissimi in Italia!</p>
+        <div id="map" style="width: 100%; height: 400px;"></div>
+        <p>
+            <span style="color:blue;" data-city="lecce">Lecce</span>,
+            <span style="color:green;" data-city="galatina">Galatina</span>,
+            <span style="color:orange;" data-city="benevento">Benevento</span>,
+            <span style="color:red;" data-city="napoli">Napoli</span>
+        </p>
+
+        <div id="napoli-info" class="city-info">
+            <h3>Napoli</h3>
+            <p>Una città vivace con tanta storia e ottima pizza!</p>
+            <ul>
+                <li><a href="#" target="_blank">Pizzeria Starita</a></li>
+                <li><a href="#" target="_blank">Museo Archeologico Nazionale</a></li>
+                <li><a href="#" target="_blank">Castel dell'Ovo</a></li>
+            </ul>
+        </div>
+
+        <div id="galatina-info" class="city-info">
+            <h3>Galatina</h3>
+            <p>Un gioiello del Salento con una bellissima basilica.</p>
+            <ul>
+                <li><a href="#" target="_blank">Basilica di Santa Caterina d'Alessandria</a></li>
+                <li><a href="#" target="_blank">Palazzo del Sedile</a></li>
+                <li><a href="#" target="_blank">Chiesa di San Paolo</a></li>
+            </ul>
+        </div>
+
+        <div id="benevento-info" class="city-info">
+            <h3>Benevento</h3>
+            <p>Una città ricca di storia romana e longobarda.</p>
+            <ul>
+                <li><a href="#" target="_blank">Arco di Traiano</a></li>
+                <li><a href="#" target="_blank">Teatro Romano</a></li>
+                <li><a href="#" target="_blank">Chiesa di Santa Sofia</a></li>
+            </ul>
+        </div>
+
+        <div id="lecce-info" class="city-info">
+            <h3>Lecce</h3>
+            <p>Famosa per la sua architettura barocca.</p>
+            <ul>
+                <li><a href="#" target="_blank">Basilica di Santa Croce</a></li>
+                <li><a href="#" target="_blank">Piazza del Duomo</a></li>
+                <li><a href="#" target="_blank">Anfiteatro Romano</a></li>
+            </ul>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2025 Iena Felix</p>
+    </footer>
+
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script>
         // JavaScript per il conteggio dei giorni
         const startDate = new Date('2024-10-10');
         const counterElement = document.getElementById('counter');
@@ -77,27 +471,4 @@
         const markers = {};
         markers['lecce'] = L.marker(cityCoordinates['lecce'], {icon: L.divIcon({className: 'my-icon', html: '<div style="background-color: blue; width: 10px; height: 10px; border-radius: 50%;"></div>'})}).addTo(map).bindPopup('Lecce');
         markers['galatina'] = L.marker(cityCoordinates['galatina'], {icon: L.divIcon({className: 'my-icon', html: '<div style="background-color: green; width: 10px; height: 10px; border-radius: 50%;"></div>'})}).addTo(map).bindPopup('Galatina');
-        markers['benevento'] = L.marker(cityCoordinates['benevento'], {icon: L.divIcon({className: 'my-icon', html: '<div style="background-color: orange; width: 10px; height: 10px; border-radius: 50%;"></div>'})}).addTo(map).bindPopup('Benevento');
-        markers['napoli'] = L.marker(cityCoordinates['napoli'], {icon: L.divIcon({className: 'my-icon', html: '<div style="background-color: red; width: 10px; height: 10px; border-radius: 50%;"></div>'})}).addTo(map).bindPopup('Napoli');
-
-        // Gestione del click sui nomi delle città
-        document.querySelectorAll('#luoghi-interattivo p span').forEach(span => {
-            span.addEventListener('click', function() {
-                const city = this.getAttribute('data-city');
-                if (cityCoordinates[city]) {
-                    map.setView(cityCoordinates[city], 10); // Centra la mappa sulla città con uno zoom di 10
-
-                    // Nascondi tutte le sezioni di informazioni sulle città
-                    document.querySelectorAll('.city-info').forEach(info => {
-                        info.style.display = 'none';
-                    });
-
-                    // Mostra la sezione di informazioni per la città selezionata
-                    const cityInfoDiv = document.getElementById(city + '-info');
-                    if (cityInfoDiv) {
-                        cityInfoDiv.style.display = 'block';
-                    }
-                }
-            });
-        });
-    </script>
+        markers['benevento'] = L.marker(cityCoordinates['benevento'], {icon: L.divIcon({className: 'my-icon', html: '<div style="background-color: orange; width: 10px; height: 10px; border
