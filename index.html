@@ -326,7 +326,49 @@ Perché poi ci casco dentro e non mi accorgo che respiro"</p>
         <span id="marker-benevento" style="color:orange; cursor: pointer;">B</span> Benevento,
         <span id="marker-napoli" style="color:red; cursor: pointer;">N</span> Napoli
     </p>
+
+    <div id="info-lecce" class="city-info" style="display: none; background-image: url('lecce_sfondo.jpg'); background-size: cover; padding: 20px; margin-top: 20px;">
+        <h3>Ristoranti tipici di Lecce</h3>
+        <ul>
+            <li><a href="#">Ristorante Le Zie</a></li>
+            <li><a href="#">Osteria degli Spiriti</a></li>
+            <li><a href="#">Trattoria Nonna Tetti</a></li>
+        </ul>
+        </div>
+
+    <div id="info-galatina" class="city-info" style="display: none; background-image: url('galatina_sfondo.jpg'); background-size: cover; padding: 20px; margin-top: 20px;">
+        <h3>Specialità di Galatina</h3>
+        <p>Qui potrai gustare il famoso pasticciotto!</p>
+        </div>
+
+    <div id="info-benevento" class="city-info" style="display: none; background-image: url('benevento_sfondo.jpg'); background-size: cover; padding: 20px; margin-top: 20px;">
+        <h3>Ristoranti tipici di Benevento</h3>
+        <ul>
+            <li><a href="#">Antica Trattoria Ai Due Ponti</a></li>
+            <li><a href="#">Ristorante Locanda della Strega</a></li>
+            </ul>
+        </div>
+
+    <div id="info-napoli" class="city-info" style="display: none; background-image: url('napoli_sfondo.jpg'); background-size: cover; padding: 20px; margin-top: 20px;">
+        <h3>Pizzerie consigliate a Napoli</h3>
+        <ul>
+            <li><a href="#">Sorbillo</a></li>
+            <li><a href="#">Da Michele</a></li>
+            <li><a href="#">Starita a Materdei</a></li>
+        </ul>
+        </div>
 </section>
+
+<style>
+    .city-info ul {
+        list-style-type: none;
+        padding-left: 0;
+    }
+
+    .city-info ul li {
+        margin-bottom: 10px;
+    }
+</style>
 
     <footer>
         <p>© 2025 Iena Felix</p>
@@ -409,26 +451,47 @@ Perché poi ci casco dentro e non mi accorgo che respiro"</p>
         L.marker([40.8333, 14.2500], {icon: L.divIcon({className: 'my-icon', html: '<div style="background-color: red; width: 10px; height: 10px; border-radius: 50%;"></div>'})}).addTo(map).bindPopup('Napoli');
    
    
+// ... (il tuo codice JavaScript precedente) ...
+
 // Funzione per spostare la mappa su una data coordinata e zoom
 function flyToCity(lat, lng, zoom) {
     map.flyTo([lat, lng], zoom);
 }
 
+// Funzione per mostrare le informazioni della città e nascondere le altre
+function showCityInfo(cityId) {
+    // Nascondi tutte le sezioni informative
+    const allInfoSections = document.querySelectorAll('.city-info');
+    allInfoSections.forEach(section => {
+        section.style.display = 'none';
+    });
+
+    // Mostra la sezione informativa della città selezionata
+    const cityInfoSection = document.getElementById('info-' + cityId);
+    if (cityInfoSection) {
+        cityInfoSection.style.display = 'block';
+    }
+}
+
 // Aggiungi un "ascoltatore" di eventi (click) a ogni elemento della legenda
 document.getElementById('marker-lecce').addEventListener('click', function() {
-    flyToCity(40.3552, 18.1792, 10); // Coordinate di Lecce e livello di zoom
+    flyToCity(40.3552, 18.1792, 10);
+    showCityInfo('lecce');
 });
 
 document.getElementById('marker-galatina').addEventListener('click', function() {
-    flyToCity(40.1633, 18.1639, 12); // Coordinate di Galatina e livello di zoom
+    flyToCity(40.1633, 18.1639, 12);
+    showCityInfo('galatina');
 });
 
 document.getElementById('marker-benevento').addEventListener('click', function() {
-    flyToCity(41.1333, 14.7833, 10); // Coordinate di Benevento e livello di zoom
+    flyToCity(41.1333, 14.7833, 10);
+    showCityInfo('benevento');
 });
 
 document.getElementById('marker-napoli').addEventListener('click', function() {
-    flyToCity(40.8333, 14.2500, 10); // Coordinate di Napoli e livello di zoom
+    flyToCity(40.8333, 14.2500, 10);
+    showCityInfo('napoli');
 });
     
     </script>
