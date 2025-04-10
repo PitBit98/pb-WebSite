@@ -316,17 +316,17 @@ Perché poi ci casco dentro e non mi accorgo che respiro"</p>
         </div>
         </section>
 
-    <section id="luoghi" class="section">
-        <h2>Luoghi Speciali</h2>
-        <p>Abbiamo visitato posti bellissimi in Italia!</p>
-        <div id="map" style="width: 100%; height: 400px;"></div>
-        <p>
-            <span style="color:blue;">L</span> Lecce,
-            <span style="color:green;">G</span> Galatina,
-            <span style="color:orange;">B</span> Benevento,
-            <span style="color:red;">N</span> Napoli
-        </p>
-    </section>
+<section id="luoghi" class="section">
+    <h2>Luoghi Speciali</h2>
+    <p>Abbiamo visitato posti bellissimi in Italia!</p>
+    <div id="map" style="width: 100%; height: 400px;"></div>
+    <p>
+        <span id="marker-lecce" style="color:blue; cursor: pointer;">L</span> Lecce,
+        <span id="marker-galatina" style="color:green; cursor: pointer;">G</span> Galatina,
+        <span id="marker-benevento" style="color:orange; cursor: pointer;">B</span> Benevento,
+        <span id="marker-napoli" style="color:red; cursor: pointer;">N</span> Napoli
+    </p>
+</section>
 
     <footer>
         <p>© 2025 Iena Felix</p>
@@ -407,6 +407,30 @@ Perché poi ci casco dentro e non mi accorgo che respiro"</p>
         L.marker([40.1633, 18.1639], {icon: L.divIcon({className: 'my-icon', html: '<div style="background-color: green; width: 10px; height: 10px; border-radius: 50%;"></div>'})}).addTo(map).bindPopup('Galatina');
         L.marker([41.1333, 14.7833], {icon: L.divIcon({className: 'my-icon', html: '<div style="background-color: orange; width: 10px; height: 10px; border-radius: 50%;"></div>'})}).addTo(map).bindPopup('Benevento');
         L.marker([40.8333, 14.2500], {icon: L.divIcon({className: 'my-icon', html: '<div style="background-color: red; width: 10px; height: 10px; border-radius: 50%;"></div>'})}).addTo(map).bindPopup('Napoli');
+   
+   
+// Funzione per spostare la mappa su una data coordinata e zoom
+function flyToCity(lat, lng, zoom) {
+    map.flyTo([lat, lng], zoom);
+}
+
+// Aggiungi un "ascoltatore" di eventi (click) a ogni elemento della legenda
+document.getElementById('marker-lecce').addEventListener('click', function() {
+    flyToCity(40.3552, 18.1792, 10); // Coordinate di Lecce e livello di zoom
+});
+
+document.getElementById('marker-galatina').addEventListener('click', function() {
+    flyToCity(40.1633, 18.1639, 12); // Coordinate di Galatina e livello di zoom
+});
+
+document.getElementById('marker-benevento').addEventListener('click', function() {
+    flyToCity(41.1333, 14.7833, 10); // Coordinate di Benevento e livello di zoom
+});
+
+document.getElementById('marker-napoli').addEventListener('click', function() {
+    flyToCity(40.8333, 14.2500, 10); // Coordinate di Napoli e livello di zoom
+});
+    
     </script>
 
     <style>
