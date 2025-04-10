@@ -167,7 +167,7 @@
 
         /* ____________INIZIO Codice di prova */
 
-        .city-info {
+    .city-info {
         /* ... altri stili di base ... */
         border: 2px solid #888;
         border-radius: 10px;
@@ -175,16 +175,18 @@
         padding: 20px;
         margin-top: 20px;
         background-color: #f9f9f9; /* Colore di sfondo predefinito */
-        height: auto; /* Assicurati che l'altezza non sia 0 qui */
+        height: 0; /* Imposta l'altezza iniziale a 0 */
         opacity: 0; /* Inizialmente invisibile */
         transform: scaleY(0); /* Inizia con un'altezza scalata a 0 */
         transform-origin: top; /* L'animazione parte dall'alto */
         transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out, background-color 0.3s ease-in-out;
+        overflow: hidden; /* Nasconde il contenuto quando l'altezza è 0 */
     }
 
     .city-info.open {
         opacity: 1; /* Diventa visibile */
         transform: scaleY(1); /* Torna all'altezza normale */
+        height: auto; /* L'altezza si adatta al contenuto quando è aperta */
     }
 
     /* Stili specifici per il colore iniziale di sfondo */
