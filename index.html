@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -335,17 +336,17 @@
     position: absolute;
     top: 60px;
     left: 50%;
-    transform: translateX(-50%) scale(1.02); /* Zoom iniziale */
+    transform: translateX(-50%);
     max-width: 80%;
     z-index: 999;
     opacity: 0;
     pointer-events: none; /* Non blocca clic sulla mappa */
-   transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
+    transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
 #city-image-container.show {
-     opacity: 1;
-    transform: translateX(-50%) scale(1); /* Zoom finale */
+    opacity: 1;
+    transform: translateX(-50%) scale(1.05);
 }
 
 #city-image-container img {
@@ -616,47 +617,26 @@ const imageElement = document.getElementById('city-image');
 
 let pendingCity = null; // Per sapere quale città è stata cliccata
 
-        // Dichiarazione globale dell'array markers
-let markers = [];
-
-// Funzione per aggiungere un marker alla mappa
-function addMarker(lat, lon, imageUrl) {
-    const marker = L.marker([lat, lon]).addTo(map);
-    
-    // Aggiungi il marker all'array globale markers
-    marke
 function flyToCity(lat, lng, zoom, cityKey) {
     pendingCity = cityKey; // Memorizziamo la città da mostrare
     map.flyTo([lat, lng], zoom);
 }
-         // Funzione per gestire il click su un marker
-    marker.on('click', function() {
-        // Rimuovi l'immagine precedente (se esiste)
-        const imageContainer = document.getElementById('city-image-container');
-        const image = imageContainer.querySelector('img');
-        imageContainer.classList.remove('show'); // Nascondi l'immagine prima di cambiarla
-        
-        // Cambia l'immagine
+
+// Quando il flyTo è terminato, mostriamo l'immagine
+map.on('moveend', () => {
+    if (pendingCity && cityImages[pendingCity]) {
+        imageElement.src = cityImages[pendingCity];
+        imageElement.alt = `Immagine di ${pendingCity}`;
+        imageContainer.classList.add('show');
+
+        // Nascondi immagine dopo alcuni secondi (opzionale)
         setTimeout(() => {
-            image.src = imageUrl; // Imposta l'immagine del nuovo marker
-            imageContainer.classList.add('show'); // Mostra la nuova immagine con la transizione
-        }, 300); // Aggiungiamo un piccolo ritardo per evitare che l'immagine precedente rimanga visibile
-    });
-}
+            imageContainer.classList.remove('show');
+        }, 5000);
 
-     /* Se l'utente seleziona un punto sulla mappa diverso dal marker allora fai sparire l'immagine della città*/ 
-   // Event listener per clic sulla mappa
-map.on('click', (e) => {
-    // Verifica se il clic è stato fatto su un marker
-    const clickedMarker = markers.some(marker => marker.getLatLng().equals(e.latlng));
-
-    // Se non è stato cliccato su un marker, rimuovi l'immagine
-    if (!clickedMarker) {
-        const imageContainer = document.getElementById('city-image-container');
-        imageContainer.classList.remove('show');
+        pendingCity = null; // Reset
     }
 });
-
 
 // Funzione per mostrare le informazioni della città (con animazione) e nascondere le altre
 function showCityInfo(cityId) {
@@ -735,4 +715,3 @@ sideMenuLinks.forEach(link => {
     </style>
 </body>
 </html>
-
