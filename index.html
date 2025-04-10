@@ -615,7 +615,7 @@ const cityImage = document.getElementById('city-image');
 function flyToCityAndShowImage(lat, lng, zoom, imageName) {
     map.flyTo([lat, lng], zoom);
 
-    // Attendi che l'animazione flyTo finisca, poi mostra l'immagine
+    // Aspetta che l'animazione 'fly' (lo spostamento) finisca
     map.once('flyend', function() {
         cityImage.src = imageName;
         imageContainer.style.display = 'block';
@@ -639,32 +639,22 @@ function showCityInfo(cityId) {
 document.getElementById('marker-lecce').addEventListener('click', function() {
     flyToCityAndShowImage(40.3552, 18.1792, 10, 'lecce_sfondo.jpg');
     showCityInfo('lecce');
-    cityImage.src = 'lecce_sfondo.jpg';
-    imageContainer.style.display = 'block';
 });
 
 document.getElementById('marker-galatina').addEventListener('click', function() {
     flyToCityAndShowImage(40.1633, 18.1639, 12, 'galatina_sfondo.jpg');
     showCityInfo('galatina');
-    cityImage.src = 'galatina_sfondo.jpg';
-    imageContainer.style.display = 'block';
 });
 
 document.getElementById('marker-benevento').addEventListener('click', function() {
     flyToCityAndShowImage(41.1333, 14.7833, 10, 'benevento_sfondo.jpg');
     showCityInfo('benevento');
-    cityImage.src = 'benevento_sfondp.jpg';
-    imageContainer.style.display = 'block';
 });
 
 document.getElementById('marker-napoli').addEventListener('click', function() {
     flyToCityAndShowImage(40.8333, 14.2500, 10, 'napoli_sfondo.jpg');
     showCityInfo('napoli');
-    cityImage.src = 'napoli_sfondo.jpg';
-    imageContainer.style.display = 'block';
 });
-
-// ... il resto del tuo codice JavaScript ...
 
 const hamburgerIcon = document.querySelector('.hamburger-icon');
 const sideMenu = document.getElementById('side-menu');
