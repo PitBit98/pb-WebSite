@@ -175,15 +175,16 @@
 }
 
 #info-container {
-    /* Rimuovi position: absolute; */
-    /* Rimuovi top: 420px; */
     margin-top: 20px; /* Aggiungi un margine superiore per distanziarlo dalla mappa */
     left: 0; /* Puoi lasciare questo se vuoi che sia allineato a sinistra */
     width: 100%;
+     position: relative;
 }
 
 .city-info {
+     position: absolute;
     left: 0; /* Questo la allinea a sinistra */
+     top: 0; /* Le mette tutte all'inizio del contenitore */
     width: 100%; /* Questo la fa essere larga quanto lo spazio disponibile */
     opacity: 0; /* Questo la rende invisibile all'inizio */
     transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out, background-color 0.3s ease-in-out; /* Assicurati che ci sia la transizione */
