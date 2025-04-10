@@ -1,4 +1,35 @@
+Skip to content
+Navigation Menu
+PitBit98
+pb-WebSite
 
+Type / to search
+Code
+Issues
+Pull requests
+Actions
+Projects
+Wiki
+Security
+Insights
+Settings
+pb-WebSite
+/index.html
+Go to file
+t
+PitBit98
+PitBit98
+ripristino alla versione stabile
+e880cfb
+ · 
+2 hours ago
+pb-WebSite
+/index.html
+
+Code
+
+Blame
+665 lines (569 loc) · 21.5 KB
 
 
 
@@ -23,7 +54,7 @@
             min-height: 100vh; /* Assicura che il body sia almeno alto quanto la viewport */
         }
 
- /* Stili per l'icona hamburger */
+        /* Stili per l'icona hamburger */
 .hamburger-icon {
     position: fixed; /* Rimane visibile anche durante lo scrolling */
     top: 20px;
@@ -453,14 +484,8 @@ Perché poi ci casco dentro e non mi accorgo che respiro"</p>
     <span id="marker-benevento" style="color:orange; cursor: pointer;">B</span> Benevento,
     <span id="marker-napoli" style="color:red; cursor: pointer;">N</span> Napoli
 </p>
-<div id="image-container" style="position: absolute; top: 20px; left: 50%; transform: translateX(-50%); background-color: white; padding: 10px; border: 1px solid #ccc; box-shadow: 2px 2px 5px rgba(0,0,0,0.1); z-index: 1000; display: none;">
-        <img id="city-image" src="" style="max-width: 300px; height: auto;">
-        <button onclick="document.getElementById('image-container').style.display='none';" style="margin-top: 5px;">Chiudi</button>
-    </div>
-    </section>
-
 <div id="info-container">
-    <div id="info-lecce" class="city-info" style="background-image: url(''); background-size: cover; padding: 20px; margin-top: 20px;">
+    <div id="info-lecce" class="city-info" style="background-image: url('lecce_sfondo.jpg'); background-size: cover; padding: 20px; margin-top: 20px;">
         <h3>Ristoranti tipici di Lecce</h3>
         <ul>
             <li><a href="#">Ristorante Le Zie</a></li>
@@ -469,12 +494,12 @@ Perché poi ci casco dentro e non mi accorgo che respiro"</p>
         </ul>
     </div>
 
-    <div id="info-galatina" class="city-info" style="background-image: url(''); background-size: cover; padding: 20px; margin-top: 20px;">
+    <div id="info-galatina" class="city-info" style="background-image: url('galatina_sfondo.jpg'); background-size: cover; padding: 20px; margin-top: 20px;">
         <h3>Specialità di Galatina</h3>
         <p>Qui potrai gustare il famoso pasticciotto!</p>
     </div>
 
-    <div id="info-benevento" class="city-info" style="background-image: url(''); background-size: cover; padding: 20px; margin-top: 20px;">
+    <div id="info-benevento" class="city-info" style="background-image: url('benevento_sfondo.jpg'); background-size: cover; padding: 20px; margin-top: 20px;">
         <h3>Ristoranti tipici di Benevento</h3>
         <ul>
             <li><a href="#">Antica Trattoria Ai Due Ponti</a></li>
@@ -482,7 +507,7 @@ Perché poi ci casco dentro e non mi accorgo che respiro"</p>
         </ul>
     </div>
 
-    <div id="info-napoli" class="city-info" style="background-image: url(''); background-size: cover; padding: 20px; margin-top: 20px;">
+    <div id="info-napoli" class="city-info" style="background-image: url('napoli_sfondo.jpg'); background-size: cover; padding: 20px; margin-top: 20px;">
         <h3>Pizzerie consigliate a Napoli</h3>
         <ul>
             <li><a href="#">Sorbillo</a></li>
@@ -608,60 +633,26 @@ function showCityInfo(cityId) {
     }
 }
 
-// Ottieni il contenitore dell'immagine e l'elemento immagine
-const imageContainer = document.getElementById('image-container');
-const cityImage = document.getElementById('city-image');
-
-// Ottieni il contenitore dell'immagine e l'elemento immagine
-const imageContainer = document.getElementById('image-container');
-const cityImage = document.getElementById('city-image');
-
-// Funzione per spostare la mappa su una data coordinata e zoom e poi mostrare l'immagine
-function flyToCityAndShowImage(lat, lng, zoom, imageName) {
-    map.flyTo([lat, lng], zoom);
-
-    // Attendi che l'animazione flyTo finisca, poi mostra l'immagine
-    map.once('flyend', function() {
-        cityImage.src = imageName;
-        imageContainer.style.display = 'block';
-    });
-}
-
-// Funzione per mostrare le informazioni della città (con animazione) e nascondere le altre
-function showCityInfo(cityId) {
-    const allInfoSections = document.querySelectorAll('.city-info');
-    allInfoSections.forEach(section => {
-        section.classList.remove('open');
-    });
-
-    const cityInfoSection = document.getElementById('info-' + cityId);
-    if (cityInfoSection) {
-        cityInfoSection.classList.add('open');
-    }
-}
-
 // Aggiungi un "ascoltatore" di eventi (click) a ogni elemento della legenda
 document.getElementById('marker-lecce').addEventListener('click', function() {
-    flyToCityAndShowImage(40.3552, 18.1792, 10, 'lecce_sfondo.jpg');
+    flyToCity(40.3552, 18.1792, 10);
     showCityInfo('lecce');
 });
 
 document.getElementById('marker-galatina').addEventListener('click', function() {
-    flyToCityAndShowImage(40.1633, 18.1639, 12, 'galatina_sfondo.jpg');
+    flyToCity(40.1633, 18.1639, 12);
     showCityInfo('galatina');
 });
 
 document.getElementById('marker-benevento').addEventListener('click', function() {
-    flyToCityAndShowImage(41.1333, 14.7833, 10, 'benevento_sfondo.jpg');
+    flyToCity(41.1333, 14.7833, 10);
     showCityInfo('benevento');
 });
 
 document.getElementById('marker-napoli').addEventListener('click', function() {
-    flyToCityAndShowImage(40.8333, 14.2500, 10, 'napoli_sfondo.jpg');
+    flyToCity(40.8333, 14.2500, 10);
     showCityInfo('napoli');
 });
-
-// ... il resto del tuo codice JavaScript ...
 
 const hamburgerIcon = document.querySelector('.hamburger-icon');
 const sideMenu = document.getElementById('side-menu');
@@ -704,3 +695,4 @@ sideMenuLinks.forEach(link => {
     </style>
 </body>
 </html>
+pb-WebSite/index.html at e880cfb29087283034fb634c1fff6783cb5cae57 · PitBit98/pb-WebSite 
