@@ -167,25 +167,36 @@
 
         /* ____________INIZIO Codice di prova */
 
-    .city-info {
-        /* ... altri stili di base ... */
-        border: 2px solid #888;
-        border-radius: 10px;
-        box-shadow: 3px 3px 5px #ccc;
-        padding: 20px;
-        margin-top: 20px;
-        background-color: #f9f9f9; /* Colore di sfondo predefinito */
-        height: 0; /* Imposta l'altezza iniziale a 0 */
-        opacity: 0; /* Inizialmente invisibile */
-        transform: scaleY(0); /* Inizia con un'altezza scalata a 0 */
-        transform-origin: top; /* L'animazione parte dall'alto */
+          #map {
+        width: 100%;
+        height: 400px;
+        margin-bottom: 20px; /* Aggiungiamo un po' di spazio sotto la mappa */
+        position: relative; /* Necessario per posizionare assolutamente il contenitore delle info */
+    }
+
+    #info-container {
+        position: absolute; /* Posizionamento assoluto rispetto al contenitore della mappa */
+        top: 420px; /* Posiziona il contenitore subito sotto la mappa (400px altezza mappa + 20px margine) */
+        left: 0;
+        width: 100%;
+    }
+
+  .city-info {
+        /* ... (gli altri stili che hai per .city-info) ... */
+        position: absolute; /* Posizionamento assoluto all'interno del contenitore */
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1; /* Assicura che siano sopra ad altri elementi potenziali */
+        opacity: 0;
+        transform: scaleY(0);
         transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out, background-color 0.3s ease-in-out;
-        overflow: hidden; /* Nasconde il contenuto quando l'altezza è 0 */
+        overflow: hidden;
     }
 
     .city-info.open {
-        opacity: 1; /* Diventa visibile */
-        transform: scaleY(1); /* Torna all'altezza normale */
+        opacity: 1;
+        transform: scaleY(1);
         height: auto; /* L'altezza si adatta al contenuto quando è aperta */
     }
 
@@ -378,7 +389,7 @@ Perché poi ci casco dentro e non mi accorgo che respiro"</p>
         <span id="marker-benevento" style="color:orange; cursor: pointer;">B</span> Benevento,
         <span id="marker-napoli" style="color:red; cursor: pointer;">N</span> Napoli
     </p>
-
+<div id="info-container">
     <div id="info-lecce" class="city-info" style="background-image: url('lecce_sfondo.jpg'); background-size: cover; padding: 20px; margin-top: 20px;">
         <h3>Ristoranti tipici di Lecce</h3>
         <ul>
@@ -409,6 +420,10 @@ Perché poi ci casco dentro e non mi accorgo che respiro"</p>
             <li><a href="#">Starita a Materdei</a></li>
         </ul>
     </div>
+</div>
+
+
+    
 </section>
 
 <style>
