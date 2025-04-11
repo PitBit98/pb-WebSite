@@ -205,6 +205,40 @@
             border-radius: 10px;
         }
 
+        /* Modifica la visualizzazione della paginazione */
+.swiper-pagination {
+    bottom: 10px; /* Posizione della paginazione */
+    text-align: center;
+}
+
+.swiper-pagination-bullet {
+    width: 10px;
+    height: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+/* Paginazione attiva */
+.swiper-pagination-bullet-active {
+    background-color: rgba(0, 0, 0, 1);
+}
+
+/* Modifica la visibilità dei bullet, mostriamo solo 3 alla volta */
+.swiper-pagination {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    max-width: 30px;
+    overflow: hidden;
+}
+
+/* Nascondi altri pallini se ci sono più di 3 */
+.swiper-pagination-bullet:nth-child(n+4) {
+    display: none;
+}
+
+
         /* Sezione altre (modificata per generalità) */
         .section {
             padding: 50px;
@@ -616,26 +650,31 @@ Perché poi ci casco dentro e non mi accorgo che respiro"</p>
         animateCounter(daysPassed);
 
         // Configurazione di Swiper
-        const swiper = new Swiper('.swiper-container', {
-            loop: true,
-            slidesPerView: 1,  // Imposta 1 slide per vista su dispositivi mobili
-            spaceBetween: 10,
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
+   document.addEventListener('DOMContentLoaded', function () {
+    var swiper = new Swiper('.swiper-container', {
+        slidesPerView: 1, // Mostra una sola immagine per volta
+        spaceBetween: 10, // Distanza tra le immagini
+        loop: true, // Loop infinito
+        autoplay: {
+            delay: 3000, // Cambia immagine ogni 3 secondi
+        },
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true, // Abilita il click sui pallini
+            renderBullet: function (index, className) {
+                // Mostra solo 3 pallini
+                if (index < 3) {
+                    return '<span class="' + className + '"></span>';
+                }
             },
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
-            breakpoints: {
-                // Quando la larghezza è maggiore di 768px (desktop)
-                768: {
-                    slidesPerView: 3,  // Mostra 3 slide per vista su dispositivi più grandi
-                    spaceBetween: 20,
-                },
-            },
-        });
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+    });
+});
+
 
         // Animazione delle sezioni
         window.addEventListener('scroll', () => {
